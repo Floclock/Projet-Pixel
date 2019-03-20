@@ -1,4 +1,5 @@
 import React from 'react';
+import Map from 'src/components/Map';
 
 import './info.scss';
 
@@ -19,7 +20,9 @@ const Info = () => (
         <p className="section-info-text-bold">samedi</p>
         <p className="section-info-text-marg">13 à 00h</p>
       </div>
-      <div className="section-info-map"></div>
+      <div className="section-info-map">
+        <Map />
+      </div>
     </div>
   </div>
 );

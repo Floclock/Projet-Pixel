@@ -3,7 +3,9 @@ dist/
 .vs/
 .vs-code/
 
+
 .DS_Store
 Thumbs.db
+.directory
 
 yarn-error.log

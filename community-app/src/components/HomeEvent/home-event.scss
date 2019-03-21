@@ -16,13 +16,14 @@
   font-size: 1.3em;
   text-transform: uppercase;
   font-weight: bold;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 
 .event {
   display: flex;
   flex-direction: row;
   margin-bottom: 2em;
+  justify-content: center;
 }
 
 .event-date {

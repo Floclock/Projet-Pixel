@@ -4,7 +4,7 @@ import './sub-footer.scss';
 
 const SubFooter = () => (
   <div id="sub-footer">
-    <p className="">Pixel Café @ 2019</p>
+    <p className="">Pixel Café &copy; 2019</p>
   </div>
 );
 

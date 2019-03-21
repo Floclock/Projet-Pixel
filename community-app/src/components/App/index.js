@@ -7,6 +7,8 @@ import AboutUs from 'src/components/AboutUs';
 import HomeEvent from 'src/components/HomeEvent';
 import RowImages from 'src/components/RowImages';
 import Info from 'src/components/Info';
+import Footer from 'src/components/Footer';
+import SubFooter from 'src/components/SubFooter';
 
 
 /**
@@ -24,6 +26,8 @@ const App = () => (
     <HomeEvent />
     <RowImages />
     <Info />
+    <Footer />
+    <SubFooter />
   </div>
 );
 

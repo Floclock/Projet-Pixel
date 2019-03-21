@@ -1,0 +1,56 @@
+@import 'src/styles/vars';
+
+
+#footer {
+  margin-top: 2.5em;
+  padding: 2em;
+  background-color: $second-background-color;
+  height: 15em;
+  color: white;
+}
+
+.footer-newsletter-title {
+  text-align: center;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.form-subscribe {
+  margin: 1.5em auto;
+  text-align: center;
+}
+
+.footer-newsletter-field {
+  border: 1px solid #c8b29a;
+  color: #c8b29a;
+  text-align: center;
+  height: 2em;
+}
+
+.footer-newsletter-button {
+  margin-left: 1em;
+  height: 2em;
+  width: 4em;
+  font-weight: bold;
+  background-color: #c8b29a;
+  border: none;
+}
+
+.footer-social {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: auto;
+  text-align: center;
+  width: 8em;
+  font-size: 2em;
+
+  &-title {
+    text-align: center;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+}

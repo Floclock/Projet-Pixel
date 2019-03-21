@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './sub-footer.scss';
+import './footer.scss';
 
 const SubFooter = () => (
   <div id="sub-footer">

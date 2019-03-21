@@ -2,13 +2,11 @@
  * NPM import
  */
 import React from 'react';
+import Home from 'src/components/Home';
+import Menu from 'src/components/Menu';
 import Nav from 'src/components/Nav';
-import AboutUs from 'src/components/AboutUs';
-import HomeEvent from 'src/components/HomeEvent';
-import RowImages from 'src/components/RowImages';
-import Info from 'src/components/Info';
 import Footer from 'src/components/Footer';
-import SubFooter from 'src/components/SubFooter';
+import { Route, Switch } from 'react-router-dom';
 
 
 /**
@@ -22,12 +20,11 @@ import './app.scss';
 const App = () => (
   <div id="app">
     <Nav />
-    <AboutUs />
-    <HomeEvent />
-    <RowImages />
-    <Info />
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/menu" component={Menu} />
+    </Switch>
     <Footer />
-    <SubFooter />
   </div>
 );
 

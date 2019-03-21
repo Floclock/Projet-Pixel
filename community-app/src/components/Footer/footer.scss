@@ -3,8 +3,8 @@
 
 #footer {
   margin-top: 2.5em;
-  padding: 2em;
   background-color: $second-background-color;
+  padding-top: 2.5em;
   height: 15em;
   color: white;
 }
@@ -57,4 +57,16 @@
 
 .social-icon {
   cursor: pointer;
+}
+
+
+#sub-footer {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5em;
+  background-color: #372f2d;
+  color: white;
+  font-size: .8em;
 }

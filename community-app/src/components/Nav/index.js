@@ -1,5 +1,7 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
+import NavData from 'src/data/nav';
 import './nav.scss';
 
 const Nav = () => (
@@ -7,12 +9,16 @@ const Nav = () => (
     <div className="nav">
       <img className="logo" alt="pixel-café" src="src/images/logo.png" />
       <ul className="nav-link">
-        <li>le cafe</li>
-        <li>menu</li>
-        <li>nos jeux</li>
-        <li>réservation</li>
-        <li>évenements</li>
-        <li>info</li>
+        {NavData.map(nav => (
+          <li>
+            <NavLink
+              key={nav.label}
+              to={nav.route}
+            >
+              {nav.label}
+            </NavLink>
+          </li>
+        ))}
       </ul>
     </div>
     <div id="title">

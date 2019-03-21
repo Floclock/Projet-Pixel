@@ -3,6 +3,7 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 
 import NewsInput from './NewsInput';
+import SubFooter from './SubFooter';
 import './footer.scss';
 
 
@@ -17,6 +18,7 @@ const Footer = () => (
       <FaInstagram className="social-icon" />
       <FaYoutube className="social-icon" />
     </div>
+    <SubFooter />
   </div>
 );
 

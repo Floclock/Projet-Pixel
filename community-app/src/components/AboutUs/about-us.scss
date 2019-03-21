@@ -1,0 +1,26 @@
+@import 'src/styles/vars';
+
+#about-us {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 30em;
+  height: 12em;
+  margin: auto;
+  color: white;
+  text-align: center;
+}
+
+.about-title {
+  margin-top: 2em;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+}
+
+.about-content {
+  font-size: .9em;
+}
+
+

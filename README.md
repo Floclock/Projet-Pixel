@@ -1,1 +1,1 @@
-# Pixel café
+# pixel-coffee

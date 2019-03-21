@@ -11,9 +11,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/type")
+ * @Route("/api")
  */
 class TypeController extends AbstractController
 {
-
+    /**
+     * @Route("/types", name="all_types")
+     */
+    public function findAll(TypeRepository $repo)
+    {
+        $types = $repo->findAll();
+        foreach ($types as $index => $currentValue) {
+            $array[$index] = [
+                'id' => $currentValue->getId(),
+                'name' => $currentValue->getName(),
+                'description' => $currentValue->getDescription(),
+                'image' => $currentValue->getImage(),
+                'products' => $currentValue->getProducts()
+            ];
+            }
+    $jsonTypes = \json_encode($array);
+    $response = new Response($jsonTypes);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
 }

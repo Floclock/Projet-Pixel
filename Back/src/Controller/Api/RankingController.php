@@ -2,9 +2,9 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Product;
-use App\Form\ProductType;
-use App\Repository\ProductRepository;
+use App\Entity\Ranking;
+use App\Form\RankingType;
+use App\Repository\RankingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,25 +13,27 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/api")
  */
-class ProductController extends AbstractController
+class RankingController extends AbstractController
 {
     /**
-     * @Route("/products", name="all_products")
+     * @Route("/rankings", name="all_rankings")
      */
-    public function findAll(ProductRepository $repo)
+    public function findAll(RankingRepository $repo)
     {
-        $comments = $repo->findAll();
+        $rankings = $repo->findAll();
         foreach ($comments as $index => $currentValue) {
             $array[$index] = [
                 'id' => $currentValue->getId(),
                 'name' => $currentValue->getName(),
-                'description' => $currentValue->getDescription(),
-                'price' => $currentValue->getPrice(),
-                'type' => $currentValue->getType()
+                'place' => $currentValue->getPlace(),
+                'score' => $currentValue->getScore(),
+                'reward' => $currentValue->getReward(),
+                'user' => $currentValue->getUser(),
+                'event' => $currentValue->getEvent()
             ];
             }
-    $jsonProducts = \json_encode($array);
-    $response = new Response($jsonProducts);
+    $jsonRankings = \json_encode($array);
+    $response = new Response($jsonRankings);
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;

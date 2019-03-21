@@ -115,4 +115,9 @@ class Type
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
 }

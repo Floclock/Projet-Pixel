@@ -222,7 +222,7 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return array($this->getRole()->getName());
+        return array($this->getRole()->getCode());
     }
 
     public function eraseCredentials()

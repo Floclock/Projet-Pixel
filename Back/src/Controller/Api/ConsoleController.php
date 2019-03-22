@@ -11,9 +11,33 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/console")
+ * @Route("/api")
  */
 class ConsoleController extends AbstractController
 {
-    
+    /**
+     * @Route("/consoles", name="all_consoles")
+     */
+    public function findAll(ConsoleRepository $repo)
+    {
+        $consoles = $repo->findAll();
+        foreach ($consoles as $index => $currentValue) {
+            $array[$index] = [
+                'id' => $currentValue->getId(),
+                'name' => $currentValue->getName(),
+                'description' => $currentValue->getDescription(),
+                'nbAvailable' => $currentValue->getNbAvailable(),
+                'brand' => $currentValue->getBrand(),
+                'image' => $currentValue->getImage(),
+                'releaseDate' => $currentValue->getReleaseDate(),
+                'games' => $currentValue->getGames()
+
+            ];
+            }
+    $jsonConsoles = \json_encode($array);
+    $response = new Response($jsonConsoles);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    } 
 }

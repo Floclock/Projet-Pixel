@@ -29,6 +29,14 @@ class Role
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="role")
      */
     private $users;
@@ -96,10 +104,5 @@ class Role
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return (string) $this->getName();
     }
 }

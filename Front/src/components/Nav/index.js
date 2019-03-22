@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import NavData from 'src/data/nav';
@@ -9,10 +9,18 @@ const Nav = () => {
   const [path, setPath] = useState('');
   const [label, setLabel] = useState('');
 
+  useEffect(() => {
+    setPath(window.location.pathname.substr(1));
+
+    NavData.find(nav => (
+      nav.route === window.location.pathname ? setLabel(nav.label) : null));
+  });
+
   const changePath = (nav) => {
     setPath(nav.route.substr(1));
     setLabel(nav.label);
   };
+
 
   return (
     <nav className={`header${path}`}>

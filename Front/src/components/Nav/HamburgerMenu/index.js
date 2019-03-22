@@ -25,7 +25,7 @@ const Hamburger = ({ changeClassName }) => {
         <MenuContent
           changeClassName={changeClassName}
           closeCallback={() => closeMenu()}
-          click={closeMenu}
+          closeMenu={closeMenu}
         />
       </CheeseburgerMenu>
       <HamburgerMenu

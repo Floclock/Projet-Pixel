@@ -1,0 +1,55 @@
+@import 'src/styles/vars';
+
+
+#info {
+  margin-top: 2.5em;
+  padding: 2em;
+  background-color: $second-background-color;
+  height: 35em;
+  color: white;
+}
+
+.info-title {
+  text-align: center;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.section-info {
+  display: flex;
+
+  &-text {
+    display: flex;
+    flex-direction: column;
+
+    &-bold {
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: .7em; 
+      text-transform: capitalize;
+
+      &-horaire {
+        font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 1.5em; 
+      text-transform: capitalize;
+        margin-top: 2em;
+      }
+    }
+
+    &-marg {
+      font-style: italic; 
+      margin-left: 2em;
+      margin-bottom:1em; 
+    }
+  }
+}
+
+.section-info-map {
+  margin-left: 4em;
+  border: 10px solid white;
+  height: 28em;
+  width: 70em;
+}

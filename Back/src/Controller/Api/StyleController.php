@@ -36,4 +36,24 @@ class StyleController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+    /**
+     * @Route("/style/{id}", name="style_by_one", methods={"GET"})
+     */
+    public function findOneStyle(Style $style)
+    {
+        $currentValue = $style;
+        $array = [
+            'id' => $currentValue->getId(),
+            'name' => $currentValue->getName(),
+            'description' => $currentValue->getDescription(),
+            'logo' => $currentValue->getLogo(),
+            'events' => $currentValue->getEvents()
+        ];
+    $jsonOneStyle = \json_encode($array);
+    $response = new Response($jsonOneStyle);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
 }

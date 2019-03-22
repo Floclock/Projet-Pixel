@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+// use Proxies\__CG__\App\Entity\User;
 
 /**
  * @Route("/api")
@@ -35,6 +36,26 @@ class UserController extends AbstractController
             }
     $jsonUsers = \json_encode($array);
     $response = new Response($jsonUsers);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
+
+    /**
+     * @Route("/user/{id}", name="user_by_one", methods={"GET"})
+     */
+    public function findOneUser(User $user)
+    {
+        $currentValue = $user;
+        $array = [
+            'id' => $currentValue->getId(),
+            'name' => $currentValue->getName(),
+            'description' => $currentValue->getDescription(),
+            'image' => $currentValue->getImage(),
+            'products' => $currentValue->getProducts()
+        ];
+    $jsonOneUser = \json_encode($array);
+    $response = new Response($jsonOneUser);
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;

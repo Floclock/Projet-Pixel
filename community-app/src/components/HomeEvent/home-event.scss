@@ -1,0 +1,41 @@
+@import 'src/styles/vars';
+
+
+#home-event {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  background-color: $second-background-color;
+  height: 15em;
+  color: white;
+  padding: 2em;
+}
+
+.event-title {
+  text-align: center;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.event {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2em;
+}
+
+.event-date {
+  margin-right: 2em;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.event-name {
+  font-style: italic;
+  margin-bottom: .5em;
+}
+
+.event-description {
+  font-size: .9em;
+}

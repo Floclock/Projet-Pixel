@@ -1,0 +1,61 @@
+@import 'src/styles/vars';
+
+#header {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  padding: 1.7em 2em;
+  width: 100%;
+  height: 800px;
+  background-image: url('../../images/cafe-bar.jpg');
+  background-size: cover;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+
+.nav-link li {
+  margin-left: 1em;
+  cursor: pointer;
+}
+
+#title {
+  margin: auto;
+  width: 30em;
+}
+
+.sub-title1 {
+  color: white;
+  text-align: center;
+  font-size: 2.8em;
+  line-height: 1.2em;
+  text-transform: uppercase;
+}
+
+.line {
+  width: 20%;
+  margin: 1.5em auto;
+  border-bottom:3px solid white;
+}
+
+.sub-title2 {
+  color: white;
+  text-align: center;
+}

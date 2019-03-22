@@ -52,10 +52,10 @@ class CommentController extends AbstractController
             'event' => $comment->getEvent()
         ];
 
-   $jsonOneComment = \json_encode($array);
-   $response = new Response($jsonOneComment);
-   $response->headers->set('Content-Type', 'application/json');
-   // $response->headers->set('Access-Control-Allow-Origin', '');
-   return $response;
+    $jsonOneComment = \json_encode($array);
+    $response = new Response($jsonOneComment);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
     }
 }

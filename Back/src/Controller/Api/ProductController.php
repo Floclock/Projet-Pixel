@@ -36,4 +36,24 @@ class ProductController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+    /**
+     * @Route("/product/{id}", name="product_by_one", methods={"GET"})
+     */
+    public function findOneProduct(Product $product)
+    {
+        $currentValue = $product;
+        $array = [
+            'id' => $currentValue->getId(),
+            'name' => $currentValue->getName(),
+            'description' => $currentValue->getDescription(),
+            'price' => $currentValue->getPrice(),
+            'type' => $currentValue->getType()
+        ];
+    $jsonOneProduct = \json_encode($array);
+    $response = new Response($jsonOneProduct);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
 }

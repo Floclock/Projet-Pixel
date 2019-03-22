@@ -38,7 +38,6 @@ class CommentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($comment);
             $entityManager->flush();
-
             return $this->redirectToRoute('comment_index');
         }
 

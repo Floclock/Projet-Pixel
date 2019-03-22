@@ -1,6 +1,7 @@
 @import 'src/styles/vars';
 
 
+
 #footer {
   margin-top: 2.5em;
   background-color: $second-background-color;
@@ -24,14 +25,15 @@
 .footer-newsletter-field {
   border: 1px solid #c8b29a;
   color: #c8b29a;
+  width: 20em;
   text-align: center;
-  height: 2em;
+  height: 2.5em;
 }
 
 .footer-newsletter-button {
   margin-left: 1em;
-  height: 2em;
-  width: 4em;
+  height: 2.5em;
+  width: 5em;
   font-weight: bold;
   background-color: #c8b29a;
   border: none;

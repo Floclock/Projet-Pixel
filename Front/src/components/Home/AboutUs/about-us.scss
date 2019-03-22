@@ -1,5 +1,7 @@
 @import 'src/styles/vars';
 
+@media screen and (min-width: 640px) {
+
 #about-us {
   display: flex;
   flex-direction: column;
@@ -22,5 +24,33 @@
 .about-content {
   font-size: .9em;
 }
+}
 
+// about us mobile Version //
 
+@media screen and (max-width: 640px) {
+
+  #about-us {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 20em;
+    height: 12em;
+    margin: auto;
+    color: white;
+    text-align: center;
+  }
+  
+  .about-title {
+    margin-top: 2em;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+  }
+  
+  .about-content {
+    font-size: .9em;
+  }
+  
+  }

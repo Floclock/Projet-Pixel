@@ -11,7 +11,7 @@ const Info = () => (
         <p className="section-info-text-bold">Adresse</p>
         <p className="section-info-text-marg">14 rue Louis Blanc <br /> 76000 Rouen</p>
         <p className="section-info-text-bold">Email</p>
-        <p className="section-info-text-marg">contact@pixelcafe.com</p>
+        <a href="mailto:contact@pixelcafe.com" className="section-info-text-marg">contact@pixelcafe.com</a>
         <p className="section-info-text-bold">Téléphone</p>
         <p className="section-info-text-marg">01 02 03 04 05</p>
         <p className="section-info-text-bold-horaire">Horaires:</p>

@@ -36,4 +36,26 @@ class CommentController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+
+    /**
+     * @Route("/comment/{id}", name="comment_by_one", methods={"GET"})
+     */
+    public function findOneComment(Comment $comment)
+    {
+        $currentValue = $comment;
+        $array = [
+            'id' => $comment->getId(),
+            'content' => $comment->getContent(),
+            'createdAt' => $comment->getCreatedAt(),
+            'user' => $comment->getUser(),
+            'event' => $comment->getEvent()
+        ];
+
+   $jsonOneComment = \json_encode($array);
+   $response = new Response($jsonOneComment);
+   $response->headers->set('Content-Type', 'application/json');
+   // $response->headers->set('Access-Control-Allow-Origin', '');
+   return $response;
+    }
 }

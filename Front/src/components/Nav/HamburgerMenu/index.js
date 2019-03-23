@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import CheeseburgerMenu from 'cheeseburger-menu';
 import HamburgerMenu from 'react-hamburger-menu';
-import PropTypes from 'prop-types';
 import MenuContent from './MenuContent';
 
 
-const Hamburger = ({ changeClassName }) => {
+const Hamburger = () => {
   const [menuOpen, setMenu] = useState(false);
 
   const openMenu = () => {
@@ -23,7 +22,6 @@ const Hamburger = ({ changeClassName }) => {
         closeCallback={() => closeMenu()}
       >
         <MenuContent
-          changeClassName={changeClassName}
           closeCallback={() => closeMenu()}
           closeMenu={closeMenu}
         />
@@ -41,10 +39,6 @@ const Hamburger = ({ changeClassName }) => {
       />
     </div>
   );
-};
-
-Hamburger.propTypes = {
-  changeClassName: PropTypes.func.isRequired,
 };
 
 export default Hamburger;

@@ -5,14 +5,11 @@ import PropTypes from 'prop-types';
 import NavData from 'src/data/nav';
 import './menuContent.scss';
 
-const MenuContent = ({ changeClassName, closeMenu }) => (
+const MenuContent = ({ closeMenu }) => (
   <ul className="menu">
     {NavData.map(nav => (
       <li
-        onClick={() => {
-          changeClassName(nav);
-          closeMenu();
-        }}
+        onClick={() => closeMenu()}
         className="menu-item"
       >
         <NavLink
@@ -27,7 +24,6 @@ const MenuContent = ({ changeClassName, closeMenu }) => (
 );
 
 MenuContent.propTypes = {
-  changeClassName: PropTypes.func.isRequired,
   closeMenu: PropTypes.func.isRequired,
 };
 

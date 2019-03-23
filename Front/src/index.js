@@ -10,7 +10,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 /**
  * Local import
  */
-import App from 'src/components/App';
+import App from 'src/containers/App';
 
 import store from 'src/store';
 
@@ -24,7 +24,6 @@ const rootComponent = (
       <App />
     </Router>
   </Provider>
-  
 );
 // 2. La cible dans le DOM
 const target = document.getElementById('root');

@@ -1,56 +1,46 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import NavData from 'src/data/nav';
 import HamburgerMenu from './HamburgerMenu';
 import './nav.scss';
 
-const Nav = () => {
-  const [path, setPath] = useState('');
-  const [label, setLabel] = useState('');
-
-  useEffect(() => {
-    setPath(window.location.pathname.substr(1));
-
-    NavData.find(nav => (
-      nav.route === window.location.pathname ? setLabel(nav.label) : null));
-  });
-
-  const changePath = (nav) => {
-    setPath(nav.route.substr(1));
-    setLabel(nav.label);
-  };
-
-
-  return (
-    <nav className={`header${path}`}>
-      <div className="nav">
+const Nav = ({ path, displayName }) => (
+  <nav className={`header${path}`}>
+    <div className="nav">
+      <Link key="home-link1111" to="/">
         <img className="logo" alt="pixel-café" src="src/images/logo.png" />
-        <HamburgerMenu changeClassName={changePath} />
-        <ul className="nav-link">
-          {NavData.map(nav => (
-            <li onClick={() => changePath(nav)}>
-              <NavLink
-                key={nav.label}
-                to={nav.route}
-              >
-                {nav.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
-      {path === ''
-        ? (
-          <div id="title">
-            <h1 className="sub-title1">bienvenue <br /> au <br /> pixel cafe</h1>
-            <div className="line" />
-            <p className="sub-title2">De délicieux caféssaupoudrés d'une pincée de retro-gaming ou bien est-ce l'inverse ?</p>
-          </div>
-        )
-        : <h1 className="page-title">{label}</h1>}
-    </nav>
-  );
+      </Link>
+      <HamburgerMenu />
+      <ul className="nav-link">
+        {NavData.map(nav => (
+          <li>
+            <NavLink
+              key={nav.label}
+              to={nav.route}
+            >
+              {nav.label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+    {path === ''
+      ? (
+        <div id="title">
+          <h1 className="sub-title1">bienvenue <br /> au <br /> pixel cafe</h1>
+          <div className="line" />
+          <p className="sub-title2">De délicieux caféssaupoudrés d'une pincée de retro-gaming ou bien est-ce l'inverse ?</p>
+        </div>
+      )
+      : <h1 className="page-title">{displayName}</h1>}
+  </nav>
+);
+
+Nav.propTypes = {
+  path: PropTypes.string.isRequired,
+  displayName: PropTypes.string.isRequired,
 };
 
 

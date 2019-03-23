@@ -24,6 +24,18 @@
     background-size: cover;
     background-position:center;
   }
+
+  &nos-jeux {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    padding: 1.7em 2em;
+    width: 100%;
+    height: 300px;
+    background-image: url('../../images/gaming-zone.jpg');
+    background-size: cover;
+    background-position:center;
+  }
 }
 
 
@@ -111,6 +123,18 @@
       width: 100%;
       height: 300px;
       background-image: url('../../images/pacman-bar.jpg');
+      background-size: cover;
+      background-position:center;
+    }
+
+    &nos-jeux {
+      display: flex;
+      flex-direction: column;
+      align-content: space-around;
+      padding: 1.7em 2em;
+      width: 100%;
+      height: 300px;
+      background-image: url('../../images/gaming-zone.jpg');
       background-size: cover;
       background-position:center;
     }

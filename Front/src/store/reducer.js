@@ -1,24 +1,28 @@
-/**
- * Initial State
- */
 const initialState = {
-  message: 'Hello',
+  pathName: '',
 };
 
 /**
  * Types
  */
-const DO_SOMETHING = 'DO_SOMETHING';
+const SET_PATH_NAME = 'SET_PATH_NAME';
+const SET_DISPLAY_NAME = 'SET_DISPLAY_NAME';
 
 /**
  * Reducer
  */
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DO_SOMETHING:
+    case SET_PATH_NAME:
       return {
         ...state,
-        message: action.message,
+        pathName: action.pathName,
+      };
+
+    case SET_DISPLAY_NAME:
+      return {
+        ...state,
+        displayName: action.label,
       };
 
     default:
@@ -29,9 +33,14 @@ const reducer = (state = initialState, action = {}) => {
 /**
  * Action Creators
  */
-export const doSomething = message => ({
-  type: DO_SOMETHING,
-  message,
+export const setMenuName = pathName => ({
+  type: SET_PATH_NAME,
+  pathName,
+});
+
+export const setDisplayNane = label => ({
+  type: SET_DISPLAY_NAME,
+  label,
 });
 
 /**

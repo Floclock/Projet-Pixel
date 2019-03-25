@@ -1,31 +1,34 @@
-import React from 'react';
-import Consoles from 'src/data/games';
+import React, { useEffect } from 'react';
 
 import ImgBox from './ImgBox';
 import GamesBox from './GamesBox';
 import './games.scss';
 
-const Games = () => (
-  <div id="games">
-    {Consoles.map(console => (
-      <div>
-        {console.id % 2 === 0
-          ? (
-            <div className="pair">
-              <ImgBox data={console} />
-              <GamesBox data={console} />
-            </div>
-          )
-          : (
-            <div className="inpair">
-              <ImgBox data={console} />
-              <GamesBox data={console} />
-            </div>
-          )}
-      </div>
-    ))}
-  </div>
-);
+const Games = ({ getDataGames, dataGames }) => {
+  useEffect(getDataGames());
+
+  return (
+    <div id="games">
+      {dataGames.map(console => (
+        <div>
+          {console.id % 2 === 0
+            ? (
+              <div className="pair">
+                <ImgBox data={console} />
+                <GamesBox data={console} />
+              </div>
+            )
+            : (
+              <div className="inpair">
+                <ImgBox data={console} />
+                <GamesBox data={console} />
+              </div>
+            )}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 
 export default Games;

@@ -1,6 +1,6 @@
 import Home from 'src/components/Home';
 import Menu from 'src/components/Menu';
-import Games from 'src/components/Games';
+import Games from 'src/containers/Games';
 
 export default [
   {

@@ -8,7 +8,8 @@ const initialState = {
 const SET_PATH_NAME = 'SET_PATH_NAME';
 const SET_DISPLAY_NAME = 'SET_DISPLAY_NAME';
 const SET_DISPLAY_SUBTITLE = 'SET_DISPLAY_SUBTITLE';
-
+export const LOAD_GAMES = 'LOAD_GAMES';
+const RECEIVE_DATA_GAMES = ' RECEIVE_DATA_GAMES';
 /**
  * Reducer
  */
@@ -30,6 +31,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         displaySubtitle: action.subtitle,
+      };
+
+    case RECEIVE_DATA_GAMES:
+      return {
+        ...state,
+        dataGames: action.dataGames,
       };
 
     default:
@@ -55,6 +62,14 @@ export const setDisplaySubtitle = subtitle => ({
   subtitle,
 });
 
+export const getDataGames = () => ({
+  type: LOAD_GAMES,
+});
+
+export const receiveDataGames = dataGames => ({
+  type: RECEIVE_DATA_GAMES,
+  dataGames,
+});
 /**
  * Selectors
  */

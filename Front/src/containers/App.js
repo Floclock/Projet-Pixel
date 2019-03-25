@@ -14,7 +14,7 @@ import { setMenuName, setDisplayNane, setDisplaySubtitle } from 'src/store/reduc
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = (state, ownProps) => ({
-  message: state.message,
+  pathName: state.pathName,
 });
 
 /* === Actions ===

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './footer.scss';
 
-const NewsInput = () => {
+const NewsInput = ({ color }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleChange = (e) => {
@@ -12,7 +13,7 @@ const NewsInput = () => {
   return (
     <form className="form-subscribe">
       <input
-        className="footer-newsletter-field"
+        className={`footer-newsletter-field${color}`}
         placeholder="ENTREZ VOTRE MAIL"
         type="email"
         value={inputValue}
@@ -20,12 +21,16 @@ const NewsInput = () => {
       />
       <button
         type="submit"
-        className="footer-newsletter-button"
+        className={`footer-newsletter-button${color}`}
       >
         GO
       </button>
     </form>
   );
+};
+
+NewsInput.propTypes = {
+  color: PropTypes.string.isRequired,
 };
 
 

@@ -1,5 +1,6 @@
 import Home from 'src/components/Home';
 import Menu from 'src/components/Menu';
+import Games from 'src/components/Games';
 
 export default [
   {
@@ -17,7 +18,7 @@ export default [
   {
     route: '/nos-jeux',
     label: 'Nos Jeux',
-    page: 'NosJeux',
+    page: Games,
     subtitle: 'Venez vois notre station de jeux et notre selection retro',
   },
   {

@@ -5,6 +5,7 @@ import Nav from 'src/components/Nav';
 
 // Action Creators
 import { setMenuName } from 'src/store/reducer';
+import {setDisplaysubtitle} from '../store/reducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -16,6 +17,7 @@ import { setMenuName } from 'src/store/reducer';
 const mapStateToProps = (state, ownProps) => ({
   path: state.pathName,
   displayName: state.displayName,
+  displaySubtitle: state.displaySubtitle,
 });
 
 /* === Actions ===

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import App from 'src/components/App';
 
 // Action Creators
-import { setMenuName, setDisplayNane } from 'src/store/reducer';
+import { setMenuName, setDisplayNane, setDisplaySubtitle } from 'src/store/reducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -25,10 +25,11 @@ const mapStateToProps = (state, ownProps) => ({
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  sendUrl: (match, label) => {
+  sendUrl: (match, label, subtitle) => {
     const pathName = match.url.substr(1);
     dispatch(setMenuName(pathName));
     dispatch(setDisplayNane(label));
+    dispatch(setDisplaySubtitle(subtitle));
   },
 });
 

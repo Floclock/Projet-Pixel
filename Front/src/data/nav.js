@@ -4,18 +4,21 @@ import Menu from 'src/components/Menu';
 export default [
   {
     route: '/',
-    label: 'Le café',
+    label: 'Le Pixpresso café',
     page: Home,
+    subtitle: 'De délicieux cafés saupoudrés d\'une pincée de retro-gaming ou bien est-ce l\'inverse',
   },
   {
     route: '/menu',
-    label: 'Menu',
+    label: 'Notre Menu',
     page: Menu,
+    subtitle: 'Venez savourer nos café préparés par notre barista, tout en vous amusant devant nos jeux retro',
   },
   {
     route: '/nos-jeux',
     label: 'Nos Jeux',
     page: 'NosJeux',
+    subtitle: 'Venez vois notre station de jeux et notre selection retro',
   },
   {
     route: '/reservation',

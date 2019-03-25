@@ -3,10 +3,11 @@ import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import NavData from 'src/data/nav';
+import HeaderTitle from './HeaderTitle';
 import HamburgerMenu from './HamburgerMenu';
 import './nav.scss';
 
-const Nav = ({ path, displayName }) => (
+const Nav = ({ path, displayName, displaySubtitle }) => (
   <nav className={`header${path}`}>
     <div className="nav">
       <Link key="home-link1111" to="/">
@@ -26,15 +27,7 @@ const Nav = ({ path, displayName }) => (
         ))}
       </ul>
     </div>
-    {path === ''
-      ? (
-        <div id="title">
-          <h1 className="sub-title1">bienvenue <br /> au <br /> pixel cafe</h1>
-          <div className="line" />
-          <p className="sub-title2">De délicieux caféssaupoudrés d'une pincée de retro-gaming ou bien est-ce l'inverse ?</p>
-        </div>
-      )
-      : <h1 className="page-title">{displayName}</h1>}
+    <HeaderTitle title={displayName} subtitle={displaySubtitle} />
   </nav>
 );
 

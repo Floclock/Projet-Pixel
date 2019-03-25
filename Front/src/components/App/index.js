@@ -16,8 +16,8 @@ const App = ({ sendUrl }) => (
           exact
           path={nav.route}
           render={({ match }) => {
-            const { label } = nav;
-            sendUrl(match, label);
+            const { label, subtitle } = nav;
+            sendUrl(match, label, subtitle);
             const Components = nav.page;
             return <Components />;
           }

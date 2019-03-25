@@ -34,4 +34,22 @@ class RateController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+    /**
+     * @Route("/rate/{id}", name="rate_by_one", methods={"GET"})
+     */
+    public function findOneRate(Rate $rate)
+    {
+        $currentValue = $rate;
+        $array = [
+            'id' => $currentValue->getId(),
+            'user' => $currentValue->getUser(),
+            'event' => $currentValue->getEvent()
+        ];
+    $jsonOneRate = \json_encode($array);
+    $response = new Response($jsonOneRate);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
 }

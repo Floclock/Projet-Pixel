@@ -28,8 +28,8 @@ security:
             provider: pixel_coffee_provider
 
             form_login:
-                login_path: login
-                check_path: login
+                login_path: app_login
+                check_path: app_login
                 username_parameter: login[_username]
                 password_parameter: login[_password]
 
@@ -43,13 +43,9 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
-    # access_control:
-    #     - { path: ^/admin/(question|answer)/toggle, roles: ROLE_MODERATOR }
-    #     - { path: ^/admin/(tag|user), roles: ROLE_MODERATOR }
-    #     - { path: ^/answer/validate, roles: ROLE_USER }
-    #     - { path: ^/question/add, roles: ROLE_USER }
-    #     - { path: ^/user/(profile|edit), roles: ROLE_USER }
-
-    # role_hierarchy:
-    #     ROLE_ADMIN: ROLE_MODERATOR
-    #     ROLE_MODERATOR: ROLE_USER
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        
+    #role_hierarchy:
+     #   ROLE_ADMIN: ROLE_USER
+        

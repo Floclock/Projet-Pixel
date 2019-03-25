@@ -38,4 +38,27 @@ class RankingController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+    /**
+     * @Route("/ranking/{id}", name="ranking_by_one", methods={"GET"})
+     */
+    public function findOneRanking(Ranking $ranking)
+    {
+        $currentValue = $ranking;
+        $array = [
+            'id' => $currentValue->getId(),
+            'name' => $currentValue->getName(),
+            'place' => $currentValue->getPlace(),
+            'score' => $currentValue->getScore(),
+            'reward' => $currentValue->getReward(),
+            'user' => $currentValue->getUser(),
+            'event' => $currentValue->getEvent()
+        ];
+    $jsonOneRanking = \json_encode($array);
+    $response = new Response($jsonOneRanking);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
+
 }

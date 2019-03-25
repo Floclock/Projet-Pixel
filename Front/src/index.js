@@ -2,7 +2,7 @@
  * NPM import
  */
 import '@babel/polyfill';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -13,6 +13,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from 'src/containers/App';
 
 import store from 'src/store';
+import { getDataGames } from 'src/store/reducer';
+
 
 /**
  * Render
@@ -25,8 +27,11 @@ const rootComponent = (
     </Router>
   </Provider>
 );
+
 // 2. La cible dans le DOM
 const target = document.getElementById('root');
 
 // rendu de react-dom : react VERS dom
 render(rootComponent, target);
+
+store.dispatch(getDataGames());

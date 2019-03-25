@@ -19,7 +19,7 @@ import { getDataGames } from 'src/store/reducer';
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = (state, ownProps) => ({
-  dataGames: state.dataGames,
+  data: state.dataGames,
 });
 
 /* === Actions ===
@@ -31,7 +31,7 @@ const mapStateToProps = (state, ownProps) => ({
  */
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getDataGames: () => {
-    dispatch(getDataGames);
+    dispatch(getDataGames());
   },
 });
 

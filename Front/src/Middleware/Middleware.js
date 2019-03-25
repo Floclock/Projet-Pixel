@@ -9,7 +9,7 @@ import Consoles from 'src/data/games';
 const Middleware = store => next => (action) => {
   switch (action.type) {
     case LOAD_GAMES:
-      store.dispatch(receiveDataGames({ ...Consoles }));
+      store.dispatch(receiveDataGames(Consoles));
       break;
 
     default:

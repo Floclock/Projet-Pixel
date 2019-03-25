@@ -4,12 +4,11 @@ import ImgBox from './ImgBox';
 import GamesBox from './GamesBox';
 import './games.scss';
 
-const Games = ({ getDataGames, dataGames }) => {
-  useEffect(getDataGames());
-
+const Games = ({ getDataGames, data }) => {
+  
   return (
     <div id="games">
-      {dataGames.map(console => (
+      {data.map(console => (
         <div>
           {console.id % 2 === 0
             ? (

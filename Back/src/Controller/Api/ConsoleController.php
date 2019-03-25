@@ -19,23 +19,21 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/consoles", name="all_consoles")
      */
-    public function findAll(ConsoleRepository $repo, GameRepository $gameRepository, Console $console)
+    public function findAll(ConsoleRepository $repo)
     {
-        $game = $gameRepository->findByConsoleQueryBuilder($console);
+       
         $consoles = $repo->findAll();
-        foreach ($consoles as $index => $currentValue) {
-            $array[$index] = [
-                'id' => $currentValue->getId(),
-                'name' => $currentValue->getName(),
-                'description' => $currentValue->getDescription(),
-                'nbAvailable' => $currentValue->getNbAvailable(),
-                'brand' => $currentValue->getBrand(),
-                'image' => $currentValue->getImage(),
-                'releaseDate' => $currentValue->getReleaseDate(),
-                'game'=>$game->getName
+        foreach ($consoles as $console) {
+            $array[] = [
+                'id' => $console->getId(),
+                'name' => $console->getName(),
+                'description' => $console->getDescription(),
+                'nbAvailable' => $console->getNbAvailable(),
+                'brand' => $console->getBrand(),
+                'image' => $console->getImage(),
+                'releaseDate' => $console->getReleaseDate(),
+                'games' => $console->getGames()
             ];
-
-          
             }
     $jsonConsoles = \json_encode($array);
     $response = new Response($jsonConsoles);

@@ -64,4 +64,15 @@ class ConsoleController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+    /**
+     * @Route("/console/new", name="console_new", methods={"POST"})
+     */
+    public function newConsole($data)
+    {
+        $connexion=connect_db();
+        $sql="INSERT INTO CONSOLE(NAME,DESCRIPTION,NBAVAILABLE,BRAND,IMAGE,RELEASEDATE,GAMES[]) values (?,?,?,?,?,?,?)";
+        $stmt=$connexion->prepare($sql);
+        return $stmt->execute(array($data['NAME'], $data['DESCRIPTION'], $data['NBAVAILABLE'],$data['BRAND'],$data['IMAGE'],$data['RELEASEDATE'],$data['GAMES']));
+    }
 }

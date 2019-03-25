@@ -35,4 +35,22 @@ class RoleController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+    /**
+     * @Route("/role/{id}", name="role_by_one", methods={"GET"})
+     */
+    public function findOneRole(Role $role)
+    {
+        $currentValue = $role;
+        $array = [
+            'id' => $currentValue->getId(),
+            'code' => $currentValue->getCode(),
+            'name' => $currentValue->getName(),
+            'users' => $currentValue->getUsers()
+        ];
+    $jsonOneRole = \json_encode($array);
+    $response = new Response($jsonOneRole);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
 }

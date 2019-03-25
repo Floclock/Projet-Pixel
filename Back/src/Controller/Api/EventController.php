@@ -24,10 +24,10 @@ class EventController extends AbstractController
         foreach ($events as $index => $currentValue) {
             $array[$index] = [
                 'id' => $currentValue->getId(),
-                'name' => $currentValue->getContent(),
-                'description' => $currentValue->getCreatedAt(),
-                'date' => $currentValue->getUser(),
-                'nbParticipants' => $currentValue->getEvent(),
+                'name' => $currentValue->getName(),
+                'description' => $currentValue->getDescription(),
+                'date' => $currentValue->getDate(),
+                'nbParticipants' => $currentValue->getNbParticipants(),
                 'available' => $currentValue->getAvailable(),
                 'selected' => $currentValue->getSelected(),
                 'image' => $currentValue->getImage(),
@@ -42,5 +42,33 @@ class EventController extends AbstractController
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
-    } 
+    }
+
+    /**
+     * @Route("/event/{id}", name="event_by_one", methods={"GET"})
+     */
+    public function findOneEvent(Event $event)
+    {
+        $currentValue = $event;
+        $array = [
+            'id' => $currentValue->getId(),
+            'name' => $currentValue->getName(),
+            'description' => $currentValue->getDescription(),
+            'date' => $currentValue->getDate(),
+            'nbParticipants' => $currentValue->getNbParticipants(),
+            'available' => $currentValue->getAvailable(),
+            'selected' => $currentValue->getSelected(),
+            'image' => $currentValue->getImage(),
+            'comments' => $currentValue->getComments(),
+            'rates' => $currentValue->getRates(),
+            'rankings' => $currentValue->getRankings(),
+            'style' => $currentValue->getStyle()
+        ];
+
+    $jsonOneEvent = \json_encode($array);
+    $response = new Response($jsonOneEvent);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
 }

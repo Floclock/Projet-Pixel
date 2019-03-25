@@ -39,5 +39,29 @@ class ConsoleController extends AbstractController
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
-    } 
+    }
+
+    /**
+     * @Route("/console/{id}", name="console_by_one", methods={"GET"})
+     */
+    public function findOneConsole(Console $console)
+    {
+        $currentValue = $console;
+        $array = [
+            'id' => $currentValue->getId(),
+            'name' => $currentValue->getName(),
+            'description' => $currentValue->getDescription(),
+            'nbAvailable' => $currentValue->getNbAvailable(),
+            'brand' => $currentValue->getBrand(),
+            'image' => $currentValue->getImage(),
+            'releaseDate' => $currentValue->getReleaseDate(),
+            'games' => $currentValue->getGames()
+        ];
+
+    $jsonOneConsole = \json_encode($array);
+    $response = new Response($jsonOneConsole);
+    $response->headers->set('Content-Type', 'application/json');
+    // $response->headers->set('Access-Control-Allow-Origin', '');
+    return $response;
+    }
 }

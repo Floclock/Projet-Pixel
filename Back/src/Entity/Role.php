@@ -28,9 +28,6 @@ class Role
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     public function __toString()
     {
         return $this->name;

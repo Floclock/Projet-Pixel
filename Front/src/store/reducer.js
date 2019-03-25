@@ -1,6 +1,7 @@
 
 const initialState = {
   pathName: '',
+  dataGames: [],
 };
 
 /**

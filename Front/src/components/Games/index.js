@@ -5,7 +5,7 @@ import GamesBox from './GamesBox';
 import './games.scss';
 
 const Games = ({ getDataGames, data }) => {
-  
+  getDataGames();
   return (
     <div id="games">
       {data.map(console => (

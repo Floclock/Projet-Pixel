@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\GameRepository;
 
 /**
  * @Route("/api")
@@ -18,8 +19,9 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/consoles", name="all_consoles")
      */
-    public function findAll(ConsoleRepository $repo)
+    public function findAll(ConsoleRepository $repo, GameRepository $gameRepository, Console $console)
     {
+        $game = $gameRepository->findByConsoleQueryBuilder($console);
         $consoles = $repo->findAll();
         foreach ($consoles as $index => $currentValue) {
             $array[$index] = [
@@ -30,9 +32,10 @@ class ConsoleController extends AbstractController
                 'brand' => $currentValue->getBrand(),
                 'image' => $currentValue->getImage(),
                 'releaseDate' => $currentValue->getReleaseDate(),
-                'games' => $currentValue->getGames()
-
+                'game'=>$game->getName
             ];
+
+          
             }
     $jsonConsoles = \json_encode($array);
     $response = new Response($jsonConsoles);
@@ -44,8 +47,9 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/console/{id}", name="console_by_one", methods={"GET"})
      */
-    public function findOneConsole(Console $console)
+    public function findOneConsole(Console $console, GameRepository $gameRepository)
     {
+        $game = $gameRepository->findByConsoleQueryBuilder($console);
         $currentValue = $console;
         $array = [
             'id' => $currentValue->getId(),
@@ -55,7 +59,7 @@ class ConsoleController extends AbstractController
             'brand' => $currentValue->getBrand(),
             'image' => $currentValue->getImage(),
             'releaseDate' => $currentValue->getReleaseDate(),
-            'games' => $currentValue->getGames()
+            'game'=>$game
         ];
 
     $jsonOneConsole = \json_encode($array);

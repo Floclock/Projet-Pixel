@@ -64,27 +64,4 @@ class GameController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
-    
-    // /**
-    //  * @Route("/game/{id}", name="game_by_one", methods={"GET"})
-    //  */
-    // public function findOneGame(Game $game)
-    // {
-    //     $currentValue = $game;
-    //     $array = [
-    //         'id' => $currentValue->getId(),
-    //         'name' => $currentValue->getName(),
-    //         'description' => $currentValue->getDescription(),
-    //         'developer' => $currentValue->getDeveloper(),
-    //         'editor' => $currentValue->getEditor(),
-    //         'available' => $currentValue->getAvailable(),
-    //         'releaseDate' => $currentValue->getReleaseDate(),
-    //         'console' => $currentValue->getConsole()
-    //     ];
-    // $jsonOneGame = \json_encode($array);
-    // $response = new Response($jsonOneGame);
-    // $response->headers->set('Content-Type', 'application/json');
-    // // $response->headers->set('Access-Control-Allow-Origin', '');
-    // return $response;
-    // }
 }

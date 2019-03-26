@@ -59,4 +59,15 @@ class CommentController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+    /**
+     * @Route("/comment/new", name="comment_new", methods={"POST"})
+     */
+    public function newComment($data)
+    {
+        $connexion=connect_db();
+        $sql="INSERT INTO COMMENT(CONTENT,CREATEDAT) values (?,?)";
+        $stmt=$connexion->prepare($sql);
+        return $stmt->execute(array($data['CONTENT'], $data['CREATEDAT']));
+    }
 }

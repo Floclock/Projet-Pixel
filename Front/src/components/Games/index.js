@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ImgBox from './ImgBox';
@@ -6,7 +6,10 @@ import GamesBox from './GamesBox';
 import './games.scss';
 
 const Games = ({ getDataGames, data }) => {
-  getDataGames();
+  useEffect(() => {
+    getDataGames();
+  }, []);
+
   return (
     <div id="games">
       {data.map(console => (

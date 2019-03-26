@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ImgBox from './ImgBox';
@@ -6,7 +6,9 @@ import FoodBox from './FoodBox';
 import './menu.scss';
 
 const Menu = ({ getDataMenu, data }) => {
-  getDataMenu();
+  useEffect(() => {
+    getDataMenu();
+  }, []);
   return (
     <div id="food-menu">
       {data.map(type => (

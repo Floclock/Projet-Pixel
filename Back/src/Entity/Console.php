@@ -49,7 +49,7 @@ class Console
     private $releaseDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="console", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="console")
      */
     private $game;
 

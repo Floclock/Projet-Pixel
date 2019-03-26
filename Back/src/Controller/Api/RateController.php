@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\EventRepository;
+use App\Repository\UserRepository;
 
 /**
  * @Route("/api")
@@ -21,11 +23,11 @@ class RateController extends AbstractController
     public function findAll(RateRepository $repo)
     {
         $rates = $repo->findAll();
-        foreach ($comments as $index => $currentValue) {
+        foreach ($rates as $index => $currentValue) {
             $array[$index] = [
                 'id' => $currentValue->getId(),
-                'user' => $currentValue->getUser(),
-                'event' => $currentValue->getEvent()
+                'user' => $currentValue->getUser()->getUsername(),
+                'event' => $currentValue->getEvent()->getName()
             ];
             }
     $jsonRates = \json_encode($array);
@@ -43,8 +45,8 @@ class RateController extends AbstractController
         $currentValue = $rate;
         $array = [
             'id' => $currentValue->getId(),
-            'user' => $currentValue->getUser(),
-            'event' => $currentValue->getEvent()
+            'user' => $currentValue->getUser()->getUsername(),
+            'event' => $currentValue->getEvent()->getName()
         ];
     $jsonOneRate = \json_encode($array);
     $response = new Response($jsonOneRate);

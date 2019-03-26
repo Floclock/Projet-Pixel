@@ -47,7 +47,7 @@ class Game
     private $releaseDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Console", inversedBy="game", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Console", inversedBy="game")
      * @ORM\JoinColumn(nullable=false)
      */
     private $console;

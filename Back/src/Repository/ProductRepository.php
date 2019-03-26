@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Type;
 
 /**
  * @method Product|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,23 @@ class ProductRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Product::class);
     }
+
+    /**
+     * @param Type $product
+     * @return Product[]
+     */
+    
+    public function findByTypeQueryBuilder($type)
+    {
+        $qb = $this->createQueryBuilder('p')
+        ->join('p.type', 't')
+        ->addSelect('t')
+        ->where('p.type = :myType')
+        ->setParameter('myType', $type)
+        ;
+        return $qb->getQuery()->getArrayResult();
+    }
+
 
     // /**
     //  * @return Product[] Returns an array of Product objects

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Game;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Console;
 
 /**
  * @method Game|null find($id, $lockMode = null, $lockVersion = null)
@@ -32,7 +33,6 @@ class GameRepository extends ServiceEntityRepository
         ->where('g.console = :myConsole')
         ->setParameter('myConsole', $console)
         ;
-
         return $qb->getQuery()->getArrayResult();
     }
     

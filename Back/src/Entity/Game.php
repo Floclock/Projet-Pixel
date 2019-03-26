@@ -47,7 +47,7 @@ class Game
     private $releaseDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Console", inversedBy="games")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Console", inversedBy="games", fetch="EXTRA_LAZY")
      */
     private $console;
 

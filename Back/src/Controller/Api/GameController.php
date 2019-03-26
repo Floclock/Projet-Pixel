@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ConsoleRepository;
 
 /**
  * @Route("/api")
@@ -30,7 +31,7 @@ class GameController extends AbstractController
                 'editor' => $currentValue->getEditor(),
                 'available' => $currentValue->getAvailable(),
                 'releaseDate' => $currentValue->getReleaseDate(),
-                'console' => $currentValue->getConsole()
+                'console' => $currentValue->getConsole()->getName()
             ];
             }
     $jsonGames = \json_encode($array);
@@ -43,8 +44,9 @@ class GameController extends AbstractController
     /**
      * @Route("/game/{id}", name="game_by_one", methods={"GET"})
      */
-    public function findOneGame(Game $game)
+    public function findOneGame(Game $game, ConsoleRepository $consoleRepository)
     {
+        // $console = $consoleRepository->findByGamesQueryBuilder($game);
         $currentValue = $game;
         $array = [
             'id' => $currentValue->getId(),
@@ -54,7 +56,7 @@ class GameController extends AbstractController
             'editor' => $currentValue->getEditor(),
             'available' => $currentValue->getAvailable(),
             'releaseDate' => $currentValue->getReleaseDate(),
-            'console' => $currentValue->getConsole()
+            'console' => $currentValue->getConsole()->getName()
         ];
     $jsonOneGame = \json_encode($array);
     $response = new Response($jsonOneGame);
@@ -62,4 +64,27 @@ class GameController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+    
+    // /**
+    //  * @Route("/game/{id}", name="game_by_one", methods={"GET"})
+    //  */
+    // public function findOneGame(Game $game)
+    // {
+    //     $currentValue = $game;
+    //     $array = [
+    //         'id' => $currentValue->getId(),
+    //         'name' => $currentValue->getName(),
+    //         'description' => $currentValue->getDescription(),
+    //         'developer' => $currentValue->getDeveloper(),
+    //         'editor' => $currentValue->getEditor(),
+    //         'available' => $currentValue->getAvailable(),
+    //         'releaseDate' => $currentValue->getReleaseDate(),
+    //         'console' => $currentValue->getConsole()
+    //     ];
+    // $jsonOneGame = \json_encode($array);
+    // $response = new Response($jsonOneGame);
+    // $response->headers->set('Content-Type', 'application/json');
+    // // $response->headers->set('Access-Control-Allow-Origin', '');
+    // return $response;
+    // }
 }

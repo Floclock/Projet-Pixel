@@ -16,6 +16,14 @@
     color: white;
     background-color: #26b7c4;
   }
+
+  &menu {
+    margin-top: 2.5em;
+    padding-top: 2.5em;
+    height: 15em;
+    color: white;
+    background-color: #e58538;
+  }
 }
 
 .footer-newsletter-title {
@@ -43,7 +51,14 @@
     width: 20em;
     text-align: center;
     height: 2.5em;
+  }
 
+  &menu {
+    border: 1px solid #fee5c7;
+    color: #fee5c7;
+    width: 20em;
+    text-align: center;
+    height: 2.5em;
   }
 }
 
@@ -63,6 +78,16 @@
     background-color: white;
     border: none;
     color: #0495a2;
+  }
+
+  &menu {
+    margin-left: 1em;
+    height: 2.5em;
+    width: 5em;
+    font-weight: bold;
+    background-color: #fee5c7;
+    border: none;
+    color: #e58936;
   }
 }
 
@@ -106,6 +131,17 @@
     align-items: center;
     height: 2.5em;
     background-color: #0495a2;
+    color: white;
+    font-size: .8em;
+  }
+
+  &menu {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5em;
+    background-color: #ba6c2e;
     color: white;
     font-size: .8em;
   }

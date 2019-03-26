@@ -2,6 +2,7 @@
 const initialState = {
   pathName: '',
   dataGames: [],
+  dataMenu: [],
 };
 
 /**
@@ -12,6 +13,8 @@ const SET_DISPLAY_NAME = 'SET_DISPLAY_NAME';
 const SET_DISPLAY_SUBTITLE = 'SET_DISPLAY_SUBTITLE';
 export const LOAD_GAMES = 'LOAD_GAMES';
 const RECEIVE_DATA_GAMES = ' RECEIVE_DATA_GAMES';
+export const LOAD_MENU = 'LOAD_MENU';
+const RECEIVE_DATA_MENU = 'RECEIVE_DATA_MENU';
 /**
  * Reducer
  */
@@ -39,6 +42,12 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         dataGames: action.dataGames,
+      };
+
+    case RECEIVE_DATA_MENU:
+      return {
+        ...state,
+        dataMenu: action.dataMenu,
       };
 
     default:
@@ -71,6 +80,15 @@ export const getDataGames = () => ({
 export const receiveDataGames = dataGames => ({
   type: RECEIVE_DATA_GAMES,
   dataGames,
+});
+
+export const getDataMenu = () => ({
+  type: LOAD_MENU,
+});
+
+export const receiveDataMenu = dataMenu => ({
+  type: RECEIVE_DATA_MENU,
+  dataMenu,
 });
 /**
  * Selectors

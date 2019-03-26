@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import ImgBox from './ImgBox';
 import GamesBox from './GamesBox';
@@ -13,13 +14,13 @@ const Games = ({ getDataGames, data }) => {
           {console.id % 2 === 0
             ? (
               <div className="pair">
-                <ImgBox data={console} />
+                <ImgBox side="right" data={console} />
                 <GamesBox data={console} />
               </div>
             )
             : (
               <div className="inpair">
-                <ImgBox data={console} />
+                <ImgBox side="left" data={console} />
                 <GamesBox data={console} />
               </div>
             )}
@@ -29,5 +30,9 @@ const Games = ({ getDataGames, data }) => {
   );
 };
 
+Games.propTypes = {
+  getDataGames: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
+};
 
 export default Games;

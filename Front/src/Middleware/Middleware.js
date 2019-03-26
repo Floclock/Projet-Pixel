@@ -2,14 +2,42 @@
 
 
 // Import
-import { LOAD_GAMES, receiveDataGames } from 'src/store/reducer';
-import Consoles from 'src/data/games';
+import {
+  LOAD_GAMES, 
+  receiveDataGames,
+  receiveDataMenu,
+  LOAD_MENU,
+} from 'src/store/reducer';
+
+import axios from 'axios';
+
+
+const menuUrl = 'http://92.243.8.69/api/types';
+const gamesUrl = 'http://92.243.8.69/api/consoles';
 
 
 const Middleware = store => next => (action) => {
   switch (action.type) {
     case LOAD_GAMES:
-      store.dispatch(receiveDataGames(Consoles));
+      axios
+        .get(gamesUrl)
+        .then(({ data }) => {
+          store.dispatch(receiveDataGames(data));
+        })
+        .catch(() => {
+          console.error('Error receiveDataGames');
+        });
+      break;
+
+    case LOAD_MENU:
+      axios
+        .get(menuUrl)
+        .then(({ data }) => {
+          store.dispatch(receiveDataMenu(data));
+        })
+        .catch(() => {
+          console.error('Error receiveDataMenu');
+        });
       break;
 
     default:

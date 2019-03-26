@@ -7,6 +7,27 @@
   width: 100%;
 }
 
+.triangleleft {
+  position: absolute;
+  width: 0;
+  height: 0; 
+  border-top: 50px solid transparent; 
+  border-left: 60px solid #b8ebf0; 
+  border-bottom: 50px solid transparent; 
+  left: 0;
+}
+
+.triangleright {
+  position: absolute;
+  width: 0;
+  height: 0; 
+  border-top: 50px solid transparent; 
+  border-right: 60px solid #b8ebf0; 
+  border-bottom: 50px solid transparent; 
+  right: 0;
+}
+
+
 .inpair {
   flex-direction: row-reverse;
 }
@@ -22,8 +43,6 @@
 
 .img-box {
   position: relative;
-  background-color: #b8ebf0;
-  opacity: 0.85;
 }
 
 .console {
@@ -70,7 +89,9 @@
   color: #0495a2;
 
   &-game {
+    padding: .5em 0;
     margin-bottom: 1em;
+    border-top: 1px dashed #0495a2;
     
     &-title {
       font-size: 1.1em;
@@ -98,10 +119,6 @@
   
   .inpair {
     flex-direction: column;
-  }
-  
-  .img-box, .games-box {
-   
   }
   
   .img-box img {
@@ -161,6 +178,8 @@
   
     &-game {
       margin-bottom: 1em;
+      padding: .5em 0;
+      border-top: 1px dashed #0495a2;
       
       &-title {
         font-size: 1.1em;

@@ -2,7 +2,7 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Console;
+
 use App\Form\ConsoleType;
 use App\Repository\ConsoleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\GameRepository;
+use App\Entity\Console;
 
 /**
  * @Route("/api")
@@ -19,9 +20,10 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/consoles", name="all_consoles")
      */
-    public function findAll(ConsoleRepository $repo)
+    public function findAll(ConsoleRepository $repo, GameRepository $gameRepository)
     {
-       
+    
+        
         $consoles = $repo->findAll();
         foreach ($consoles as $console) {
             $array[] = [
@@ -32,7 +34,7 @@ class ConsoleController extends AbstractController
                 'brand' => $console->getBrand(),
                 'image' => $console->getImage(),
                 'releaseDate' => $console->getReleaseDate(),
-                'games' => $console->getGames()
+                'games' => $gameRepository->findByConsoleQueryBuilder($console),
             ];
             }
     $jsonConsoles = \json_encode($array);

@@ -47,9 +47,12 @@ class Game
     private $releaseDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Console", inversedBy="games", fetch="EXTRA_LAZY")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Console", inversedBy="game")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $console;
+
+  
 
     public function getId(): ?int
     {
@@ -139,5 +142,7 @@ class Game
 
         return $this;
     }
+
+  
 
 }

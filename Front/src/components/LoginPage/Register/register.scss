@@ -1,0 +1,36 @@
+
+.register-text {
+    margin: 2em;
+}
+
+.register-text h2 {
+    font-size: 1.7em;
+}
+
+
+
+label {
+    font-size: 1.2em;
+    color: #746359;
+    display: inline-block;
+    position: relative;
+    align-self: start;
+    padding-left: 1em;
+    margin-bottom: 0em;
+}
+
+.register-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 2em auto;
+}
+
+.register-form input {
+    background-color: #ddc9b3;
+    border-color: #746359;
+    margin: 1.1em;
+    padding: 0.5em;
+    text-align: center;
+}

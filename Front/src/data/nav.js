@@ -1,5 +1,6 @@
 import Home from 'src/components/Home';
 import Menu from 'src/components/Menu';
+import LoginPage from 'src/components/LoginPage';
 
 export default [
   {
@@ -18,7 +19,7 @@ export default [
     route: '/nos-jeux',
     label: 'Nos Jeux',
     page: 'NosJeux',
-    subtitle: 'Venez vois notre station de jeux et notre selection retro',
+    subtitle: 'Venez voir nos station de jeux et notre selection retro',
   },
   {
     route: '/reservation',
@@ -35,4 +36,10 @@ export default [
     label: 'Info',
     page: 'Info',
   },
+  {
+    route: '/login',
+    label: 'Login',
+    page: LoginPage,
+    subtitle: 'Accedez à votre compte'
+  }
 ];

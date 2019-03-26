@@ -17,12 +17,14 @@ const Nav = ({ path, displayName, displaySubtitle }) => (
       <ul className="nav-link">
         {NavData.map(nav => (
           <li>
+            <a>
             <NavLink
               key={nav.label}
               to={nav.route}
             >
               {nav.label}
             </NavLink>
+            </a>
           </li>
         ))}
       </ul>

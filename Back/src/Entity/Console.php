@@ -49,16 +49,19 @@ class Console
     private $releaseDate;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="console")
+     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="console", fetch="EAGER")
      */
-    private $games;
+    private $game;
+
+  
 
     public function __construct()
     {
-        $this->games = new ArrayCollection();
+        $this->game = new ArrayCollection();
     }
 
     public function getId(): ?int
+    
     {
         return $this->id;
     }
@@ -135,18 +138,24 @@ class Console
         return $this;
     }
 
+
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+
     /**
      * @return Collection|Game[]
      */
     public function getGames(): Collection
     {
-        return $this->games;
+        return $this->game;
     }
 
     public function addGame(Game $game): self
     {
-        if (!$this->games->contains($game)) {
-            $this->games[] = $game;
+        if (!$this->game->contains($game)) {
+            $this->game[] = $game;
             $game->setConsole($this);
         }
 
@@ -155,8 +164,8 @@ class Console
 
     public function removeGame(Game $game): self
     {
-        if ($this->games->contains($game)) {
-            $this->games->removeElement($game);
+        if ($this->game->contains($game)) {
+            $this->game->removeElement($game);
             // set the owning side to null (unless already changed)
             if ($game->getConsole() === $this) {
                 $game->setConsole(null);
@@ -164,10 +173,5 @@ class Console
         }
 
         return $this;
-    }
-
-    public function __toString()
-    {
-        return (string) $this->getName();
     }
 }

@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UserRepository;
 
 /**
  * @Route("/api", name="api_")
@@ -26,7 +27,7 @@ class CommentController extends AbstractController
                 'id' => $currentValue->getId(),
                 'content' => $currentValue->getContent(),
                 'createdAt' => $currentValue->getCreatedAt(),
-                'user' => $currentValue->getUser(),
+                'user' => $currentValue->getUser()->getUsername(),
                 'event' => $currentValue->getEvent()
             ];
             }
@@ -48,7 +49,7 @@ class CommentController extends AbstractController
             'id' => $comment->getId(),
             'content' => $comment->getContent(),
             'createdAt' => $comment->getCreatedAt(),
-            'user' => $comment->getUser(),
+            'user' => $comment->getUser()->getUsername(),
             'event' => $comment->getEvent()
         ];
 

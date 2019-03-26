@@ -44,7 +44,7 @@ class GameController extends AbstractController
     /**
      * @Route("/game/{id}", name="game_by_one", methods={"GET"})
      */
-    public function findOneGame(Game $game, ConsoleRepository $consoleRepository)
+    public function findOneGame(Game $game)
     {
         // $console = $consoleRepository->findByGamesQueryBuilder($game);
         $currentValue = $game;

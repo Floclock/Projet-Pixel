@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Style;
 
 /**
  * @method Event|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,23 @@ class EventRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Event::class);
+    }
+
+
+    /**
+     * @param Style $event
+     * @return Event[]
+     */
+    
+    public function findByStyleQueryBuilder($style)
+    {
+        $qb = $this->createQueryBuilder('e')
+        ->join('e.style', 's')
+        ->addSelect('s')
+        ->where('e.style = :myStyle')
+        ->setParameter('myStyle', $style)
+        ;
+        return $qb->getQuery()->getArrayResult();
     }
 
     // /**

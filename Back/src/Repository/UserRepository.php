@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Role;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,22 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+    /**
+     * @param Role $user
+     * @return User[]
+     */
+    
+    public function findByRoleQueryBuilder($role)
+    {
+        $qb = $this->createQueryBuilder('u')
+        ->join('u.role', 'r')
+        ->addSelect('r')
+        ->where('u.role = :myRole')
+        ->setParameter('myRole', $role)
+        ;
+        return $qb->getQuery()->getArrayResult();
     }
 
     // /**

@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\RoleRepository;
+
 // use Proxies\__CG__\App\Entity\User;
 
 /**
@@ -28,7 +30,7 @@ class UserController extends AbstractController
                 'username' => $currentValue->getUsername(),
                 'password' => $currentValue->getPassword(),
                 'email' => $currentValue->getEmail(),
-                'role' => $currentValue->getRole(),
+                'role' => $currentValue->getRole()->getName(),
                 'comments' => $currentValue->getComments(),
                 'rates' => $currentValue->getRates(),
                 'rankings' => $currentValue->getRankings()
@@ -49,10 +51,13 @@ class UserController extends AbstractController
         $currentValue = $user;
         $array = [
             'id' => $currentValue->getId(),
-            'name' => $currentValue->getName(),
-            'description' => $currentValue->getDescription(),
-            'image' => $currentValue->getImage(),
-            'products' => $currentValue->getProducts()
+            'username' => $currentValue->getUsername(),
+            'password' => $currentValue->getPassword(),
+            'email' => $currentValue->getEmail(),
+            'role' => $currentValue->getRole()->getName(),
+            'comments' => $currentValue->getComments(),
+            'rates' => $currentValue->getRates(),
+            'rankings' => $currentValue->getRankings()
         ];
     $jsonOneUser = \json_encode($array);
     $response = new Response($jsonOneUser);

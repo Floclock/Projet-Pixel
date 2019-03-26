@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ConsoleRepository;
 
 /**
  * @Route("/api")
@@ -30,7 +31,7 @@ class GameController extends AbstractController
                 'editor' => $currentValue->getEditor(),
                 'available' => $currentValue->getAvailable(),
                 'releaseDate' => $currentValue->getReleaseDate(),
-                'console' => $currentValue->getConsole()
+                'console' => $currentValue->getConsole()->getName()
             ];
             }
     $jsonGames = \json_encode($array);
@@ -45,6 +46,7 @@ class GameController extends AbstractController
      */
     public function findOneGame(Game $game)
     {
+        // $console = $consoleRepository->findByGamesQueryBuilder($game);
         $currentValue = $game;
         $array = [
             'id' => $currentValue->getId(),
@@ -54,7 +56,7 @@ class GameController extends AbstractController
             'editor' => $currentValue->getEditor(),
             'available' => $currentValue->getAvailable(),
             'releaseDate' => $currentValue->getReleaseDate(),
-            'console' => $currentValue->getConsole()
+            'console' => $currentValue->getConsole()->getName()
         ];
     $jsonOneGame = \json_encode($array);
     $response = new Response($jsonOneGame);

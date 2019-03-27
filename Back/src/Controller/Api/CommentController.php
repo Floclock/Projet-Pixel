@@ -6,6 +6,7 @@ use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +20,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class CommentController extends AbstractController
 {
+    private function getErrorsFromForm(FormInterface $form)
+    {
+        $errors = array();
+        foreach ($form->getErrors() as $error) {
+            $errors[] = $error->getMessage();
+        }
+        foreach ($form->all() as $childForm) {
+            if ($childForm instanceof FormInterface) {
+                if ($childErrors = $this->getErrorsFromForm($childForm)) {
+                    $errors[$childForm->getName()] = $childErrors;
+                }
+            }
+        }
+        return $errors;
+    }
+    
     /**
      * @Route("/comments", name="all_comments")
      */
@@ -47,9 +64,12 @@ class CommentController extends AbstractController
      */
     public function newCommentAction(Request $request): Response
     {
+        $body = $request->request->all();
         $return = [];
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
+        $form->submit($body);
+        
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
            $return['coucou'] = 'test';
@@ -62,6 +82,9 @@ class CommentController extends AbstractController
             } else {
                 $return['error'] = $this->getErrorsFromForm($form);
             }
+        } else {
+    
+            $return['coucou'] = 'test2';
         }
         return new JsonResponse($return, JsonResponse::HTTP_BAD_REQUEST);
     }

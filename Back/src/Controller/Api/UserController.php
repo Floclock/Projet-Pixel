@@ -13,14 +13,34 @@ use App\Repository\RoleRepository;
 use App\Repository\RateRepository;
 use App\Repository\RankingRepository;
 use App\Repository\CommentRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Form\FormInterface;
 
 // use Proxies\__CG__\App\Entity\User;
 
 /**
- * @Route("/api")
+ * @Route("/api", name="api_")
  */
 class UserController extends AbstractController
 {
+
+
+    private function getErrorsFromForm(FormInterface $form)
+    {
+        $errors = array();
+        foreach ($form->getErrors() as $error) {
+            $errors[] = $error->getMessage();
+        }
+        foreach ($form->all() as $childForm) {
+            if ($childForm instanceof FormInterface) {
+                if ($childErrors = $this->getErrorsFromForm($childForm)) {
+                    $errors[$childForm->getName()] = $childErrors;
+                }
+            }
+        }
+        return $errors;
+    }
+
     /**
      * @Route("/users", name="all_users")
      */
@@ -44,6 +64,35 @@ class UserController extends AbstractController
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
+    }
+
+
+    /**
+     * @Route("/user/new", name="user_new", methods={"POST"})
+     */
+    public function newUserAction(Request $request): Response
+    {
+        $body = $request->request->all();
+        $return = [];
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->submit($body);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+        //    $return['coucou'] = 'test';
+            if($form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                return new JsonResponse([], JsonResponse::HTTP_OK);
+            } else {
+                $return['error'] = $this->getErrorsFromForm($form);
+            }
+        } else {    
+            // $return['coucou'] = 'test2';
+        }
+        return new JsonResponse($return, JsonResponse::HTTP_BAD_REQUEST);
     }
 
     /**

@@ -14,12 +14,31 @@ use App\Repository\GameRepository;
 use App\Repository\CommentRepository;
 use App\Repository\RankingRepository;
 use App\Repository\RateRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Form\FormInterface;
 
 /**
- * @Route("/api")
+ * @Route("/api", name="api_")
  */
 class EventController extends AbstractController
 {
+
+    private function getErrorsFromForm(FormInterface $form)
+    {
+        $errors = array();
+        foreach ($form->getErrors() as $error) {
+            $errors[] = $error->getMessage();
+        }
+        foreach ($form->all() as $childForm) {
+            if ($childForm instanceof FormInterface) {
+                if ($childErrors = $this->getErrorsFromForm($childForm)) {
+                    $errors[$childForm->getName()] = $childErrors;
+                }
+            }
+        }
+        return $errors;
+    }
+
     /**
      * @Route("/events", name="all_events")
      */
@@ -48,6 +67,36 @@ class EventController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
+
+
+    /**
+     * @Route("/event/new", name="event_new", methods={"POST"})
+     */
+    public function newEventAction(Request $request): Response
+    {
+        $body = $request->request->all();
+        $return = [];
+        $event = new Event();
+        $form = $this->createForm(EventType::class, $event);
+        $form->submit($body);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+        //    $return['coucou'] = 'test';
+            if($form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($event);
+                $entityManager->flush();
+
+                return new JsonResponse([], JsonResponse::HTTP_OK);
+            } else {
+                $return['error'] = $this->getErrorsFromForm($form);
+            }
+        } else {    
+            // $return['coucou'] = 'test2';
+        }
+        return new JsonResponse($return, JsonResponse::HTTP_BAD_REQUEST);
+    }
+
 
     /**
      * @Route("/event/{id}", name="event_by_one", methods={"GET"})
@@ -79,6 +128,5 @@ class EventController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
-
     
 }

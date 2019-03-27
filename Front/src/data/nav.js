@@ -1,6 +1,7 @@
 import Home from 'src/components/Home';
 import Menu from 'src/containers/Menu';
 import Games from 'src/containers/Games';
+import Reservation from 'src/containers/Reservation';
 
 export default [
   {
@@ -19,12 +20,13 @@ export default [
     route: '/nos-jeux',
     label: 'Nos Jeux',
     page: Games,
-    subtitle: 'Venez vois notre station de jeux et notre selection retro',
+    subtitle: 'Venez voir notre station de jeux et notre selection retro',
   },
   {
     route: '/reservation',
     label: 'Réservation',
-    page: 'Reservation',
+    page: Reservation,
+    subtitle: 'Réservez une table et profitez de nos consoles rétros',
   },
   {
     route: '/evenement',

@@ -1,7 +1,3 @@
-// Middleware ajax : traitement des recup de données (recettes)
-
-
-// Import
 import {
   LOAD_GAMES, 
   receiveDataGames,

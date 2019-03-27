@@ -25,6 +25,7 @@ class RankingType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Ranking::class,
+            'csrf_protection' => false,
         ]);
     }
 }

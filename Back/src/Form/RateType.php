@@ -21,6 +21,7 @@ class RateType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Rate::class,
+            'csrf_protection' => false,
         ]);
     }
 }

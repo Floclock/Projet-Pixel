@@ -24,13 +24,13 @@ class CommentController extends AbstractController
     public function findAll(CommentRepository $repo)
     {
         $comments = $repo->findAll();
-        foreach ($comments as $index => $currentValue) {
-            $array[$index] = [
-                'id' => $currentValue->getId(),
-                'content' => $currentValue->getContent(),
-                'createdAt' => $currentValue->getCreatedAt(),
-                'user' => $currentValue->getUser()->getUsername(),
-                'event' => $currentValue->getEvent()
+        foreach ($comments as $comment) {
+            $array[] = [
+                'id' => $comment->getId(),
+                'content' => $comment->getContent(),
+                'createdAt' => $comment->getCreatedAt(),
+                'user' => $comment->getUser()->getUsername(),
+                'event' => $comment->getEvent()->getDescription()
             ];
             }
     $jsonComments = \json_encode($array);
@@ -44,16 +44,16 @@ class CommentController extends AbstractController
     /**
      * @Route("/comment/{id}", name="comment_by_one", methods={"GET"})
      */
-    public function findOneComment(Comment $comment, EventRepository $eventRepository)
+    public function findOneComment(Comment $comment)
     {
         
         $currentValue = $comment;
         $array = [
-            'id' => $comment->getId(),
-            'content' => $comment->getContent(),
-            'createdAt' => $comment->getCreatedAt(),
-            'user' => $comment->getUser()->getUsername(),
-            'event' => $comment->getEvent()
+            'id' => $currentValue->getId(),
+            'content' => $currentValue->getContent(),
+            'createdAt' => $currentValue->getCreatedAt(),
+            'user' => $currentValue->getUser()->getUsername(),
+            'event' => $currentValue->getEvent()->getDescription()
         ];
 
     $jsonOneComment = \json_encode($array);

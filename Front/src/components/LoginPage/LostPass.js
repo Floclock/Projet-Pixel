@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './lostpass.scss';
+import './login.scss';
 
 const LostPass = () => (
     <div>

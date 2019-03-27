@@ -1,9 +1,10 @@
 import React from 'react';
 
 
-import './register.scss';
+import './login.scss';
 
 const Register = () => {
+    
 
         return (
         <div>

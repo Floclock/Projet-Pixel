@@ -21,22 +21,6 @@ class EventRepository extends ServiceEntityRepository
     }
 
 
-    /**
-     * @param Style $event
-     * @return Event[]
-     */
-    
-    public function findByStyleQueryBuilder($style)
-    {
-        $qb = $this->createQueryBuilder('e')
-        ->join('e.style', 's')
-        ->addSelect('s')
-        ->where('e.style = :myStyle')
-        ->setParameter('myStyle', $style)
-        ;
-        return $qb->getQuery()->getArrayResult();
-    }
-
     // /**
     //  * @return Event[] Returns an array of Event objects
     //  */

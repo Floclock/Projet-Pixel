@@ -3,13 +3,11 @@
 namespace App\Controller\Api;
 
 
-use App\Form\ConsoleType;
-use App\Repository\ConsoleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use App\Repository\ConsoleRepository;
+use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Repository\GameRepository;
 use App\Entity\Console;
 
 /**

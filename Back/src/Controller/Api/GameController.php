@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ConsoleRepository;
 
 /**
- * @Route("/api")
+ * @Route("/api", name="api_")
  */
 class GameController extends AbstractController
 {

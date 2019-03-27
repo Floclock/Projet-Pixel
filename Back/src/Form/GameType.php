@@ -26,6 +26,7 @@ class GameType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Game::class,
+            'csrf_protection' => false,
         ]);
     }
 }

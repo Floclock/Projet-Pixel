@@ -69,10 +69,9 @@ class CommentController extends AbstractController
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->submit($body);
-        
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-           $return['coucou'] = 'test';
+        //    $return['coucou'] = 'test';
             if($form->isValid()) {
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($comment);
@@ -82,9 +81,8 @@ class CommentController extends AbstractController
             } else {
                 $return['error'] = $this->getErrorsFromForm($form);
             }
-        } else {
-    
-            $return['coucou'] = 'test2';
+        } else {    
+            // $return['coucou'] = 'test2';
         }
         return new JsonResponse($return, JsonResponse::HTTP_BAD_REQUEST);
     }

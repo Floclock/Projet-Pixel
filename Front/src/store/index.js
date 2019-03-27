@@ -15,16 +15,12 @@ import LoginMiddleware from 'src/store/Middleware/LoginMiddleware';
  * Store
  */
 
-const appliedMiddleware = applyMiddleware(
-  Middleware,
-  LoginMiddleware,
-)
-
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
-  appliedMiddleware,
+  applyMiddleware(Middleware),
+  applyMiddleware(LoginMiddleware),
 );
 
 const store = createStore(

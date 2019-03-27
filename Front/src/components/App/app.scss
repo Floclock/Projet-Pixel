@@ -1,11 +1,24 @@
 @import 'src/styles/vars';
 
-#app {
+.app {
   background-color: $background-color;
   height: 100%;
+
+  &nos-jeux {
+    background-color: #6bdae4;
+    height: 100%;
+  }
+
+  &menu {
+    background-color: #fcaf5d;
+    height: 100%;
+  }
+
+  &login {
+    backGround-color: #c8b29a
+  }
 }
 
 a {
   color: white;
 }
-

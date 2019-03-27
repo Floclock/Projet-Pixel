@@ -1,10 +1,15 @@
+/**
+ * Npm import
+ */
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
-import App from 'src/components/App';
+/**
+ * Local import
+ */
+import Games from 'src/components/Games';
 
 // Action Creators
-import { setMenuName, setDisplayNane, setDisplaySubtitle } from 'src/store/reducer';
+import { getDataGames } from 'src/store/reducer';
 
 /* === State (données) ===
  * - mapStateToProps retroune un objet de props pour le composant de présentation
@@ -14,7 +19,7 @@ import { setMenuName, setDisplayNane, setDisplaySubtitle } from 'src/store/reduc
  * Pas de data à transmettre ? const mapStateToProps = null;
  */
 const mapStateToProps = (state, ownProps) => ({
-  pathName: state.pathName,
+  data: state.dataGames,
 });
 
 /* === Actions ===
@@ -25,23 +30,23 @@ const mapStateToProps = (state, ownProps) => ({
  * Pas de disptach à transmettre ? const mapDispatchToProps = {};
  */
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  sendUrl: (match, label, subtitle) => {
-    const pathName = match.url.substr(1);
-    dispatch(setMenuName(pathName));
-    dispatch(setDisplayNane(label));
-    dispatch(setDisplaySubtitle(subtitle));
+  getDataGames: () => {
+    dispatch(getDataGames());
   },
 });
 
 // Container
-const AppContainer = connect(
+const GamesContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(App);
+)(Games);
 
 /* 2 temps
 const createContainer = connect(mapStateToProps, mapDispatchToProps);
 const ExampleContainer = createContainer(Example);
 */
 
-export default withRouter(AppContainer);
+/**
+ * Export
+ */
+export default GamesContainer;

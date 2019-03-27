@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Style;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Event;
 
 /**
  * @method Style|null find($id, $lockMode = null, $lockVersion = null)

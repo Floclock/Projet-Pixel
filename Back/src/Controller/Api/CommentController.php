@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
 use App\Entity\Event;
 use App\Repository\EventRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/api", name="api_")
@@ -42,6 +43,30 @@ class CommentController extends AbstractController
 
 
     /**
+     * @Route("/comment/new", name="comment_new", methods={"POST"})
+     */
+    public function newCommentAction(Request $request): Response
+    {
+        $return = [];
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+           $return['coucou'] = 'test';
+            if($form->isValid()) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($comment);
+                $entityManager->flush();
+
+                return new JsonResponse([], JsonResponse::HTTP_OK);
+            } else {
+                $return['error'] = $this->getErrorsFromForm($form);
+            }
+        }
+        return new JsonResponse($return, JsonResponse::HTTP_BAD_REQUEST);
+    }
+
+    /**
      * @Route("/comment/{id}", name="comment_by_one", methods={"GET"})
      */
     public function findOneComment(Comment $comment)
@@ -61,16 +86,5 @@ class CommentController extends AbstractController
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
-    }
-
-    /**
-     * @Route("/comment/new", name="comment_new", methods={"POST"})
-     */
-    public function newComment($data)
-    {
-        $connexion=connect_db();
-        $sql="INSERT INTO COMMENT(CONTENT,CREATEDAT) values (?,?)";
-        $stmt=$connexion->prepare($sql);
-        return $stmt->execute(array($data['CONTENT'], $data['CREATEDAT']));
     }
 }

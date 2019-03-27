@@ -35,6 +35,22 @@ class CommentRepository extends ServiceEntityRepository
         return $qb->getQuery()->getArrayResult();
     }
 
+    /**
+     * @param Event $event
+     * @return Comment
+     */
+
+    public function findByEventQueryBuilder($event)
+    {
+        $qb = $this->createQueryBuilder('c')
+        ->join('c.event', 'e')
+        ->addSelect('e')
+        ->where('c.event = :myEvent')
+        ->setParameter('myEvent', $event)
+        ;
+        return $qb->getQuery()->getArrayResult();
+    }
+
 
     // /**
     //  * @return Comment[] Returns an array of Comment objects

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
+use App\Entity\Event;
+use App\Repository\EventRepository;
 
 /**
  * @Route("/api", name="api_")
@@ -42,8 +44,9 @@ class CommentController extends AbstractController
     /**
      * @Route("/comment/{id}", name="comment_by_one", methods={"GET"})
      */
-    public function findOneComment(Comment $comment)
+    public function findOneComment(Comment $comment, EventRepository $eventRepository)
     {
+        
         $currentValue = $comment;
         $array = [
             'id' => $comment->getId(),

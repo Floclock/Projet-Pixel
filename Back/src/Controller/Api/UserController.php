@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\RoleRepository;
+use App\Repository\RateRepository;
+use App\Repository\RankingRepository;
+use App\Repository\CommentRepository;
 
 // use Proxies\__CG__\App\Entity\User;
 
@@ -21,19 +24,19 @@ class UserController extends AbstractController
     /**
      * @Route("/users", name="all_users")
      */
-    public function findAll(UserRepository $repo)
+    public function findAll(UserRepository $repo, RateRepository $rateRepository, RankingRepository $rankingRepository, CommentRepository $commentRepository)
     {
         $users = $repo->findAll();
-        foreach ($users as $index => $currentValue) {
-            $array[$index] = [
-                'id' => $currentValue->getId(),
-                'username' => $currentValue->getUsername(),
-                'password' => $currentValue->getPassword(),
-                'email' => $currentValue->getEmail(),
-                'role' => $currentValue->getRole()->getName(),
-                'comments' => $currentValue->getComments(),
-                'rates' => $currentValue->getRates(),
-                'rankings' => $currentValue->getRankings()
+        foreach ($users as $user) {
+            $array[] = [
+                'id' => $user->getId(),
+                'username' => $user->getUsername(),
+                'password' => $user->getPassword(),
+                'email' => $user->getEmail(),
+                'role' => $user->getRole()->getName(),
+                'comments' => $commentRepository->findByEventQueryBuilder($user),
+                'rates' => $rateRepository->findByEventQueryBuilder($user),
+                'rankings' => $rankingRepository->findByEventQueryBuilder($user)
             ];
             }
     $jsonUsers = \json_encode($array);
@@ -46,8 +49,11 @@ class UserController extends AbstractController
     /**
      * @Route("/user/{id}", name="user_by_one", methods={"GET"})
      */
-    public function findOneUser(User $user)
+    public function findOneUser(User $user, RateRepository $rateRepository, RankingRepository $rankingRepository, CommentRepository $commentRepository)
     {
+        $comment = $commentRepository->findByEventQueryBuilder($user);
+        $ranking = $rankingRepository->findByEventQueryBuilder($user);
+        $rate = $rateRepository->findByEventQueryBuilder($user);
         $currentValue = $user;
         $array = [
             'id' => $currentValue->getId(),
@@ -55,9 +61,9 @@ class UserController extends AbstractController
             'password' => $currentValue->getPassword(),
             'email' => $currentValue->getEmail(),
             'role' => $currentValue->getRole()->getName(),
-            'comments' => $currentValue->getComments(),
-            'rates' => $currentValue->getRates(),
-            'rankings' => $currentValue->getRankings()
+            'comments' => $comment,
+            'rates' => $rate,
+            'rankings' => $ranking
         ];
     $jsonOneUser = \json_encode($array);
     $response = new Response($jsonOneUser);

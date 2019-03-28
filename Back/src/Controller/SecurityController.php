@@ -29,6 +29,14 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        return new RedirectResponse('http://92.243.25.254');
+        return $this->redirectToRoute('main');
+    }
+
+    /**
+     * @Route("/redirected", name="redirected")
+     */
+    public function redirected()
+    {
+        return $this->redirect('http://92.243.25.254');
     }
 }

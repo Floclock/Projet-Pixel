@@ -16,7 +16,7 @@
     "eslint-plugin-import": "*",
     "eslint-plugin-jsx-a11y": "*",
     "eslint-plugin-react": "*",
-    "file-loader": "*",
+    "file-loader": "^3.0.1",
     "html-webpack-plugin": "*",
     "ignore-styles": "*",
     "mini-css-extract-plugin": "*",
@@ -28,7 +28,6 @@
     "style-loader": "*",
     "stylelint": "*",
     "stylelint-config-recommended": "*",
-    "uglifyjs-webpack-plugin": "*",
     "webpack": "*",
     "webpack-cli": "*",
     "webpack-dev-server": "*"
@@ -57,6 +56,7 @@
     "react-redux": "^6.0.1",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "terser-webpack-plugin": "^1.2.3"
   }
 }

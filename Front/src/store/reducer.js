@@ -1,3 +1,4 @@
+
 const initialState = {
   pathName: '',
   token: '',
@@ -19,12 +20,14 @@ export const LOAD_MENU = 'LOAD_MENU';
 const RECEIVE_DATA_MENU = 'RECEIVE_DATA_MENU';
 
 
+
 //Login
 
 const POST_LOGINS = 'POST_LOGINS';
 const ERROR_CONNEXION = 'ERROR_CONNEXION';
 const USER_IS_CONNECTED = 'USER_IS_CONNECTED';
 const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
+
 
 /**
  * Reducer
@@ -49,6 +52,7 @@ const reducer = (state = initialState, action = {}) => {
         displaySubtitle: action.subtitle,
       };
 
+
       case RECEIVE_DATA_GAMES:
       return {
         ...state,
@@ -60,6 +64,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         dataMenu: action.dataMenu,
       };
+
 
 
       //?LOGIN
@@ -87,6 +92,7 @@ const reducer = (state = initialState, action = {}) => {
             isConnected: true,
             userId: action.id,
           }
+
 
     default:
       return state;
@@ -146,6 +152,7 @@ export const UserIsConnected = id => ({
   type: USER_IS_CONNECTED,
   id,
 });
+
 
 /**
  * Selectors

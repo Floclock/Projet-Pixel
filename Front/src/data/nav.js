@@ -4,6 +4,7 @@ import Games from 'src/containers/Games';
 import Reservation from 'src/containers/Reservation';
 import LoginPage from 'src/components/LoginPage';
 
+
 export default [
   {
     route: '/',

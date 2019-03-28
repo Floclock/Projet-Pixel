@@ -2,7 +2,7 @@
  * NPM import
  */
 import '@babel/polyfill';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -26,6 +26,7 @@ const rootComponent = (
     </Router>
   </Provider>
 );
+
 // 2. La cible dans le DOM
 const target = document.getElementById('root');
 

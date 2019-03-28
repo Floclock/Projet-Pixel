@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Console;
 
 /**
- * @Route("/api")
+ * @Route("/api", name="api_")
  */
 class ConsoleController extends AbstractController
 {

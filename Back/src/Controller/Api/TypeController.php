@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProductRepository;
 
 /**
- * @Route("/api")
+ * @Route("/api", name="api_")
  */
 class TypeController extends AbstractController
 {

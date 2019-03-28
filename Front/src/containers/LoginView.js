@@ -1,19 +1,25 @@
 import { connect } from 'react-redux';
 
-import LoginView from 'src/components/LoginView';
 
-import { } from 'src/store/reducer'
+import LoginView from 'src/components/LoginPage/LoginView';
+import { submitLogins, changeUsernameInput, changePasswordInput } from 'src/store/reducer'
 
-const mapStateToProps = (state, ownProps) => ({
-    token: state.token,
-    errorMessage: state.errorMessage,
-    
-
+const mapStateToProps = state => ({
+    username: state.username,
+    password: state.password,
 });
 
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-
+const mapDispatchToProps = dispatch => ({
+    changeUsernameInput: (usernameValue) => {
+        dispatch(changeUsernameInput(usernameValue));
+    },
+    changePasswordInput: (passwordValue) => {
+        dispatch(changePasswordInput(passwordValue))
+    },
+    submitLogins: (logins) => {
+        dispatch(submitLogins(logins));
+    }
 })
 
 const LoginViewContainer = connect(
@@ -21,4 +27,4 @@ const LoginViewContainer = connect(
     mapDispatchToProps,
 )(LoginView);
 
-export default LoginViewContainer; 
+export default LoginViewContainer;

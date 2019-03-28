@@ -6,7 +6,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 /**
  * Local import
  */
-import reducer from 'src/store/reducer';
+import reducer from './reducer';
 
 
 import Middleware from 'src/store/Middleware/Middleware';

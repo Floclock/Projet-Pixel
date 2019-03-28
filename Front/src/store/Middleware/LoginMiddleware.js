@@ -5,7 +5,7 @@ import axios from 'axios';
 
 // Import
 import {
-    POST_LOGINS,
+    SUBMIT_LOGINS,
     UserIsConnected,
     errorConnexion,
 } from 'src/store/reducer';
@@ -14,10 +14,11 @@ import {
 
 const LoginMiddleware = store => next => (action) => {
     switch (action.type) {
-    case POST_LOGINS:
+    case SUBMIT_LOGINS:
+    console.log('axios: submitLogin');
         axios({
             method: 'post',
-            url: ``, //?
+            url: ``, 
             responseType: 'json',
             data: action.logins,
         })

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import Proptypes from 'prop-types';
 
-import LoginView from 'src/components/LoginPage/LoginView';
+import LoginView from 'src/containers/LoginView';
 import Register from 'src/components/LoginPage/Register';
 import LostPass from 'src/components/LoginPage/LostPass';
 

@@ -44,7 +44,8 @@ class CommentRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('c')
         ->join('c.event', 'e')
-        ->addSelect('e')
+        ->join('c.user', 'u')
+        ->addSelect('e', 'u')
         ->where('c.event = :myEvent')
         ->setParameter('myEvent', $event)
         ;

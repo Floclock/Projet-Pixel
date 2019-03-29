@@ -59,7 +59,7 @@ class EventController extends AbstractController
                 'rates' => $rateRepository->findByEventQueryBuilder($event),
                 'rankings' => $rankingRepository->findByEventQueryBuilder($event),
                 'style' => $event->getStyle()->getName(),
-                'user' => $commentRepository->findByEventQueryBuilder($event),
+               
             ];
             }
     $jsonEvents = \json_encode($array);

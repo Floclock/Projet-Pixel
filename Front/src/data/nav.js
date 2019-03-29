@@ -2,6 +2,7 @@ import Home from 'src/components/Home';
 import Menu from 'src/containers/Menu';
 import Games from 'src/containers/Games';
 import Reservation from 'src/containers/Reservation';
+import Event from 'src/containers/Event';
 
 export default [
   {
@@ -31,7 +32,8 @@ export default [
   {
     route: '/evenement',
     label: 'Evènement',
-    page: 'Evenement',
+    page: Event,
+    subtitle: 'Les futurs evenements que le pixel-café et ses clients vous proposent',
   },
   {
     route: '/info',

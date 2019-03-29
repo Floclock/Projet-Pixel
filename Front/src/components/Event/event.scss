@@ -1,0 +1,119 @@
+.button-box {
+  height: 5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  padding-top: 1em;
+
+}
+
+.event-button {
+  width: 15em;
+  margin-left: 1em;
+  color: white;
+  border: none;
+  border-radius: 12px 12px 0 0;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+  .left {
+    background-color: #9abc67;
+  }
+
+  .right {
+    background-color: #759a3c;
+  }
+
+  #watch-event {
+    background-color: #9abc67;
+    height: 100%;
+  }
+
+  #submit-event {
+    background-color: #759a3c;
+    height: 100%;
+  }
+
+  .event {
+  &-box {
+    display: flex;
+    padding-top: 2.5em;
+    height: 20em;
+  }
+
+  &-img {
+    width: 33%;
+  }
+
+  &-description {
+    display: flex;
+    padding: 0 1em;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 33%;
+    color: white;
+    background: #74993e;
+
+    &-date {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+    }
+
+    &-name {
+      font-size: 1.8em;
+      margin-bottom: 1em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    &-desc {
+      margin-bottom: 1em;
+    }
+
+    &-numb {
+      font-size: 1.4em;
+    }
+  }
+
+  &-coments {
+    width: 33%;
+    background: white;
+    position: relative;
+    
+  
+  ul {
+    height: 83%;
+    margin: 1em 0em 1em 1em;
+    overflow: auto;
+  } 
+
+  li {
+    margin-top: 1em;
+    font-size: .9em;
+  }
+
+  &-user {
+    margin-bottom: .5em;
+    font-weight: bold;
+  }
+  }
+}
+
+#msg {
+  &-form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  }
+
+  &-field {
+    width: 100%;
+    padding-left: .4em;
+    height: 2.2em;
+    border: none;
+    background-color: rgb(223, 225, 226);
+  }
+}

@@ -34,6 +34,7 @@ const WatchEvent = ({ dataEvents, sendMsg }) => (
 
 WatchEvent.propTypes = {
   dataEvents: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  sendMsg: PropTypes.func.isRequired,
 };
 
 

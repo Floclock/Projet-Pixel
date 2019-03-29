@@ -36,6 +36,7 @@ const Event = ({ getDataEvents, data, sendMsg }) => {
 
 Event.propTypes = {
   getDataEvents: PropTypes.func.isRequired,
+  sendMsg: PropTypes.func.isRequired,
   data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 

@@ -1,4 +1,4 @@
-// Middleware ajax : traitement des recup de données (recettes)
+
 import axios from 'axios';
 //import decode from 'jwt-decode';
 
@@ -8,7 +8,11 @@ import {
     SUBMIT_LOGINS,
     UserIsConnected,
     errorConnexion,
+    SUBMIT_NEW_USER,
+    submitNewUser,
 } from 'src/store/reducer';
+
+const sendNewUser = 'http://92.243.8.69/api/user/new';
 
 
 
@@ -38,6 +42,23 @@ const LoginMiddleware = store => next => (action) => {
             store.dispatch(errorConnexion('Les identifiants ne sont pas valides'));
         });
         break;
+
+        case SUBMIT_NEW_USER:
+        //console.log('axios: submitNewUser');
+            axios
+            .post(sendNewUser, action.newUserRegister)
+            // en cas de succès
+            .then((response) => {
+                store.dispatch(messageSubmitNewUser('OK'));
+                console.log('c est bon ca marche')
+            })
+            //en cas d'échec
+            .catch((error) => {
+                console.error('Envoi des informations:', error);
+                store.dispatch(messageSubmitNewUser('NOPE'));
+            });
+
+            break;
 
         default:
             break;

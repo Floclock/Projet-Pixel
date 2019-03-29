@@ -1,21 +1,26 @@
+//npm import
 import { connect } from 'react-redux';
 
 
-import Register from 'src/components/LoginPage/Register';
+//action creators
 import { submitNewUser } from 'src/store/reducer'
 
+//component
+import Register from 'src/components/LoginPage/Register';
+
+//=== State ===
 const mapStateToProps = state => ({
-    username: state.username,
-    password: state.password,
+    messageSubmit: state.messageSubmit
 });
 
-
+//===Dispatch ===
 const mapDispatchToProps = dispatch => ({
     submitNewUser: (newUserRegister) => {
         dispatch(submitNewUser(newUserRegister));
     }
 })
 
+//Container
 const RegisterContainer = connect(
     mapStateToProps,
     mapDispatchToProps,

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import FormErrors from './FormErrors';
 import './login.scss';
@@ -9,6 +10,7 @@ class Register extends React.Component {
         username: '',
         email: '',
         password: '',
+        role: '1',
         passwordConfirm: '',
         errors: {email: '', username: '', password: '', passwordConfirm:''},
         emailValid: false,
@@ -25,19 +27,6 @@ class Register extends React.Component {
             () => {this.validateInput(name, value) });
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-        //const { username, password, email } = this.props;
-
-        const newUserRegister = {
-            username: this.state.username,
-            password: this.state.password,
-            email: this.state.email,
-        };
-        //console.log(newUserRegister);
-        submitNewUser(newUserRegister);
-
-    }
 
     validateInput(inputName, value) {
         let inputErrors = this.state.errors;
@@ -79,9 +68,27 @@ class Register extends React.Component {
         return(error.length === 0 ? '' : 'has-error');
     }
 
+    handleSubmit = (event) => {
+        event.preventDefault();
+        console.log('handlesubmit register')
+
+        const { submitNewUser } = this.props;
+        console.log(this.props);
+
+        const newUserRegister = {
+            username: this.state.username,
+            password: this.state.password,
+            email: this.state.email,
+            role: this.state.role,
+        };
+        console.log(newUserRegister);
+        submitNewUser(newUserRegister);
+    }
+
 
             render() {
-        
+                const { messageSubmit } = this.props;
+                
                 return (
                 <div>
                     <div className="register-text">
@@ -147,15 +154,25 @@ class Register extends React.Component {
                         <button 
                         type='submit' 
                         className='login-form-button ripple'
-                        disabled={!this.state.formValid}
+                        //disabled={!this.state.formValid}
                         >
                         S'enregistrer
                         </button>
                     </form>
+                    {messageSubmit === 'OK'
+                    && <p className="submit-success">Nouvel utilisateur enregistré</p>
+                    }
+                    {messageSubmit === 'NOPE'
+                    && <p className="submit-error">Nouvel utilisateur non enregistré</p>
+                    }
                 </div>
                 );
             }
 }
+
+Register.propTypes = {
+    submitNewUser: PropTypes.func.isRequired,
+};
 
 export default Register;
 

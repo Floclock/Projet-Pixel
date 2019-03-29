@@ -6,6 +6,8 @@ const initialState = {
   dataMenu: [],
   isConnected: false,
   userId: '',
+  messageSubmit: '',
+  
 };
 
 /*ooooooooooooo oooooo   oooo ooooooooo.   oooooooooooo  .oooooo..o 
@@ -74,6 +76,9 @@ const USER_IS_CONNECTED = 'USER_IS_CONNECTED';
 const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
 const CHANGE_USERNAME_INPUT = 'CHANGE_USERNAME_INPUT';
 const CHANGE_PASSWORD_INPUT = 'CHANGE_PASSWORD_INPUT';
+
+export const SUBMIT_NEW_USER = 'SUBMIT_NEW_USER';
+const MESSAGE_SUBMIT_NEW_USER = 'MESSAGE_SUBMIT_NEW_USER';
 
 
 
@@ -184,6 +189,16 @@ o888o `Y8bod8P' `8oooooo.  o888o o888o o888o
           }
 
 
+
+
+        case MESSAGE_SUBMIT_NEW_USER:
+          return{
+            ...state,
+            messageSubmit: action.response,
+          }
+
+
+
     default:
       return state;
   }
@@ -285,6 +300,18 @@ export const changeUsernameInput = usernameValue => ({
 export const changePasswordInput = passwordValue => ({
   type: CHANGE_PASSWORD_INPUT,
   passwordValue,
+})
+
+
+
+export const submitNewUser = newUserRegister => ({
+  type: SUBMIT_NEW_USER,
+  newUserRegister,
+})
+
+export const messageSubmitNewUser = response => ({
+  type: MESSAGE_SUBMIT_NEW_USER,
+  response,
 })
 /**
  * Selectors

@@ -1,5 +1,5 @@
 import {
-  LOAD_GAMES, 
+  LOAD_GAMES,
   receiveDataGames,
   receiveDataMenu,
   LOAD_MENU,

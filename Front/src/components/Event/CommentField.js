@@ -15,7 +15,7 @@ const CommentField = ({ eventId, sendMsg }) => {
     if (msg !== '') {
       sendMsg({
         content: msg,
-        user: 1,
+        user: 2,
         event: eventId,
       });
       setMsg('');
@@ -29,6 +29,7 @@ const CommentField = ({ eventId, sendMsg }) => {
         onChange={handleChange}
         id="msg-field"
         placeholder="Entrez votre commentaire"
+        autoComplete="off"
       />
     </form>
   );

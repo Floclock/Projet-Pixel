@@ -61,7 +61,7 @@ class RankingController extends AbstractController
     }
 
     /**
-     * @Route("/ranking/new", name="ranking_new", methods={"POST"})
+     * @Route("/private/ranking/new", name="ranking_new", methods={"POST"})
      */
     public function newRankingAction(Request $request): Response
     {

@@ -58,7 +58,7 @@ class RateController extends AbstractController
 
 
     /**
-     * @Route("/rate/new", name="rate_new", methods={"POST"})
+     * @Route("/private/rate/new", name="rate_new", methods={"POST"})
      */
     public function newRateAction(Request $request): Response
     {

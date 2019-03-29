@@ -37,7 +37,7 @@ class CommentController extends AbstractController
     }
     
     /**
-     * @Route("/comments", name="all_comments")
+     * @Route("/private/comments", name="all_comments")
      */
     public function findAll(CommentRepository $repo)
     {

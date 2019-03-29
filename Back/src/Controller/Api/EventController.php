@@ -71,7 +71,7 @@ class EventController extends AbstractController
 
 
     /**
-     * @Route("/event/new", name="event_new", methods={"POST"})
+     * @Route("/private/event/new", name="event_new", methods={"POST"})
      */
     public function newEventAction(Request $request): Response
     {

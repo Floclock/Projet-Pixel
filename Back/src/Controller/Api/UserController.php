@@ -19,7 +19,7 @@ use Symfony\Component\Form\FormInterface;
 // use Proxies\__CG__\App\Entity\User;
 
 /**
- * @Route("/api", name="api_")
+ * @Route("/api/private", name="api_")
  */
 class UserController extends AbstractController
 {

@@ -1,8 +1,14 @@
 {% block body %}
 
+    <h1>Administration de Pixel-Coffee</h1>
+
+    <br>
+<br>
+        <h4>Ci dessous vous retrouverez tous les liens qui permette de moderer les contenus de la Base de Donnees de Pixel-Coffee</h4>
+
 {# {% if is_granted('ROLE_ADMIN') %} #}
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="{{ path('main') }}">Acceuil</a>
+      <a class="navbar-brand" href="{{ path('main') }}">Moderation</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -46,6 +52,58 @@
       {# <a class="btn btn-outline-danger my-2 my-sm-0"  href="{{ path('app_logout')}} ">Déconnexion</a> #}
     </nav>
 
+<br>
+<br>
+<br>
+          <h4>Ci dessous vous retrouverez tous les liens qui permette d'acceder au contenu Api au format Json pour une entite definie presente dans la Base de donnees de Pixel-Coffee</h4>
+
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="{{ path('main') }}">Api</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_users') }}">Utilisateurs</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_roles') }}">Roles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_types') }}">Types</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_products') }}">Produits</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_consoles') }}">Consoles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_games') }}">Jeux</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_events') }}">Evenements</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_styles') }}">Styles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_comments') }}">Commentaires</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_rates') }}">Notes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('api_all_rankings') }}">Places</a>
+          </li>                                                                                          
+        </ul>
+      </div>
+      {# <a class="btn btn-outline-danger my-2 my-sm-0"  href="{{ path('app_logout')}} ">Déconnexion</a> #}
+    </nav>
+<br>
+<p>Pour acceder uniquement au information d'un objet d'une entitee, il faut modifier le /api/entitees en /api/entite/{id}</p>
+<p>Exemples: /api/products permet d'acceder a tous les produits, /api/product/1 permet d'acceder au produit dont l'id est 1.</p>
 
 {# {% elseif is_granted('ROLE_USER') %}
 

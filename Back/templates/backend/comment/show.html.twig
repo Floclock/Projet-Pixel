@@ -19,6 +19,11 @@
                 <th>CreatedAt</th>
                 <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
+
+            <tr>
+                <th> Votes </th>
+<p><a id="vote-button" data-id="{{ comment.id }}" href="{{ path('comment_vote', {'id': comment.id}) }}" class="btn btn-success">Voter +1 <span class="badge badge-light ml-2">{{ comment.votes }}</span></a></p>
+            </tr>
         </tbody>
     </table>
 

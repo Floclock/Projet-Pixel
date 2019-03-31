@@ -9,6 +9,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserEventVoteRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use App\Entity\UserEventVote;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 /**
  * @Route("/admin/event")
@@ -92,5 +97,55 @@ class EventController extends AbstractController
         }
 
         return $this->redirectToRoute('event_index');
+    }
+
+    /**
+     * @Route ("/vote/{id}", name="event_vote", methods={"GET|POST"})
+     */
+    public function vote(Event $event = null, EntityManagerInterface $em, UserEventVoteRepository $uevr)
+    {
+        if(null === $event)
+        {
+            return new JsonResponse(
+                [
+                    'error' => true,
+                    'message' => 'Event innexistant',
+                    'data' => null
+                ]);
+        }
+
+        $user = $this->getUser();
+
+        $eventVote = new UserEventVote();
+        $eventVote->setUser($user);
+        $eventVote->setEvent($event);
+
+        $em->persist($eventVote);
+
+        try{
+            $em->flush();
+            $nbVotes = count($uevr->findBy(['event' => $event]));
+            $event->setVotes($nbVotes);
+            $em->flush();
+
+            return new JsonResponse(
+                [
+                    'error' => false,
+                    'Message' => 'Vote prit en compte',
+                    'event' => [
+                        'id' => $event->getId(),
+                        'votes' => $event->getVotes(),
+                    ],
+                ]);
+        } catch(UniqueConstraintViolationException $e) {
+            return new JsonResponse(
+                [
+                    'error' => true,
+                    'message' => 'Vous avez deja voté pour cet Event',
+                    'data' => null, 
+                ]);
+        }
+        return $this->redirectToRoute('event_show', ['id' => $event->getEvent()->getId()]);
+
     }
 }

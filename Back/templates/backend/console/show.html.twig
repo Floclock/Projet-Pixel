@@ -27,10 +27,7 @@
                 <th>Brand</th>
                 <td>{{ console.brand }}</td>
             </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ console.image }}</td>
-            </tr>
+                <img src="{{ asset('uploads/images/' ~ console.image) }}"></img>
             <tr>
                 <th>ReleaseDate</th>
                 <td>{{ console.releaseDate ? console.releaseDate|date('Y') : '' }}</td>

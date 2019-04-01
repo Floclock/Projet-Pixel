@@ -108,7 +108,7 @@ class Comment
 
     public function setVotes(int $votes): self
     {
-        $this->votes = ++$votes;
+        $this->votes = $votes;
 
         return $this;
     }

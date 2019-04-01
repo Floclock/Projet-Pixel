@@ -16,6 +16,7 @@ use App\Repository\UserCommentVoteRepository;
 use App\Entity\UserCommentVote;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Doctrine\DBAL\Types\VarDateTimeImmutableType;
 
 /**
  * @Route("/admin/comment")
@@ -117,20 +118,22 @@ class CommentController extends AbstractController
 
         $em->persist($commentVote);
         try
-        {
+        {  
+            // var_dump('dqsd');
             $em->flush();
             $this->addFlash('success', 'Commentaire Voté.');
-
+            
             $nbVote = count($ucvr->findBy(['comment' => $comment]));
-
+            
             $comment->setVotes($nbVote);
 
             $em->flush();
+            
         } catch(UniqueConstraintViolationException $e)
         {
+            // print $e->getMessage();
             $this->addFlash('danger', 'Vous avez deja voté pour ce commentaire.');
         }
-
         return $this->redirectToRoute('comment_show', ['id' => $comment->getEvent()->getId()]);
     }
 }

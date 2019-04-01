@@ -128,24 +128,26 @@ class EventController extends AbstractController
             $event->setVotes($nbVotes);
             $em->flush();
 
-            return new JsonResponse(
-                [
-                    'error' => false,
-                    'Message' => 'Vote prit en compte',
-                    'event' => [
-                        'id' => $event->getId(),
-                        'votes' => $event->getVotes(),
-                    ],
-                ]);
+            $this->addFlash('success', 'Event voté !');
+            // return new JsonResponse(
+            //     [
+            //         'error' => false,
+            //         'Message' => 'Vote prit en compte',
+            //         'event' => [
+            //             'id' => $event->getId(),
+            //             'votes' => $event->getVotes(),
+            //         ],
+            //     ]);
         } catch(UniqueConstraintViolationException $e) {
-            return new JsonResponse(
-                [
-                    'error' => true,
-                    'message' => 'Vous avez deja voté pour cet Event',
-                    'data' => null, 
-                ]);
+            $this->addFlash('danger', 'Tu as deja voté !');
+            // return new JsonResponse(
+            //     [
+            //         'error' => true,
+            //         'message' => 'Vous avez deja voté pour cet Event',
+            //         'data' => null, 
+            //     ]);
         }
-        return $this->redirectToRoute('event_show', ['id' => $event->getEvent()->getId()]);
+        return $this->redirectToRoute('event_show', ['id' => $event->getId()]);
 
     }
 }

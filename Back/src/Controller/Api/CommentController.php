@@ -142,12 +142,10 @@ class CommentController extends AbstractController
         {
             $this->addFlash('danger', 'Vous avez deja voté pour ce commentaire.');
         }
-        // return $this->redirectToRoute('comment_show', ['id' => $comment->getEvent()->getId()]);
 
         $jsonCommentVote = \json_encode($commentVote);
         $response = new Response($jsonCommentVote);
         $response->headers->set('Content-Type', 'application/json');
-        // $response->headers->set('Access-Control-Allow-Origin', '');
         return $response;
     }
 }

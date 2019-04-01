@@ -1,7 +1,4 @@
 
-import axios from 'axios';
-//import decode from 'jwt-decode';
-
 
 // Import
 import {
@@ -9,9 +6,14 @@ import {
     UserIsConnected,
     errorConnexion,
     SUBMIT_NEW_USER,
-    submitNewUser,
+    messageSubmitNewUser,
+    loginResponse,
 } from 'src/store/reducer';
 
+import axios from 'axios';
+//import decode from 'jwt-decode';
+
+const sendLoginUser = 'http://92.243.8.69/login';
 const sendNewUser = 'http://92.243.8.69/api/user/new';
 
 
@@ -20,26 +22,23 @@ const LoginMiddleware = store => next => (action) => {
     switch (action.type) {
     case SUBMIT_LOGINS:
     console.log('axios: submitLogin');
-        axios({
-            method: 'post',
-            url: ``, 
-            responseType: 'json',
-            data: action.logins,
-        })
+        axios
+        .post(sendLoginUser, action.logins)
           //en cas de succès
         .then((response) => {
             // Le token du membre connecté est stocké dans le localStorage
-            localStorage.setItem('connect_token', response.data.token);
+            //localStorage.setItem('connect_token', response.data.token);
             // On récupère l'id du membre connecté
-            const token = decode(response.data.token); //?
-            const connectedUserId = token.user.id; //?
+            //const token = decode(response.data.token); //?
+            //const connectedUserId = token.user.id; //?
             // On récupère les informations du membre connecté
-            store.dispatch(UserIsConnected(connectedUserId));
+            console.log('connexion ok' + response);
+            store.dispatch(loginResponse('OK'));
         })
         //en cas d'échec
         .catch((error) => {
-            console.error('Connexion: ', error);
-            store.dispatch(errorConnexion('Les identifiants ne sont pas valides'));
+            console.error('erreur Connexion: ' + error);
+            store.dispatch(loginResponse('NOPE'));
         });
         break;
 
@@ -48,17 +47,17 @@ const LoginMiddleware = store => next => (action) => {
             axios
             .post(sendNewUser, action.newUserRegister)
             // en cas de succès
-            .then((response) => {
+            .then((resp) => {
+                console.log('c est bon ca marche' + resp)
                 store.dispatch(messageSubmitNewUser('OK'));
-                console.log('c est bon ca marche')
             })
             //en cas d'échec
-            .catch((error) => {
-                console.error('Envoi des informations:', error);
+            .catch((err) => {
+                console.error('pas d\'envoi des informations:' + err);
                 store.dispatch(messageSubmitNewUser('NOPE'));
             });
-
             break;
+
 
         default:
             break;

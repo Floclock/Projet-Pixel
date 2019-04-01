@@ -70,7 +70,7 @@ const SET_DISPLAY_SUBTITLE = 'SET_DISPLAY_SUBTITLE';
                                                              */
 
 
-const POST_LOGINS = 'POST_LOGINS';
+
 const ERROR_CONNEXION = 'ERROR_CONNEXION';
 const USER_IS_CONNECTED = 'USER_IS_CONNECTED';
 const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
@@ -79,7 +79,8 @@ const CHANGE_PASSWORD_INPUT = 'CHANGE_PASSWORD_INPUT';
 
 export const SUBMIT_NEW_USER = 'SUBMIT_NEW_USER';
 const MESSAGE_SUBMIT_NEW_USER = 'MESSAGE_SUBMIT_NEW_USER';
-
+export const SUBMIT_LOGINS = 'SUBMIT_LOGINS';
+const LOGIN_RESPONSE = 'LOGIN_RESPONSE'
 
 
 /*ooooooooo.   oooooooooooo oooooooooo.   ooooo     ooo   .oooooo.   oooooooooooo ooooooooo.   
@@ -152,11 +153,6 @@ o888o `Y8bod8P' `8oooooo.  o888o o888o o888o
                                              */
 
 
-      case POST_LOGINS:
-        return{
-          ...state,
-        }
-
       case CHANGE_USERNAME_INPUT:
         return {
         ...state,
@@ -181,20 +177,27 @@ o888o `Y8bod8P' `8oooooo.  o888o o888o o888o
           errorMessage: action.errorMessage
         }
 
-        case USER_IS_CONNECTED:
+
+
+
+
+        // case USER_IS_CONNECTED:
+        //   return{
+        //     ...state,
+        //     isConnected: true,
+        //     message: action.message
+        //   }
+
+          case LOGIN_RESPONSE:
           return{
             ...state,
-            isConnected: true,
-            userId: action.id,
+            message: action.message,
           }
-
-
-
 
         case MESSAGE_SUBMIT_NEW_USER:
           return{
             ...state,
-            messageSubmit: action.response,
+            messageSubmit: action.message,
           }
 
 
@@ -277,10 +280,6 @@ o88o     o8888o         o888o `Y8bod8P' `8oooooo.  o888o o888o o888o
                                         "Y88888P'                    
                                                                      */
 
-export const submitLogins = logins => ({
-  type: SUBMIT_LOGINS,
-  logins,
-});
 
 export const errorConnexion = errorMessage => ({
   type: ERROR_CONNEXION,
@@ -304,14 +303,25 @@ export const changePasswordInput = passwordValue => ({
 
 
 
+
+export const submitLogins = logins => ({
+  type: SUBMIT_LOGINS,
+  logins,
+});
+
 export const submitNewUser = newUserRegister => ({
   type: SUBMIT_NEW_USER,
   newUserRegister,
 })
 
-export const messageSubmitNewUser = response => ({
+export const messageSubmitNewUser = message => ({
   type: MESSAGE_SUBMIT_NEW_USER,
-  response,
+  message,
+})
+
+export const loginResponse = message => ({
+  type: LOGIN_RESPONSE,
+  message,
 })
 /**
  * Selectors

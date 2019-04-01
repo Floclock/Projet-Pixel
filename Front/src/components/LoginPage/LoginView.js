@@ -1,38 +1,65 @@
 import React from 'react';
 
-import './login.scss'
+import './login.scss';
+import FormErrors from './FormErrors';
 
 
 class LoginView extends React.Component {
 
-    handleChangeUsername= (event) => {
-        const usernameValue = event.target.value;
-        const { changeUsernameInput } = this.props;
-
-        changeUsernameInput(usernameValue);
+    state = {
+        usernameLogin: '',
+        passwordLogin: '',
+        errorLogin: {passwordLogin: '',},
     }
-    
-    handleChangePassword = (event) => {
-        const passwordValue = event.target.value;
-        const { changePasswordInput } = this.props;
-        console.log(passwordValue)
-        changePasswordInput(passwordValue);
+
+    handleChange = (event) => {
+        const {name, value } = event.target;
+        this.setState({[name]: value},
+            () => {this.validateInput(name, value) });
+    }
+
+    validateInput(inputName, value) {
+        let inputErrorLogin = this.state.errorLogin;
+        let passwordLoginValid = this.state.passwordLoginValid;
+
+        switch(inputName) {
+            case 'passwordLogin':
+                passwordLoginValid = value.length >= 7;
+                inputErrorLogin.passwordLogin = passwordLoginValid ? '' : 'Aucun mot de passe ne peut être inferieur à 8 caractères.';
+                break;
+            default:
+                break;
+            }
+
+            this.setState({
+                errorLogin: inputErrorLogin,
+                passwordLoginValid: passwordLoginValid,
+            }, this.validateForm);
+    } 
+
+    validateForm() {
+        this.setState({formValid: this.state.passwordLoginValid });
+    }
+
+    errorClassname(error) {
+        return(error.length === 0 ? '' : 'has-error');
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const { submitLogins, username, password } = this.props;
+        const { submitLogins } = this.props;
 
             const logins = {
-                username,
-                password,
+                username: this.state.usernameLogin,
+                password: this.state.passwordLogin,
             };
-            //console.log(logins);
+            console.log(logins);
             submitLogins(logins + 'je suis le console log du loginview');
     }
+    
     render() {
 
-        const { connectionError, username, password } = this.props;
+        const { message } = this.props;
         
         return (
             <div>
@@ -41,36 +68,45 @@ class LoginView extends React.Component {
                         <p>Veuillez renseigner les champs suivants</p>
                 </div>
                 <form onSubmit={this.handleSubmit} className="login-form">
+                <div className="panel panel-default">
+                    <FormErrors errors={this.state.errorLogin} />
+                </div>
                 <label>
                     Username:
                 </label>
                     <input
-                    value={username} 
-                    onChange={this.handleChangeUsername}
+                    value={this.state.usernameLogin} 
+                    onChange={this.handleChange}
                     type="text"
                     placeholder="veuillez entrer votre username"
-                    name="username"
+                    name="usernameLogin"
                     required
                     />
                 <label>
                     Password:
                 </label>
                     <input
-                    value={password}
-                    onChange={this.handleChangePassword}
+                    value={this.state.passwordLogin}
+                    onChange={this.handleChange}
                     type="text"
                     placeholder="Veuillez entrer votre password"
-                    name="password"
+                    name="passwordLogin"
                     required
                     />
                     <button 
                     className='login-form-button ripple'
                     type='submit'
-                    //disabled={!this.state.formValid}
+                    disabled={!this.state.formValid}
                     >
                     Connexion
                     </button>
                 </form>
+                    {message === 'OK'
+                    && <p className="submit-success">Vous vous êtes connecté avec succès!</p>
+                    }
+                    {message === 'NOPE'
+                    && <p className="submit-error">L'identifiant ou le mot de passe ne correspondent pas</p>
+                    }
             </div>
         );
     }

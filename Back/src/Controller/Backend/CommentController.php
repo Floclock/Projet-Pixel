@@ -109,7 +109,6 @@ class CommentController extends AbstractController
         if (null === $comment){
             throw $this->createnotFoundException('Commentaire innexistant.');
         }
-
         $user = $this->getUser();
 
         $commentVote = new UserCommentVote();
@@ -119,19 +118,16 @@ class CommentController extends AbstractController
         $em->persist($commentVote);
         try
         {  
-            // var_dump('dqsd');
             $em->flush();
             $this->addFlash('success', 'Commentaire Voté.');
             
             $nbVote = count($ucvr->findBy(['comment' => $comment]));
-            
             $comment->setVotes($nbVote);
 
             $em->flush();
             
         } catch(UniqueConstraintViolationException $e)
         {
-            // print $e->getMessage();
             $this->addFlash('danger', 'Vous avez deja voté pour ce commentaire.');
         }
         return $this->redirectToRoute('comment_show', ['id' => $comment->getEvent()->getId()]);

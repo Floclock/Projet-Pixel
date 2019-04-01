@@ -113,7 +113,6 @@ class EventController extends AbstractController
                     'data' => null
                 ]);
         }
-
         $user = $this->getUser();
 
         $eventVote = new UserEventVote();
@@ -129,23 +128,8 @@ class EventController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Event voté !');
-            // return new JsonResponse(
-            //     [
-            //         'error' => false,
-            //         'Message' => 'Vote prit en compte',
-            //         'event' => [
-            //             'id' => $event->getId(),
-            //             'votes' => $event->getVotes(),
-            //         ],
-            //     ]);
         } catch(UniqueConstraintViolationException $e) {
             $this->addFlash('danger', 'Tu as deja voté !');
-            // return new JsonResponse(
-            //     [
-            //         'error' => true,
-            //         'message' => 'Vous avez deja voté pour cet Event',
-            //         'data' => null, 
-            //     ]);
         }
         return $this->redirectToRoute('event_show', ['id' => $event->getId()]);
 

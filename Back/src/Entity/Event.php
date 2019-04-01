@@ -70,6 +70,11 @@ class Event
     private $rankings;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $votes;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="events")
      */
     private $style;
@@ -79,6 +84,8 @@ class Event
         $this->comments = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->rankings = new ArrayCollection();
+        $this->votes = 0;
+
     }
 
     public function getId(): ?int
@@ -166,6 +173,18 @@ class Event
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getVotes(): ?int
+    {
+        return $this->votes;
+    }
+
+    public function setVotes(int $votes): self
+    {
+        $this->votes = $votes;
 
         return $this;
     }

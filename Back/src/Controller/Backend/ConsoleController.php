@@ -39,10 +39,11 @@ class ConsoleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $console->getImage();
             $fileName = $fileUploader->upload($file);
     
-            $console->setBrochure($fileName);
+            $console->setImage($fileName);
 
 
             $entityManager = $this->getDoctrine()->getManager();

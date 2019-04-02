@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190320132158 extends AbstractMigration
+final class Version20190402112931 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20190320132158 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE console CHANGE image image VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE style CHANGE logo logo VARCHAR(255) DEFAULT NULL');
-        $this->addSql('ALTER TABLE event CHANGE image image VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE event CHANGE date date VARCHAR(255) NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +30,6 @@ final class Version20190320132158 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE console CHANGE image image VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
-        $this->addSql('ALTER TABLE event CHANGE image image VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
-        $this->addSql('ALTER TABLE style CHANGE logo logo VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci');
+        $this->addSql('ALTER TABLE event CHANGE date date VARCHAR(50) NOT NULL COLLATE utf8mb4_unicode_ci');
     }
 }

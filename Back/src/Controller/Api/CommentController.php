@@ -14,6 +14,9 @@ use App\Repository\UserRepository;
 use App\Entity\Event;
 use App\Repository\EventRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserCommentVoteRepository;
+use App\Entity\UserCommentVote;
 
 /**
  * @Route("/api", name="api_")
@@ -77,7 +80,7 @@ class CommentController extends AbstractController
                 $entityManager->persist($comment);
                 $entityManager->flush();
 
-                return new JsonResponse([], JsonResponse::HTTP_OK);
+                return new JsonResponse([], JsonResponse::HTTP_CREATED);
             } else {
                 $return['error'] = $this->getErrorsFromForm($form);
             }

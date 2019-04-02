@@ -29,7 +29,7 @@ class Event
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string")
      */
     private $date;
 
@@ -70,6 +70,11 @@ class Event
     private $rankings;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $votes;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Style", inversedBy="events")
      */
     private $style;
@@ -79,6 +84,8 @@ class Event
         $this->comments = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->rankings = new ArrayCollection();
+        $this->votes = 0;
+
     }
 
     public function getId(): ?int
@@ -110,12 +117,12 @@ class Event
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(string $date): self
     {
         $this->date = $date;
 
@@ -166,6 +173,18 @@ class Event
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getVotes(): ?int
+    {
+        return $this->votes;
+    }
+
+    public function setVotes(int $votes): self
+    {
+        $this->votes = $votes;
 
         return $this;
     }

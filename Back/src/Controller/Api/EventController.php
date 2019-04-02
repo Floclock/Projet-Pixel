@@ -16,7 +16,9 @@ use App\Repository\RankingRepository;
 use App\Repository\RateRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormInterface;
-
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserEventVoteRepository;
+use App\Entity\UserEventVote;
 /**
  * @Route("/api", name="api_")
  */
@@ -130,4 +132,42 @@ class EventController extends AbstractController
     return $response;
     }
     
+    /**
+     * @Route("/event/vote/{id}", name="")
+     */
+    public function vote(Event $event = null, EntityManagerInterface $em, UserEventVoteRepository $uevr)
+    {
+        if(null === $event)
+        {
+            return new JsonResponse(
+                [
+                    'error' => true,
+                    'message' => 'Event innexistant',
+                    'data' => null
+                ]);
+        }
+        $user = $this->getUser();
+
+        $eventVote = new UserEventVote();
+        $eventVote->setUser($user);
+        $eventVote->setEvent($event);
+
+        $em->persist($eventVote);
+
+        try{
+            $em->flush();
+            $nbVotes = count($uevr->findBy(['event' => $event]));
+            $event->setVotes($nbVotes);
+            $em->flush();
+
+            $this->addFlash('success', 'Event voté !');
+        } catch(UniqueConstraintViolationException $e) {
+            $this->addFlash('danger', 'Tu as deja voté !');
+        }
+
+        $jsonVoteEvent = \json_encode($eventVote);
+        $response = new Response($jsonVoteEvent);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 }

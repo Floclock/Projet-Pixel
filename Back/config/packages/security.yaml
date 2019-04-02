@@ -39,12 +39,12 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
         
-        api:
-            pattern:   ^/api
-            stateless: true
-            guard:
-                authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
+        # api:
+        #     pattern:   ^/api
+        #     stateless: true
+        #     guard:
+        #         authenticators:
+        #             - lexik_jwt_authentication.jwt_token_authenticator
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -72,7 +72,7 @@ security:
     access_control:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        # - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         
     #role_hierarchy:

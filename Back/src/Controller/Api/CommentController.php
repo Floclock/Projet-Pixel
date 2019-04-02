@@ -63,7 +63,7 @@ class CommentController extends AbstractController
 
 
     /**
-     * @Route("/private/comment/new", name="comment_new", methods={"POST"})
+     * @Route("/comment/new", name="comment_new", methods={"POST"})
      */
     public function newCommentAction(Request $request): Response
     {
@@ -80,7 +80,7 @@ class CommentController extends AbstractController
                 $entityManager->persist($comment);
                 $entityManager->flush();
 
-                return new JsonResponse([], JsonResponse::HTTP_OK);
+                return new JsonResponse([], JsonResponse::HTTP_CREATED);
             } else {
                 $return['error'] = $this->getErrorsFromForm($form);
             }

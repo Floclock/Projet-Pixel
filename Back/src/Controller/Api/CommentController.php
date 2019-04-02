@@ -60,7 +60,7 @@ class CommentController extends AbstractController
 
 
     /**
-     * @Route("/private/comment/new", name="comment_new", methods={"POST"})
+     * @Route("/comment/new", name="comment_new", methods={"POST"})
      */
     public function newCommentAction(Request $request): Response
     {

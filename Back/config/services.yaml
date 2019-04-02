@@ -26,3 +26,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    app.security.voter.edit_comment:
+        class: App\Security\Voter\EditComment
+        tags:
+            - { name: security.voter }
+
+    app.security.voter.edit_event:
+        class: App\Security\Voter\EditEvent
+        tags:
+            - { name: security.voter }

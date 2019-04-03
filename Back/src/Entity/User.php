@@ -56,11 +56,17 @@ class User implements UserInterface
      */
     private $rankings;
 
+    
+
+    
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->rankings = new ArrayCollection();
+        $this->event = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -250,4 +256,10 @@ class User implements UserInterface
             // $this->salt
         ) = unserialize($serialized, array('allowed_classes' => false));
     }
+
+    
+
+    
+
+    
 }

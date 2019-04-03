@@ -15,6 +15,7 @@ use App\Repository\RankingRepository;
 use App\Repository\CommentRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 // use Proxies\__CG__\App\Entity\User;
 
@@ -70,7 +71,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/new", name="user_new", methods={"POST"})
      */
-    public function newUserAction(Request $request): Response
+    public function newUserAction(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $body = $request->request->all();
         $return = [];
@@ -81,15 +82,17 @@ class UserController extends AbstractController
         if ($form->isSubmitted()) {
         //    $return['coucou'] = 'test';
             if($form->isValid()) {
+                $encodedPassword = $passwordEncoder->encodePassword($user, $user->getPassword());
+
+                $user->setPassword($encodedPassword);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($user);
                 $entityManager->flush();
-
                 return new JsonResponse([], JsonResponse::HTTP_OK);
             } else {
                 $return['error'] = $this->getErrorsFromForm($form);
             }
-        } else {    
+        } else {
             // $return['coucou'] = 'test2';
         }
         return new JsonResponse($return, JsonResponse::HTTP_BAD_REQUEST);

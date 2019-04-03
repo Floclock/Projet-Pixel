@@ -7,6 +7,7 @@ import { submitLogins } from 'src/store/reducer'
 
 const mapStateToProps = state => ({
     message: state.message,
+    usernameIsConnected: state.usernameIsConnected,
 });
 
 

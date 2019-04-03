@@ -5,7 +5,7 @@ const initialState = {
   dataGames: [],
   dataMenu: [],
   isConnected: false,
-  userId: '',
+  usernameIsConnected: '',
   messageSubmit: '',
   
 };
@@ -71,16 +71,15 @@ const SET_DISPLAY_SUBTITLE = 'SET_DISPLAY_SUBTITLE';
 
 
 
-const ERROR_CONNEXION = 'ERROR_CONNEXION';
+
 const USER_IS_CONNECTED = 'USER_IS_CONNECTED';
 const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
-const CHANGE_USERNAME_INPUT = 'CHANGE_USERNAME_INPUT';
-const CHANGE_PASSWORD_INPUT = 'CHANGE_PASSWORD_INPUT';
 
 export const SUBMIT_NEW_USER = 'SUBMIT_NEW_USER';
 const MESSAGE_SUBMIT_NEW_USER = 'MESSAGE_SUBMIT_NEW_USER';
 export const SUBMIT_LOGINS = 'SUBMIT_LOGINS';
-const LOGIN_RESPONSE = 'LOGIN_RESPONSE'
+const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
+const STOCK_THE_TOKEN = 'STOCK_THE_TOKEN';
 
 
 /*ooooooooo.   oooooooooooo oooooooooo.   ooooo     ooo   .oooooo.   oooooooooooo ooooooooo.   
@@ -153,52 +152,36 @@ o888o `Y8bod8P' `8oooooo.  o888o o888o o888o
                                              */
 
 
-      case CHANGE_USERNAME_INPUT:
-        return {
-        ...state,
-        username: action.usernameValue,
-      };
-
-      case CHANGE_PASSWORD_INPUT:
-        return {
-        ...state,
-        password: action.passwordValue,
-      };
-
       case RECEIVED_TOKEN:
         return {
         ...state,
         token: action.token,
       }
 
-      case ERROR_CONNEXION:
+      case USER_IS_CONNECTED:
         return{
           ...state,
-          errorMessage: action.errorMessage
+          isConnected: true,
+          usernameIsConnected: action.usernameIsConnected,
         }
 
+      case LOGIN_RESPONSE:
+      return{
+        ...state,
+        message: action.message,
+      }
 
+      case MESSAGE_SUBMIT_NEW_USER:
+        return{
+          ...state,
+          messageSubmit: action.message,
+        }
 
-
-
-        // case USER_IS_CONNECTED:
-        //   return{
-        //     ...state,
-        //     isConnected: true,
-        //     message: action.message
-        //   }
-
-          case LOGIN_RESPONSE:
-          return{
-            ...state,
-            message: action.message,
-          }
-
-        case MESSAGE_SUBMIT_NEW_USER:
-          return{
-            ...state,
-            messageSubmit: action.message,
-          }
+      case STOCK_THE_TOKEN:
+        return{
+          ...state,
+          token: action.stockedToken
+        }
 
 
 
@@ -281,29 +264,6 @@ o88o     o8888o         o888o `Y8bod8P' `8oooooo.  o888o o888o o888o
                                                                      */
 
 
-export const errorConnexion = errorMessage => ({
-  type: ERROR_CONNEXION,
-  errorMessage,
-});
-
-export const UserIsConnected = id => ({
-  type: USER_IS_CONNECTED,
-  id,
-});
-
-export const changeUsernameInput = usernameValue => ({
-  type: CHANGE_USERNAME_INPUT,
-  usernameValue,
-})
-
-export const changePasswordInput = passwordValue => ({
-  type: CHANGE_PASSWORD_INPUT,
-  passwordValue,
-})
-
-
-
-
 export const submitLogins = logins => ({
   type: SUBMIT_LOGINS,
   logins,
@@ -322,6 +282,16 @@ export const messageSubmitNewUser = message => ({
 export const loginResponse = message => ({
   type: LOGIN_RESPONSE,
   message,
+})
+
+export const userIsConnected = usernameIsConnected => ({
+  type: USER_IS_CONNECTED,
+  usernameIsConnected ,
+})
+
+export const stockTheToken = stockedToken => ({
+  type: STOCK_THE_TOKEN,
+  stockedToken,
 })
 /**
  * Selectors

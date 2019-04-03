@@ -132,7 +132,10 @@ o888o  o888o o888ooooood8  `Y8bood8P'   o888o 8""88888P'      o888o     o888oooo
     font-size: 1.7em;
 }
 
+.form-error {
+    border-color: 1px solid red;
 
+}
 
 label {
     font-size: 1.2em;
@@ -233,7 +236,34 @@ label {
     background-color: #c8b29a;
 }
 
+/*oooooooooooo   .oooooo.   ooooooooo.   ooo        ooooo         oooooooooooo ooooooooo.   ooooooooo.   
+`888'     `8  d8P'  `Y8b  `888   `Y88. `88.       .888'         `888'     `8 `888   `Y88. `888   `Y88. 
+ 888         888      888  888   .d88'  888b     d'888           888          888   .d88'  888   .d88' 
+ 888oooo8    888      888  888ooo88P'   8 Y88. .P  888           888oooo8     888ooo88P'   888ooo88P'  
+ 888    "    888      888  888`88b.     8  `888'   888  8888888  888    "     888`88b.     888`88b.    
+ 888         `88b    d88'  888  `88b.   8    Y     888           888       o  888  `88b.   888  `88b.  
+o888o         `Y8bood8P'  o888o  o888o o8o        o888o         o888ooooood8 o888o  o888o o888o  o888o 
+                                                                                                       
+                                                                                                       
+                                                                                                       */
 
+
+.errors-panel {
+    border: solid 1px red;
+    background-color: #fa8282;
+    color: #5f0202;
+    padding: 2em 0;
+    margin: 1em 0;
+}
+
+// .panel {
+//     display: none;
+//     height: 0;
+// }
+
+// .panel-visible {
+//     display: block;
+// }
 
 /*ooooooooo.   ooooo ooooooooo.   ooooooooo.   ooooo        oooooooooooo 
 `888   `Y88. `888' `888   `Y88. `888   `Y88. `888'        `888'     `8 

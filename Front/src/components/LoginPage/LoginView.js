@@ -54,12 +54,12 @@ class LoginView extends React.Component {
                 password: this.state.passwordLogin,
             };
             console.log(logins);
-            submitLogins(logins + 'je suis le console log du loginview');
+            submitLogins(logins);
     }
     
     render() {
 
-        const { message } = this.props;
+        const { message, usernameIsConnected } = this.props;
         
         return (
             <div>
@@ -68,7 +68,7 @@ class LoginView extends React.Component {
                         <p>Veuillez renseigner les champs suivants</p>
                 </div>
                 <form onSubmit={this.handleSubmit} className="login-form">
-                <div className="panel panel-default">
+                <div className="panel-default">
                     <FormErrors errors={this.state.errorLogin} />
                 </div>
                 <label>
@@ -88,7 +88,7 @@ class LoginView extends React.Component {
                     <input
                     value={this.state.passwordLogin}
                     onChange={this.handleChange}
-                    type="text"
+                    type="password"
                     placeholder="Veuillez entrer votre password"
                     name="passwordLogin"
                     required
@@ -96,13 +96,13 @@ class LoginView extends React.Component {
                     <button 
                     className='login-form-button ripple'
                     type='submit'
-                    disabled={!this.state.formValid}
+                    //disabled={!this.state.formValid}
                     >
                     Connexion
                     </button>
                 </form>
                     {message === 'OK'
-                    && <p className="submit-success">Vous vous êtes connecté avec succès!</p>
+                    && <p className="submit-success">Bonjour {usernameIsConnected}! <br></br>Vous vous êtes connecté avec succès!</p>
                     }
                     {message === 'NOPE'
                     && <p className="submit-error">L'identifiant ou le mot de passe ne correspondent pas</p>

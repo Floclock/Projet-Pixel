@@ -69,6 +69,13 @@ class CommentController extends AbstractController
      */
     public function edit(Request $request, Comment $comment): Response
     {
+        if(!$this->isGranted('EDIT', $comment))
+        {
+            $this->addFlash('danger', 'Ceci n\'est pas votre commentaire');
+
+            return $this->redirectToRoute('comment_index');
+        } 
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -80,11 +87,13 @@ class CommentController extends AbstractController
             ]);
         }
 
+
         return $this->render('backend/comment/edit.html.twig', [
             'comment' => $comment,
             'form' => $form->createView(),
         ]);
     }
+    
 
     /**
      * @Route("/{id}", name="comment_delete", methods={"DELETE"})

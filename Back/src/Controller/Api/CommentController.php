@@ -51,7 +51,7 @@ class CommentController extends AbstractController
                 'content' => $comment->getContent(),
                 'createdAt' => $comment->getCreatedAt(),
                 'user' => $comment->getUser()->getUsername(),
-                'event' => $comment->getEvent()->getDescription()
+                'event' => $comment->getEvent()->getId()
             ];
             }
     $jsonComments = \json_encode($array);

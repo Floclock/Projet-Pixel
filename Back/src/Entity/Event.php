@@ -79,12 +79,15 @@ class Event
      */
     private $style;
 
+    
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->rankings = new ArrayCollection();
         $this->votes = 0;
+        
 
     }
 
@@ -299,4 +302,5 @@ class Event
         return (string) $this->getName();
     }
 
+    
 }

@@ -43,7 +43,7 @@ class EventController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
-
+            dd($event->getDate());
             return $this->redirectToRoute('event_index');
         }
 

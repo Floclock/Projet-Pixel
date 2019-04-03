@@ -51,7 +51,7 @@ class CommentController extends AbstractController
                 'content' => $comment->getContent(),
                 'createdAt' => $comment->getCreatedAt(),
                 'user' => $comment->getUser()->getUsername(),
-                'event' => $comment->getEvent()->getDescription()
+                'event' => $comment->getEvent()->getId()
             ];
             }
     $jsonComments = \json_encode($array);
@@ -63,7 +63,7 @@ class CommentController extends AbstractController
 
 
     /**
-     * @Route("/private/comment/new", name="comment_new", methods={"POST"})
+     * @Route("/comment/new", name="comment_new", methods={"POST"})
      */
     public function newCommentAction(Request $request): Response
     {
@@ -80,7 +80,7 @@ class CommentController extends AbstractController
                 $entityManager->persist($comment);
                 $entityManager->flush();
 
-                return new JsonResponse([], JsonResponse::HTTP_OK);
+                return new JsonResponse([], JsonResponse::HTTP_CREATED);
             } else {
                 $return['error'] = $this->getErrorsFromForm($form);
             }
@@ -112,7 +112,7 @@ class CommentController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
-
+  
     /**
      * @Route("/comment/vote/{id}", name="comment_vote")
      */
@@ -178,3 +178,4 @@ class CommentController extends AbstractController
         return $response;
     }
 }
+

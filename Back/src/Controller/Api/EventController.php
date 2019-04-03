@@ -57,6 +57,7 @@ class EventController extends AbstractController
                 'available' => $event->getAvailable(),
                 'selected' => $event->getSelected(),
                 'image' => $event->getImage(),
+                'vote' => $event->getVotes(),
                 'comments' => $commentRepository->findByEventQueryBuilder($event),
                 'rates' => $rateRepository->findByEventQueryBuilder($event),
                 'rankings' => $rankingRepository->findByEventQueryBuilder($event),
@@ -73,7 +74,7 @@ class EventController extends AbstractController
 
 
     /**
-     * @Route("/private/event/new", name="event_new", methods={"POST"})
+     * @Route("/event/new", name="event_new", methods={"POST"})
      */
     public function newEventAction(Request $request): Response
     {
@@ -119,6 +120,7 @@ class EventController extends AbstractController
             'available' => $currentValue->getAvailable(),
             'selected' => $currentValue->getSelected(),
             'image' => $currentValue->getImage(),
+            'vote' => $event->getVotes(),
             'comments' => $comment,
             'rates' => $rate,
             'rankings' => $ranking,

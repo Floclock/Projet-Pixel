@@ -29,7 +29,7 @@ class Event
     private $description;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string")
      */
     private $date;
 
@@ -79,12 +79,15 @@ class Event
      */
     private $style;
 
+    
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->rankings = new ArrayCollection();
         $this->votes = 0;
+        
 
     }
 
@@ -117,12 +120,12 @@ class Event
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(string $date): self
     {
         $this->date = $date;
 
@@ -299,4 +302,5 @@ class Event
         return (string) $this->getName();
     }
 
+    
 }

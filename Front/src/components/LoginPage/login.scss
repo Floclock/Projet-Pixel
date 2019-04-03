@@ -1,0 +1,307 @@
+/*ooooo          .oooooo.     .oooooo.    ooooo ooooo      ooo 
+`888'         d8P'  `Y8b   d8P'  `Y8b   `888' `888b.     `8' 
+ 888         888      888 888            888   8 `88b.    8  
+ 888         888      888 888            888   8   `88b.  8  
+ 888         888      888 888     ooooo  888   8     `88b.8  
+ 888       o `88b    d88' `88.    .88'   888   8       `888  
+o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8  
+                                                             
+                                                             
+                                                             */
+
+#view-page h3 {
+    font-size: 1.3em;
+}
+
+#login-container {
+    background-color: #c8b29a;
+    display: flex;
+    flex-direction: column;
+    //justify-content: space-between;
+    margin: 2em auto;
+    padding: 1.5em;
+    max-width: 60%;
+    text-align: center;
+}
+
+#view-page {
+    max-width: 100%;
+    display: flex;
+    align-self: center;
+}
+
+
+
+.log-button {
+    margin: .5em;
+    color: #c8b29a;
+    background-color:#746359;
+    font-weight: bold;
+    padding: 1.1em 1.5em;
+    border: none;
+    border-radius: 0px;
+    width: auto;
+}
+
+
+.log-button:focus {
+    outline: none;
+}
+
+.log-button:hover {
+    outline: none;
+    background-color: #746359;
+}
+
+.log-button:visited {
+    outline: none;
+    background-color: #c8b29a;
+}
+
+.recover-link {
+    font-size: 1.2em;
+}
+
+.recover-link:hover {
+    color: #372f2d;
+}
+
+/*ooooo          .oooooo.     .oooooo.    ooooo ooooo      ooo oooooo     oooo ooooo oooooooooooo oooooo   oooooo     oooo 
+`888'         d8P'  `Y8b   d8P'  `Y8b   `888' `888b.     `8'  `888.     .8'  `888' `888'     `8  `888.    `888.     .8'  
+ 888         888      888 888            888   8 `88b.    8    `888.   .8'    888   888           `888.   .8888.   .8'   
+ 888         888      888 888            888   8   `88b.  8     `888. .8'     888   888oooo8       `888  .8'`888. .8'    
+ 888         888      888 888     ooooo  888   8     `88b.8      `888.8'      888   888    "        `888.8'  `888.8'     
+ 888       o `88b    d88' `88.    .88'   888   8       `888       `888'       888   888       o      `888'    `888'      
+o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8        `8'       o888o o888ooooood8       `8'      `8'       
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         */
+
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 2em auto;
+}
+
+.login-form input {
+    background-color: #ddc9b3;
+    border-color: #746359;
+    margin: 1.1em;
+    padding: 0.5em;
+    text-align: center;
+}
+
+.login-text {
+    margin: 2em;
+}
+
+.login-text h2 {
+    font-size: 1.7em;
+}
+
+.login-form-button {
+    margin: .5em;
+    color: #c8b29a;
+    background-color:#746359;
+    font-weight: bold;
+    padding: 1.1em 1.5em;
+    border: none;
+    border-radius: 0px;
+    width: auto;
+}
+
+/*ooooooooo.   oooooooooooo   .oooooo.    ooooo  .oooooo..o ooooooooooooo oooooooooooo ooooooooo.   
+`888   `Y88. `888'     `8  d8P'  `Y8b   `888' d8P'    `Y8 8'   888   `8 `888'     `8 `888   `Y88. 
+ 888   .d88'  888         888            888  Y88bo.           888       888          888   .d88' 
+ 888ooo88P'   888oooo8    888            888   `"Y8888o.       888       888oooo8     888ooo88P'  
+ 888`88b.     888    "    888     ooooo  888       `"Y88b      888       888    "     888`88b.    
+ 888  `88b.   888       o `88.    .88'   888  oo     .d8P      888       888       o  888  `88b.  
+o888o  o888o o888ooooood8  `Y8bood8P'   o888o 8""88888P'      o888o     o888ooooood8 o888o  o888o 
+                                                                                                  
+                                                                                                  
+                                                                                                  */
+
+.register-text {
+    margin: 2em;
+}
+
+.register-text h2 {
+    font-size: 1.7em;
+}
+
+.form-error {
+    border-color: 1px solid red;
+
+}
+
+label {
+    font-size: 1.2em;
+    color: #746359;
+    display: inline-block;
+    position: relative;
+    align-self: start;
+    padding-left: 1em;
+    margin-bottom: 0em;
+}
+
+.register-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 2em auto;
+}
+
+.register-form input {
+    background-color: #ddc9b3;
+    border-color: #746359;
+    margin: 1.1em;
+    padding: 0.5em;
+    text-align: center;
+}
+
+/*ooooo          .oooooo.    .oooooo..o ooooooooooooo ooooooooo.         .o.        .oooooo..o  .oooooo..o 
+`888'         d8P'  `Y8b  d8P'    `Y8 8'   888   `8 `888   `Y88.      .888.      d8P'    `Y8 d8P'    `Y8 
+ 888         888      888 Y88bo.           888       888   .d88'     .8"888.     Y88bo.      Y88bo.      
+ 888         888      888  `"Y8888o.       888       888ooo88P'     .8' `888.     `"Y8888o.   `"Y8888o.  
+ 888         888      888      `"Y88b      888       888           .88ooo8888.        `"Y88b      `"Y88b 
+ 888       o `88b    d88' oo     .d8P      888       888          .8'     `888.  oo     .d8P oo     .d8P 
+o888ooooood8  `Y8bood8P'  8""88888P'      o888o     o888o        o88o     o8888o 8""88888P'  8""88888P'  
+                                                                                                         
+                                                                                                         
+                                                                                                         */
+
+.recover-text {
+    margin: 2em;
+}
+
+.recover-text h2 {
+    font-size: 1.7em;
+}
+
+
+
+label {
+    font-size: 1.2em;
+    color: #746359;
+    display: inline-block;
+    position: relative;
+    align-self: start;
+    padding-left: 1em;
+    margin-bottom: 0em;
+}
+
+.recover-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 2em auto;
+}
+
+.recover-form input {
+    background-color: #ddc9b3;
+    border-color: #746359;
+    margin: 1.1em;
+    padding: 0.5em;
+    text-align: center;
+}
+
+.button-recover {
+    margin: .5em;
+    color: #c8b29a;
+    background-color:#746359;
+    font-weight: bold;
+    padding: 1.1em 1.5em;
+    border: none;
+    border-radius: 0px;
+    width: auto;
+}
+
+
+.button-recover:focus {
+    outline: none;
+}
+
+.button-recover:hover {
+    outline: none;
+    background-color: #746359;
+}
+
+.button-recover:visited {
+    outline: none;
+    background-color: #c8b29a;
+}
+
+/*oooooooooooo   .oooooo.   ooooooooo.   ooo        ooooo         oooooooooooo ooooooooo.   ooooooooo.   
+`888'     `8  d8P'  `Y8b  `888   `Y88. `88.       .888'         `888'     `8 `888   `Y88. `888   `Y88. 
+ 888         888      888  888   .d88'  888b     d'888           888          888   .d88'  888   .d88' 
+ 888oooo8    888      888  888ooo88P'   8 Y88. .P  888           888oooo8     888ooo88P'   888ooo88P'  
+ 888    "    888      888  888`88b.     8  `888'   888  8888888  888    "     888`88b.     888`88b.    
+ 888         `88b    d88'  888  `88b.   8    Y     888           888       o  888  `88b.   888  `88b.  
+o888o         `Y8bood8P'  o888o  o888o o8o        o888o         o888ooooood8 o888o  o888o o888o  o888o 
+                                                                                                       
+                                                                                                       
+                                                                                                       */
+
+
+.errors-panel {
+    border: solid 1px red;
+    background-color: #fa8282;
+    color: #5f0202;
+    padding: 2em 0;
+    margin: 1em 0;
+}
+
+// .panel {
+//     display: none;
+//     height: 0;
+// }
+
+// .panel-visible {
+//     display: block;
+// }
+
+/*ooooooooo.   ooooo ooooooooo.   ooooooooo.   ooooo        oooooooooooo 
+`888   `Y88. `888' `888   `Y88. `888   `Y88. `888'        `888'     `8 
+ 888   .d88'  888   888   .d88'  888   .d88'  888          888         
+ 888ooo88P'   888   888ooo88P'   888ooo88P'   888          888oooo8    
+ 888`88b.     888   888          888          888          888    "    
+ 888  `88b.   888   888          888          888       o  888       o 
+o888o  o888o o888o o888o        o888o        o888ooooood8 o888ooooood8 
+                                                                       
+                                                                       
+                                                                       */
+
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+.ripple:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.ripple:active:after {
+    transform: scale(0, 0);
+    opacity: .3;
+    transition: 0s;
+}

@@ -1,11 +1,14 @@
-
 const initialState = {
   pathName: '',
+  token: '',
+  isConnected: false,
   dataGames: [],
   dataMenu: [],
   dataEvents: [],
   eventSubmitView: true,
   memberId: 3,
+  usernameIsConnected: '',
+  messageSubmit: '',
 };
 
 /**
@@ -24,6 +27,16 @@ export const SEND_MSG = 'SEND_MSG';
 export const SEND_VOTE = 'SEND_VOTE';
 export const SEND_DATA_EVENT = 'SEND_DATA_EVENT';
 export const SET_EVENT_SUBMITED = 'SET_EVENT_SUBMITED';
+
+
+const USER_IS_CONNECTED = 'USER_IS_CONNECTED';
+const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
+
+export const SUBMIT_NEW_USER = 'SUBMIT_NEW_USER';
+const MESSAGE_SUBMIT_NEW_USER = 'MESSAGE_SUBMIT_NEW_USER';
+export const SUBMIT_LOGINS = 'SUBMIT_LOGINS';
+const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
+const STOCK_THE_TOKEN = 'STOCK_THE_TOKEN';
 /**
  * Reducer
  */
@@ -69,6 +82,37 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         eventSubmitView: !state.eventSubmitView,
+      };
+
+    case RECEIVED_TOKEN:
+      return {
+        ...state,
+        token: action.token,
+      };
+
+    case USER_IS_CONNECTED:
+      return {
+        ...state,
+        isConnected: true,
+        usernameIsConnected: action.usernameIsConnected,
+      };
+
+    case LOGIN_RESPONSE:
+      return {
+        ...state,
+        message: action.message,
+      };
+
+    case MESSAGE_SUBMIT_NEW_USER:
+      return {
+        ...state,
+        messageSubmit: action.message,
+      };
+
+    case STOCK_THE_TOKEN:
+      return {
+        ...state,
+        token: action.stockedToken,
       };
 
     default:
@@ -138,6 +182,36 @@ export const setEventSubmited = () => ({
 export const sendVote = vote => ({
   type: SEND_VOTE,
   vote,
+});
+
+export const submitLogins = logins => ({
+  type: SUBMIT_LOGINS,
+  logins,
+});
+
+export const submitNewUser = newUserRegister => ({
+  type: SUBMIT_NEW_USER,
+  newUserRegister,
+});
+
+export const messageSubmitNewUser = message => ({
+  type: MESSAGE_SUBMIT_NEW_USER,
+  message,
+});
+
+export const loginResponse = message => ({
+  type: LOGIN_RESPONSE,
+  message,
+});
+
+export const userIsConnected = usernameIsConnected => ({
+  type: USER_IS_CONNECTED,
+  usernameIsConnected,
+});
+
+export const stockTheToken = stockedToken => ({
+  type: STOCK_THE_TOKEN,
+  stockedToken,
 });
 
 /**

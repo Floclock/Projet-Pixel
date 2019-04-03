@@ -6,10 +6,11 @@ import { createStore, compose, applyMiddleware } from 'redux';
 /**
  * Local import
  */
-import reducer from 'src/store/reducer';
 
-import Middleware from 'src/Middleware/Middleware';
+import Middleware from 'src/store/Middleware/Middleware';
+import LoginMiddleware from 'src/store/Middleware/LoginMiddleware';
 
+import reducer from './reducer';
 /**
  * Store
  */
@@ -19,6 +20,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const enhancers = composeEnhancers(
   applyMiddleware(Middleware),
+  applyMiddleware(LoginMiddleware),
+
 );
 
 const store = createStore(

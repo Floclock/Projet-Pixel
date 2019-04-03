@@ -3,6 +3,7 @@ import Menu from 'src/containers/Menu';
 import Games from 'src/containers/Games';
 import Reservation from 'src/containers/Reservation';
 import Event from 'src/components/Event';
+import LoginPage from 'src/components/LoginPage';
 
 export default [
   {
@@ -39,5 +40,11 @@ export default [
     route: '/info',
     label: 'Info',
     page: 'Info',
+  },
+  {
+    route: '/login',
+    label: 'Login',
+    page: LoginPage,
+    subtitle: 'Accedez à votre compte',
   },
 ];

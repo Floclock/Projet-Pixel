@@ -25,12 +25,13 @@ class EditComment implements VoterInterface
 
         $user = $token->getUser();
 
+
         if(!$user instanceof User)
         {
             return self::ACCESS_DENIED;
         }
-
-        if($user !== $subject->getOwner())
+        // soucis par la 
+        if($user !== $subject->getUser())
         {
             return self::ACCESS_DENIED;
         }

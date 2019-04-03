@@ -133,7 +133,7 @@ class EventController extends AbstractController
     }
     
     /**
-     * @Route("/event/vote/{id}", name="")
+     * @Route("/event/vote/{id}", name="api_event_vote")
      */
     public function vote(Event $event = null, EntityManagerInterface $em, UserEventVoteRepository $uevr)
     {

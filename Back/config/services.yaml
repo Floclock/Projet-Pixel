@@ -31,7 +31,7 @@ services:
         tags:
             - { name: security.voter }
 
-    app.security.voter.edit_event:
-        class: App\Security\Voter\EditEvent
-        tags:
-            - { name: security.voter }
+    # app.security.voter.edit_event:
+    #     class: App\Security\Voter\EditEvent
+    #     tags:
+    #         - { name: security.voter }

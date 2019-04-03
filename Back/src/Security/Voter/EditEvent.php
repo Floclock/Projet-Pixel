@@ -29,7 +29,7 @@ class EditEvent implements VoterInterface
             return self::ACCESS_DENIED;
         }
 
-        if($user !== $sugject->getOwner())
+        if($user !== $subject->getUser())
         {
             return self::ACCESS_DENIED;
         }

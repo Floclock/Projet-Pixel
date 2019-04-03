@@ -13,7 +13,6 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('content')
-            ->add('createdAt')
             ->add('user')
             ->add('event')
         ;
@@ -23,6 +22,7 @@ class CommentType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Comment::class,
+            'csrf_protection' => false,
         ]);
     }
 }

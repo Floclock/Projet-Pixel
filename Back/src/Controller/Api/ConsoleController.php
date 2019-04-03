@@ -2,36 +2,37 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Console;
-use App\Form\ConsoleType;
-use App\Repository\ConsoleRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
+use App\Repository\ConsoleRepository;
+use App\Repository\GameRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Console;
 
 /**
- * @Route("/api")
+ * @Route("/api", name="api_")
  */
 class ConsoleController extends AbstractController
 {
     /**
      * @Route("/consoles", name="all_consoles")
      */
-    public function findAll(ConsoleRepository $repo)
+    public function findAll(ConsoleRepository $repo, GameRepository $gameRepository)
     {
+    
+        
         $consoles = $repo->findAll();
-        foreach ($consoles as $index => $currentValue) {
-            $array[$index] = [
-                'id' => $currentValue->getId(),
-                'name' => $currentValue->getName(),
-                'description' => $currentValue->getDescription(),
-                'nbAvailable' => $currentValue->getNbAvailable(),
-                'brand' => $currentValue->getBrand(),
-                'image' => $currentValue->getImage(),
-                'releaseDate' => $currentValue->getReleaseDate(),
-                'games' => $currentValue->getGames()
-
+        foreach ($consoles as $console) {
+            $array[] = [
+                'id' => $console->getId(),
+                'name' => $console->getName(),
+                'description' => $console->getDescription(),
+                'nbAvailable' => $console->getNbAvailable(),
+                'brand' => $console->getBrand(),
+                'image' => $console->getImage(),
+                'releaseDate' => $console->getReleaseDate(),
+                'games' => $gameRepository->findByConsoleQueryBuilder($console),
             ];
             }
     $jsonConsoles = \json_encode($array);
@@ -44,8 +45,9 @@ class ConsoleController extends AbstractController
     /**
      * @Route("/console/{id}", name="console_by_one", methods={"GET"})
      */
-    public function findOneConsole(Console $console)
+    public function findOneConsole(Console $console, GameRepository $gameRepository)
     {
+        $game = $gameRepository->findByConsoleQueryBuilder($console);
         $currentValue = $console;
         $array = [
             'id' => $currentValue->getId(),
@@ -55,7 +57,7 @@ class ConsoleController extends AbstractController
             'brand' => $currentValue->getBrand(),
             'image' => $currentValue->getImage(),
             'releaseDate' => $currentValue->getReleaseDate(),
-            'games' => $currentValue->getGames()
+            'game'=>$game
         ];
 
     $jsonOneConsole = \json_encode($array);

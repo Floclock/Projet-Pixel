@@ -25,6 +25,7 @@ class ConsoleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Console::class,
+            'csrf_protection' => false,
         ]);
     }
 }

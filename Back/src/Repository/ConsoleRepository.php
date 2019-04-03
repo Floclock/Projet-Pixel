@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Console;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Game;
 
 /**
  * @method Console|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,23 +19,6 @@ class ConsoleRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Console::class);
     }
-
-    // /**
-    //  * @return Console[] Returns an array of Console objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
     /*
     public function findOneBySomeField($value): ?Console

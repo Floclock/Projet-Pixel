@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Ranking;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\User;
+use App\Entity\Event;
 
 /**
  * @method Ranking|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +20,40 @@ class RankingRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ranking::class);
     }
+
+    /**
+     * @param User $ranking
+     * @return Ranking[]
+     */
+    
+    public function findByUserQueryBuilder($user)
+    {
+        $qb = $this->createQueryBuilder('r')
+        ->join('r.user', 'u')
+        ->addSelect('c')
+        ->where('r.user = :myUser')
+        ->setParameter('myUser', $user)
+        ;
+        return $qb->getQuery()->getArrayResult();
+    }
+
+
+    /**
+     * @param Event $ranking
+     * @return Ranking[]
+     */
+    
+    public function findByEventQueryBuilder($event)
+    {
+        $qb = $this->createQueryBuilder('r')
+        ->join('r.event', 'e')
+        ->addSelect('e')
+        ->where('r.event = :myEvent')
+        ->setParameter('myEvent', $event)
+        ;
+        return $qb->getQuery()->getArrayResult();
+    }
+
 
     // /**
     //  * @return Ranking[] Returns an array of Ranking objects

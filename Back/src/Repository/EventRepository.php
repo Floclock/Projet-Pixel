@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Event;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Style;
 
 /**
  * @method Event|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,7 @@ class EventRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Event::class);
     }
+
 
     // /**
     //  * @return Event[] Returns an array of Event objects

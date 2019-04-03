@@ -22,6 +22,7 @@ class StyleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Style::class,
+            'csrf_protection' => false,
         ]);
     }
 }

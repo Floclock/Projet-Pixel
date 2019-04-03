@@ -19,6 +19,40 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    /**
+     * @param User $comment
+     * @return Comment[]
+     */
+    
+    public function findByUserQueryBuilder($user)
+    {
+        $qb = $this->createQueryBuilder('c')
+        ->join('c.user', 'u')
+        ->addSelect('u')
+        ->where('c.user = :myUser')
+        ->setParameter('myUser', $user)
+        ;
+        return $qb->getQuery()->getArrayResult();
+    }
+
+    /**
+     * @param Event $event
+     * @return Comment
+     */
+
+    public function findByEventQueryBuilder($event)
+    {
+        $qb = $this->createQueryBuilder('c')
+        ->join('c.event', 'e')
+        ->join('c.user', 'u')
+        ->addSelect('e', 'u.username')
+        ->where('c.event = :myEvent')
+        ->setParameter('myEvent', $event)
+        ;
+        return $qb->getQuery()->getArrayResult();
+    }
+
+
     // /**
     //  * @return Comment[] Returns an array of Comment objects
     //  */

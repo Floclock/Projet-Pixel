@@ -9,16 +9,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ProductRepository;
 
 /**
- * @Route("/api")
+ * @Route("/api", name="api_")
  */
 class TypeController extends AbstractController
 {
     /**
      * @Route("/types", name="all_types")
      */
-    public function findAll(TypeRepository $repo)
+    public function findAll(TypeRepository $repo, ProductRepository $productRepository)
     {
         $types = $repo->findAll();
         foreach ($types as $index => $currentValue) {
@@ -27,7 +28,7 @@ class TypeController extends AbstractController
                 'name' => $currentValue->getName(),
                 'description' => $currentValue->getDescription(),
                 'image' => $currentValue->getImage(),
-                'products' => $currentValue->getProducts()
+                'products' =>  $productRepository->findByTypeQueryBuilder($currentValue)
             ];
             }
     $jsonTypes = \json_encode($array);
@@ -40,15 +41,16 @@ class TypeController extends AbstractController
     /**
      * @Route("/type/{id}", name="type_by_one", methods={"GET"})
      */
-    public function findOneType(Type $type)
+    public function findOneType(Type $type, ProductRepository $productRepository)
     {
+        $product = $productRepository->findByTypeQueryBuilder($type);
         $currentValue = $type;
         $array = [
             'id' => $currentValue->getId(),
             'name' => $currentValue->getName(),
             'description' => $currentValue->getDescription(),
             'image' => $currentValue->getImage(),
-            'products' => $currentValue->getProducts()
+            'product' => $product
         ];
     $jsonOneType = \json_encode($array);
     $response = new Response($jsonOneType);

@@ -1,5 +1,10 @@
 import React from 'react';
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+} from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 import NewsInput from './NewsInput';

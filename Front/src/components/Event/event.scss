@@ -1,0 +1,145 @@
+.button-box {
+  height: 5em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  padding-top: 1em;
+
+}
+
+.event-button {
+  width: 15em;
+  margin: 0 .5em;
+  color: white;
+  border: none;
+  border-radius: 5px 5px 0 0;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+  .left {
+    background-color: #a186bd;
+  }
+
+  .right {
+    background-color: #652d90;
+  }
+
+  #watch-event {
+    background-color: #a186bd;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .event {
+
+  &-filter {
+    height: 20em;
+    background-color: black;
+    -webkit-filter: brightness(55%); /* Safari 6.0 - 9.0 */
+    filter: brightness(55%);
+
+    & img {
+      height: 20em;
+      width: 20em;
+      border: 1px solid white;
+      position: relative;
+    }
+  }  
+  
+  &-box {
+    display: flex;
+    margin: 2em 0 2em 0;
+    width: 20em;
+    flex-direction: column;
+  }
+
+  &-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    height: 20em;
+    width: 20em;
+    padding: .5em;
+    position: absolute;
+
+    &-date {
+      font-size: 1.5em;
+      margin-bottom: 1em;
+      font-weight: bold;
+    }
+
+    &-name {
+      font-size: 1.8em;
+      margin-bottom: 1em;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    &-desc {
+      margin-bottom: 1em;
+    }
+
+    &-numb {
+      font-size: 1.4em;
+    }
+  }
+
+  &-coments {
+    background: white;
+    height: 12em;
+    position: relative;
+  
+  &-list {
+    height: 10em;
+    margin: 0 0 2em 1em;
+    overflow: auto;
+  } 
+
+  &-msg {
+    margin-top: 1em;
+    font-size: .9em;
+  }
+
+  &-user {
+    margin-bottom: .5em;
+    font-weight: bold;
+  }
+  }
+}
+
+#msg {
+  &-form {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  }
+
+  &-field {
+    width: 100%;
+    padding-left: .4em;
+    height: 2.2em;
+    border: none;
+    background-color: rgb(223, 225, 226);
+  }
+}
+
+.vote-event {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #652d8e;
+  height: 3em;
+  color: white;
+}
+
+.icon-up {
+  font-size: 1.6em;
+  cursor: pointer;
+}

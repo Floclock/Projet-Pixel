@@ -9,6 +9,7 @@ const Menu = ({ getDataMenu, data }) => {
   useEffect(() => {
     getDataMenu();
   }, []);
+
   return (
     <div id="food-menu">
       {data.map(type => (

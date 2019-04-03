@@ -24,6 +24,14 @@
     color: white;
     background-color: #e58538;
   }
+
+  &evenement {
+    margin-top: 2.5em;
+    padding-top: 2.5em;
+    height: 15em;
+    color: white;
+    background-color: #652d90;
+  }
 }
 
 .footer-newsletter-title {
@@ -46,8 +54,8 @@
   height: 2.5em;
 
   &nos-jeux {
-    border: 1px solid white;
-    color: white;
+    border: 1px solid #0594a1;
+    color: #0594a1;
     width: 20em;
     text-align: center;
     height: 2.5em;
@@ -55,7 +63,15 @@
 
   &menu {
     border: 1px solid #fee5c7;
-    color: #fee5c7;
+    color: #b96b2e;
+    width: 20em;
+    text-align: center;
+    height: 2.5em;
+  }
+
+  &evenement {
+    border: 1px solid #a186bd;
+    color: #440f61;
     width: 20em;
     text-align: center;
     height: 2.5em;
@@ -88,6 +104,16 @@
     background-color: #fee5c7;
     border: none;
     color: #e58936;
+  }
+
+  &evenement {
+    margin-left: 1em;
+    height: 2.5em;
+    width: 5em;
+    font-weight: bold;
+    background-color: #855fa8;
+    border: none;
+    color: white;
   }
 }
 
@@ -142,6 +168,17 @@
     align-items: center;
     height: 2.5em;
     background-color: #ba6c2e;
+    color: white;
+    font-size: .8em;
+  }
+
+  &evenement {
+    margin-top: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2.5em;
+    background-color: #440e62;
     color: white;
     font-size: .8em;
   }

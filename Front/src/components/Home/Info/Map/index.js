@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import PropTypes from 'prop-types';
 
 const AnyReactComponent = ({ text }) => (
   <div style={{
@@ -12,13 +13,14 @@ const AnyReactComponent = ({ text }) => (
     justifyContent: 'center',
     borderRadius: '100%',
     transform: 'translate(-50%, -50%)',
-  }}>
+  }}
+  >
     {text}
   </div>
 );
 
-class Map extends Component {
-  static defaultProps = {
+const Map = () => {
+  const props = {
     center: {
       lat: 49.42,
       lng: 1.08,
@@ -26,26 +28,36 @@ class Map extends Component {
     zoom: 14,
   };
 
-  render() {
-    return (
-      // Important! Always set the container height explicitly
-      <div style={{ height: '100%', width: '100%' }}>
-        <GoogleMapReact
-          className="map"
-          bootstrapURLKeys={{ key:'AIzaSyAWaav8QxFAU9PrE8WM7JYjhlJDSZo1TEc' }}
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={49.428527}
-            lng={1.082251}
-            className="place"
-            text="Pixel Café"
-          />
-        </GoogleMapReact>
-      </div>
-    );
-  }
-}
+  const { center, zoom } = props;
+
+  return (
+    // Important! Toujours définir explicitement la hauteur de la div qui contient la map
+    <div style={{ height: '100%', width: '100%' }}>
+      <GoogleMapReact
+        className="map"
+        bootstrapURLKeys={{ key: 'AIzaSyAWaav8QxFAU9PrE8WM7JYjhlJDSZo1TEc' }}
+        defaultCenter={center}
+        defaultZoom={zoom}
+      >
+        <AnyReactComponent
+          lat={49.428527}
+          lng={1.082251}
+          className="place"
+          text="Pixel Café"
+        />
+      </GoogleMapReact>
+    </div>
+  );
+};
+
+
+AnyReactComponent.propTypes = {
+  text: PropTypes.string.isRequired,
+};
+
+Map.propTypes = {
+  zoom: PropTypes.number.isRequired,
+  center: PropTypes.object.isRequired,
+};
 
 export default Map;

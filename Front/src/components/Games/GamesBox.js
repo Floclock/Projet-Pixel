@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './games.scss';
 
@@ -15,5 +16,8 @@ const GamesBox = ({ data }) => (
   </div>
 );
 
+GamesBox.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 export default GamesBox;

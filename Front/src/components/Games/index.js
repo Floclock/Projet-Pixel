@@ -6,9 +6,11 @@ import GamesBox from './GamesBox';
 import './games.scss';
 
 const Games = ({ getDataGames, data }) => {
+
   useEffect(() => {
     getDataGames();
   }, []);
+
   return (
     <div id="games">
       {data.map(console => (

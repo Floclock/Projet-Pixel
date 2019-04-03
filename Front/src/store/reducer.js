@@ -1,11 +1,11 @@
 
 const initialState = {
   pathName: '',
-  token: '',
   dataGames: [],
   dataMenu: [],
-  isConnected: false,
-  userId: '',
+  dataEvents: [],
+  eventSubmitView: true,
+  memberId: 3,
 };
 
 /**
@@ -18,17 +18,12 @@ export const LOAD_GAMES = 'LOAD_GAMES';
 const RECEIVE_DATA_GAMES = ' RECEIVE_DATA_GAMES';
 export const LOAD_MENU = 'LOAD_MENU';
 const RECEIVE_DATA_MENU = 'RECEIVE_DATA_MENU';
-
-
-
-//Login
-
-const POST_LOGINS = 'POST_LOGINS';
-const ERROR_CONNEXION = 'ERROR_CONNEXION';
-const USER_IS_CONNECTED = 'USER_IS_CONNECTED';
-const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
-
-
+export const LOAD_EVENTS = 'LOAD_EVENTS';
+const RECEIVE_DATA_EVENTS = 'RECEIVE_DATA_EVENTS';
+export const SEND_MSG = 'SEND_MSG';
+export const SEND_VOTE = 'SEND_VOTE';
+export const SEND_DATA_EVENT = 'SEND_DATA_EVENT';
+export const SET_EVENT_SUBMITED = 'SET_EVENT_SUBMITED';
 /**
  * Reducer
  */
@@ -52,8 +47,7 @@ const reducer = (state = initialState, action = {}) => {
         displaySubtitle: action.subtitle,
       };
 
-
-      case RECEIVE_DATA_GAMES:
+    case RECEIVE_DATA_GAMES:
       return {
         ...state,
         dataGames: action.dataGames,
@@ -65,34 +59,17 @@ const reducer = (state = initialState, action = {}) => {
         dataMenu: action.dataMenu,
       };
 
-
-
-      //?LOGIN
-
-      case POST_LOGINS:
-        return{
-          ...state,
-        }
-
-        case RECEIVED_TOKEN:
+    case RECEIVE_DATA_EVENTS:
       return {
         ...state,
-        token: action.token,
-      }
+        dataEvents: action.dataEvents,
+      };
 
-      case ERROR_CONNEXION:
-        return{
-          ...state,
-          errorMessage: action.errorMessage
-        }
-
-        case USER_IS_CONNECTED:
-          return{
-            ...state,
-            isConnected: true,
-            userId: action.id,
-          }
-
+    case SET_EVENT_SUBMITED:
+      return {
+        ...state,
+        eventSubmitView: !state.eventSubmitView,
+      };
 
     default:
       return state;
@@ -135,24 +112,33 @@ export const receiveDataMenu = dataMenu => ({
   dataMenu,
 });
 
-
-//?LOGIN
-
-export const submitLogins = logins => ({
-  type: POST_LOGINS,
-  logins,
-})
-
-export const errorConnexion = errorMessage => ({
-  type: ERROR_CONNEXION,
-  errorMessage,
+export const getDataEvents = () => ({
+  type: LOAD_EVENTS,
 });
 
-export const UserIsConnected = id => ({
-  type: USER_IS_CONNECTED,
-  id,
+export const receiveDataEvents = dataEvents => ({
+  type: RECEIVE_DATA_EVENTS,
+  dataEvents,
 });
 
+export const sendMsg = msg => ({
+  type: SEND_MSG,
+  msg,
+});
+
+export const sendData = data => ({
+  type: SEND_DATA_EVENT,
+  data,
+});
+
+export const setEventSubmited = () => ({
+  type: SET_EVENT_SUBMITED,
+});
+
+export const sendVote = vote => ({
+  type: SEND_VOTE,
+  vote,
+});
 
 /**
  * Selectors

@@ -1,8 +1,15 @@
 import {
-  LOAD_GAMES, 
+  LOAD_GAMES,
   receiveDataGames,
   receiveDataMenu,
   LOAD_MENU,
+  LOAD_EVENTS,
+  receiveDataEvents,
+  SEND_MSG,
+  SEND_DATA_EVENT,
+  getDataEvents,
+  setEventSubmited,
+  SEND_VOTE,
 } from 'src/store/reducer';
 
 import axios from 'axios';
@@ -10,7 +17,10 @@ import axios from 'axios';
 
 const menuUrl = 'http://92.243.8.69/api/types';
 const gamesUrl = 'http://92.243.8.69/api/consoles';
-
+const eventsUrl = 'http://92.243.8.69/api/events';
+const sendMsgUrl = 'http://92.243.8.69/api/comment/new';
+const sendDataEventUrl = 'http://92.243.8.69/api/event/new';
+const sendVoteUrl = 'http://92.243.8.69/api/event/vote/2';
 
 const Middleware = store => next => (action) => {
   switch (action.type) {
@@ -33,6 +43,53 @@ const Middleware = store => next => (action) => {
         })
         .catch(() => {
           console.error('Error receiveDataMenu');
+        });
+      break;
+
+    case LOAD_EVENTS:
+      axios
+        .get(eventsUrl)
+        .then(({ data }) => {
+          store.dispatch(receiveDataEvents(data));
+        })
+        .catch(() => {
+          console.error('Error receiveDataMenu');
+        });
+      break;
+
+    case SEND_MSG:
+      axios
+        .post(sendMsgUrl, action.msg)
+        .then(() => {
+          store.dispatch(getDataEvents());
+          console.log('cool ca marche');
+        })
+        .catch(() => {
+          console.error('puree');
+        });
+      break;
+
+    case SEND_VOTE:
+      axios
+        .post(sendVoteUrl, action.vote)
+        .then(() => {
+          store.dispatch(getDataEvents());
+          console.log('cool ca marche');
+        })
+        .catch(() => {
+          console.error('puree');
+        });
+      break;
+
+    case SEND_DATA_EVENT:
+      axios
+        .post(sendDataEventUrl, action.data)
+        .then(() => {
+          store.dispatch(setEventSubmited());
+          console.log('cool ca marche');
+        })
+        .catch(() => {
+          console.error('puree');
         });
       break;
 

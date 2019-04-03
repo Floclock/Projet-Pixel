@@ -67,7 +67,7 @@ class EventController extends AbstractController
      * @Route("/{id}/edit", name="event_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Event $event): Response
-    {
+    {   
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
 
@@ -134,4 +134,7 @@ class EventController extends AbstractController
         return $this->redirectToRoute('event_show', ['id' => $event->getId()]);
 
     }
+
+
+    
 }

@@ -148,4 +148,33 @@ class CommentController extends AbstractController
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
+
+    /**
+     * @Route("/comment/{id}/edit", name="comment_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Comment $comment): Response
+    {
+        if(!$this->isGranted('EDIT', $comment))
+        {
+            $this->addFlash('danger', 'Ceci n\'est pas votre commentaire');
+
+            return $this->redirectToRoute('comment_index');
+        } 
+
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('comment_index', [
+                'id' => $comment->getId(),
+            ]);
+        }
+
+        $jsonCommentEdit = \json_encode($form);
+        $response = new Response($jsonCommentEdit);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
 }

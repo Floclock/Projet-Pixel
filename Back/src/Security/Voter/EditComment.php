@@ -30,7 +30,7 @@ class EditComment implements VoterInterface
         {
             return self::ACCESS_DENIED;
         }
-        // soucis par la 
+        
         if($user !== $subject->getUser())
         {
             return self::ACCESS_DENIED;

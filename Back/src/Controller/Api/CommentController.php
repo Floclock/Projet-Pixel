@@ -116,7 +116,7 @@ class CommentController extends AbstractController
     /**
      * @Route("/comment/vote/{id}", name="comment_vote")
      */
-    public function vote(Comment $comment = null, EntityManagerInterface $em, UserCommentVoteRepository $ucvr)
+    public function vote(Comment $comment = null, EntityManagerInterface $em)
     {
         if (null === $comment){
             throw $this->createnotFoundException('Commentaire innexistant.');

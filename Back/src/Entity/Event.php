@@ -53,7 +53,6 @@ class Event
      */
     private $image;
 
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="event")
      */

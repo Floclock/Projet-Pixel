@@ -12,8 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\UserCommentVoteRepository;
-use App\Entity\UserCommentVote;
+
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Doctrine\DBAL\Types\VarDateTimeImmutableType;
@@ -101,35 +100,5 @@ class CommentController extends AbstractController
         return $this->redirectToRoute('comment_index');
     }
 
-    /**
-     * @Route("/vote/{id}", name="comment_vote")
-     */
-    public function vote(Comment $comment = null, EntityManagerInterface $em, UserCommentVoteRepository $ucvr)
-    {
-        if (null === $comment){
-            throw $this->createnotFoundException('Commentaire innexistant.');
-        }
-        $user = $this->getUser();
-
-        $commentVote = new UserCommentVote();
-        $commentVote->setUser($user);
-        $commentVote->setComment($comment);
-
-        $em->persist($commentVote);
-        try
-        {  
-            $em->flush();
-            $this->addFlash('success', 'Commentaire Voté.');
-            
-            $nbVote = count($ucvr->findBy(['comment' => $comment]));
-            $comment->setVotes($nbVote);
-
-            $em->flush();
-            
-        } catch(UniqueConstraintViolationException $e)
-        {
-            $this->addFlash('danger', 'Vous avez deja voté pour ce commentaire.');
-        }
-        return $this->redirectToRoute('comment_show', ['id' => $comment->getEvent()->getId()]);
-    }
+    
 }

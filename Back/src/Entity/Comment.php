@@ -26,10 +26,6 @@ class Comment
      */
     private $createdAt;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $votes;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
@@ -44,8 +40,6 @@ class Comment
     function __construct()
     {
         $this->createdAt = new \DateTime();
-        $this->votes = 0;
-
     }
 
     public function getId(): ?int
@@ -100,17 +94,4 @@ class Comment
 
         return $this;
     }
-
-    public function getVotes(): ?int
-    {
-        return $this->votes;
-    }
-
-    public function setVotes(int $votes): self
-    {
-        $this->votes = $votes;
-
-        return $this;
-    }
-
 }

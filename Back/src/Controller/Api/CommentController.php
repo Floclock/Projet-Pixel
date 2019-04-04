@@ -113,41 +113,6 @@ class CommentController extends AbstractController
     return $response;
     }
 
-    /**
-     * @Route("/comment/vote/{id}", name="comment_vote")
-     */
-    public function vote(Comment $comment = null, EntityManagerInterface $em)
-    {
-        if (null === $comment){
-            throw $this->createnotFoundException('Commentaire innexistant.');
-        }
-        $user = $this->getUser();
-
-        $commentVote = new UserCommentVote();
-        $commentVote->setUser($user);
-        $commentVote->setComment($comment);
-
-        $em->persist($commentVote);
-        try
-        {  
-            $em->flush();
-            $this->addFlash('success', 'Commentaire Voté.');
-            
-            $nbVote = count($ucvr->findBy(['comment' => $comment]));
-            $comment->setVotes($nbVote);
-
-            $em->flush();
-            
-        } catch(UniqueConstraintViolationException $e)
-        {
-            $this->addFlash('danger', 'Vous avez deja voté pour ce commentaire.');
-        }
-
-        $jsonCommentVote = \json_encode($commentVote);
-        $response = new Response($jsonCommentVote);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
 
     /**
      * @Route("/comment/{id}/edit", name="comment_edit", methods={"GET","POST"})

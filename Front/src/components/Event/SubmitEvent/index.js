@@ -89,7 +89,7 @@ const SubmitEvent = ({ sendData, viewForm, reloadEventView }) => {
             </select>
             <p className="submit-event-form-label">date de l'évènement* :</p>
             <Calendar className="submit-event-form" onChange={handleDate} value={date} />
-            {errorMsg === true ? <p className="error">Veuillez vérifier que vous aillez bien rempli tout les champs !</p> : null}
+            {errorMsg === true ? <p className="event-error">Veuillez vérifier que vous aillez bien rempli tout les champs !</p> : null}
             <button className="submit-event-form-button" type="submit" onClick={submitData}>envoyer</button>
           </form>
         ) : <SubmitDone reloadEventView={reloadEventView} />

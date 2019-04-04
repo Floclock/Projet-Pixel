@@ -3,22 +3,22 @@ import { connect } from 'react-redux';
 
 
 //action creators
-import { submitNewUser } from 'src/store/reducer'
+import { submitNewUser } from 'src/store/reducer';
 
 //component
 import Register from 'src/components/LoginPage/Register';
 
 //=== State ===
 const mapStateToProps = state => ({
-    messageSubmit: state.messageSubmit
+  messageSubmit: state.messageSubmit
 });
 
 //===Dispatch ===
 const mapDispatchToProps = dispatch => ({
-    submitNewUser: (newUserRegister) => {
-        dispatch(submitNewUser(newUserRegister));
-    }
-})
+  submitNewUser: (newUserRegister) => {
+    dispatch(submitNewUser(newUserRegister));
+  },
+});
 
 //Container
 const RegisterContainer = connect(

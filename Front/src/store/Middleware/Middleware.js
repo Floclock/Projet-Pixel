@@ -15,14 +15,27 @@ import {
 import axios from 'axios';
 
 
+
+
 const menuUrl = 'http://92.243.8.69/api/types';
 const gamesUrl = 'http://92.243.8.69/api/consoles';
 const eventsUrl = 'http://92.243.8.69/api/events';
 const sendMsgUrl = 'http://92.243.8.69/api/comment/new';
 const sendDataEventUrl = 'http://92.243.8.69/api/event/new';
-const sendVoteUrl = 'http://92.243.8.69/api/event/vote/2';
+const sendVoteUrl = 'http://92.243.8.69/api/event/vote/4';
+
 
 const Middleware = store => next => (action) => {
+  const state = store.getState();
+
+  const voteData = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    },
+    data: action.vote,
+  };
+
   switch (action.type) {
     case LOAD_GAMES:
       axios
@@ -71,7 +84,7 @@ const Middleware = store => next => (action) => {
 
     case SEND_VOTE:
       axios
-        .post(sendVoteUrl, action.vote)
+        .post(sendVoteUrl, voteData)
         .then(() => {
           store.dispatch(getDataEvents());
           console.log('cool ca marche');

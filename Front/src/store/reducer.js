@@ -91,11 +91,13 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case USER_IS_CONNECTED:
+    { localStorage.setItem('userName', state.userIsConnected);
       return {
         ...state,
         isConnected: true,
         usernameIsConnected: action.usernameIsConnected,
       };
+    }
 
     case LOGIN_RESPONSE:
       return {
@@ -110,10 +112,12 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case STOCK_THE_TOKEN:
+    { localStorage.setItem('token', action.stockedToken);
       return {
         ...state,
         token: action.stockedToken,
       };
+    }
 
     default:
       return state;

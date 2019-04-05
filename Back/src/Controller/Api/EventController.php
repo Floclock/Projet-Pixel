@@ -148,8 +148,8 @@ class EventController extends AbstractController
                     'data' => null
                 ]);
         }
-        $user = $this->getUser();
-
+//        $user = $this->getUser();
+	$user = $this->get('security.token_storage')->getToken()->getUser();
         $eventVote = new UserEventVote();
         $eventVote->setUser($user);
         $eventVote->setEvent($event);

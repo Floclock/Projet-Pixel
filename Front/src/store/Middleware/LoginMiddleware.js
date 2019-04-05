@@ -3,7 +3,6 @@
 // Import
 import {
   SUBMIT_LOGINS,
-  UserIsConnected,
   errorConnexion,
   SUBMIT_NEW_USER,
   messageSubmitNewUser,
@@ -39,13 +38,13 @@ const LoginMiddleware = store => next => (action) => {
       axios(sendLoginUser, obj)
         //en cas de succès
         .then((response) => {
-          console.log(state.token);
           // Le token du membre connecté est stocké dans le localStorage
           const stockedToken = response.data.token;
           //{localStorage.setItem('connect_token', response.data.token)}
           // On récupère l'id du membre connecté
           const token = decode(response.data.token);
           const usernameIsConnected = token.username;
+          console.log(token);
           //const userConnectedId = token;
           // On récupère les informations du membre connecté
           //console.log('connexion ok');

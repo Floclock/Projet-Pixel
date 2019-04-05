@@ -13,7 +13,6 @@ const VoteEvent = ({
   const handleVote = () => {
     console.log(nbVotes);
     sendVote({
-      user_id: userId,
       event_id: eventId,
     });
   };

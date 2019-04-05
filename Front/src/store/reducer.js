@@ -91,7 +91,7 @@ const reducer = (state = initialState, action = {}) => {
       };
 
     case USER_IS_CONNECTED:
-    { localStorage.setItem('userName', state.userIsConnected);
+    { localStorage.setItem('userName', action.usernameIsConnected);
       return {
         ...state,
         isConnected: true,

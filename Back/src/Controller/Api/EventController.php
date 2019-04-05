@@ -19,6 +19,7 @@ use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserEventVoteRepository;
 use App\Entity\UserEventVote;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 /**
  * @Route("/api", name="api_")
  */
@@ -148,8 +149,11 @@ class EventController extends AbstractController
                     'data' => null
                 ]);
         }
-//        $user = $this->getUser();
-	$user = $this->get('security.token_storage')->getToken()->getUser();
+      $user = $this->getUser();
+//	$user = $this->get('security.token_storage')->getToken()->getUser();
+//$user =Â$storage->getToken()->getUser();	
+//$user = $storage;
+dd($user);
         $eventVote = new UserEventVote();
         $eventVote->setUser($user);
         $eventVote->setEvent($event);

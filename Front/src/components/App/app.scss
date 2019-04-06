@@ -1,5 +1,9 @@
 @import 'src/styles/vars';
 
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
 .app {
   background-color: $background-color;
   height: 100%;

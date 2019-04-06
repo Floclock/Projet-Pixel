@@ -1,15 +1,21 @@
 import React from 'react';
 
 import './login.scss';
-import FormErrors from './FormErrors';
-
 
 class LoginView extends React.Component {
 
     state = {
         usernameLogin: '',
         passwordLogin: '',
-        errorLogin: {passwordLogin: '',},
+        errorLogin: {usernameLogin: '', passwordLogin: '',},
+        usernameLoginValid: '',
+        passwordLoginValid: '',
+        formValid: false,
+        fieldLoginBlur: {
+            usernameLogin: false,
+            passwordLogin: false,
+        },
+
     }
 
     handleChange = (event) => {
@@ -20,25 +26,37 @@ class LoginView extends React.Component {
 
     validateInput(inputName, value) {
         let inputErrorLogin = this.state.errorLogin;
+        let usernameLoginValid = this.state.usernameLoginValid
         let passwordLoginValid = this.state.passwordLoginValid;
 
         switch(inputName) {
-            case 'passwordLogin':
-                passwordLoginValid = value.length >= 7;
-                inputErrorLogin.passwordLogin = passwordLoginValid ? '' : 'Aucun mot de passe ne peut être inferieur à 8 caractères.';
+            case 'usernameLogin':
+                usernameLoginValid = /^[a-zA-Z0-9]{8,20}$/.test(value);
+                console.log(usernameLoginValid);
+                inputErrorLogin.usernameLogin = usernameLoginValid ? '' : 'NOPE';
+                console.log(value);
                 break;
+
+            case 'passwordLogin':
+                passwordLoginValid = /.{8,20}/.test(value);
+                console.log(passwordLoginValid);
+                inputErrorLogin.passwordLogin = passwordLoginValid ? '' : 'NOPE';
+                console.log(value);
+                break;
+
             default:
                 break;
             }
 
             this.setState({
                 errorLogin: inputErrorLogin,
+                usernameLoginValid: usernameLoginValid,
                 passwordLoginValid: passwordLoginValid,
             }, this.validateForm);
     } 
 
     validateForm() {
-        this.setState({formValid: this.state.passwordLoginValid });
+        this.setState({formValid: this.state.usernameLoginValid && this.state.passwordLoginValid });
     }
 
     errorClassname(error) {
@@ -56,6 +74,24 @@ class LoginView extends React.Component {
             console.log(logins);
             submitLogins(logins);
     }
+
+    handleBlur = (field) => () => {
+        if (this.state.errorLogin[field] !== '') {
+            console.log('plop')
+            this.setState({
+                fieldLoginBlur: {...this.state.fieldLoginBlur, [field]: true},
+            })
+        }  
+        return null
+    }
+
+    handleFocus = (field) => () => {
+        if (this.state.errorLogin[field] !== ''){
+        this.setState({
+            fieldLoginBlur: {...this.state.fieldLoginBlur, [field]: false},
+        })
+        }
+    }
     
     render() {
 
@@ -68,35 +104,48 @@ class LoginView extends React.Component {
                         <p>Veuillez renseigner les champs suivants</p>
                 </div>
                 <form onSubmit={this.handleSubmit} className="login-form">
-                <div className="panel-default">
-                    <FormErrors errors={this.state.errorLogin} />
-                </div>
-                <label>
+                <label className="form-label">
                     Username:
                 </label>
                     <input
+                    className="input"
                     value={this.state.usernameLogin} 
                     onChange={this.handleChange}
                     type="text"
                     placeholder="veuillez entrer votre username"
                     name="usernameLogin"
                     required
+                    onBlur={this.handleBlur('usernameLogin')}
+                    onFocus={this.handleFocus('usernameLogin')}
                     />
-                <label>
+                    <div className="error-box">
+                    {this.state.fieldLoginBlur.usernameLogin === true &&
+                        <p className="error-field">Le username ne semble pas avoir le format habituel</p>
+                    }
+                    </div>
+                <label className="form-label">
                     Password:
                 </label>
                     <input
+                    className="input"
                     value={this.state.passwordLogin}
                     onChange={this.handleChange}
                     type="password"
                     placeholder="Veuillez entrer votre password"
                     name="passwordLogin"
                     required
+                    onBlur={this.handleBlur('passwordLogin')}
+                    onFocus={this.handleFocus('passwordLogin')}
                     />
+                    <div className="error-box">
+                    {this.state.fieldLoginBlur.passwordLogin === true &&
+                        <p className="error-field">Le mot de passe ne semble pas avoir la longueur habituelle</p>
+                    }
+                    </div>
                     <button 
                     className='login-form-button ripple'
                     type='submit'
-                    //disabled={!this.state.formValid}
+                    disabled={!this.state.formValid}
                     >
                     Connexion
                     </button>

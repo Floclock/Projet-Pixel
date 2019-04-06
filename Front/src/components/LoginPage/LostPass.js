@@ -1,6 +1,5 @@
 import React from 'react';
 
-import FormErrors from './FormErrors';
 import './login.scss';
 
 class LostPass extends React.Component {
@@ -67,9 +66,6 @@ class LostPass extends React.Component {
                     <div className="recover-text">
                     <h2>Vous avez oublié votre mot de passe?</h2>
                     <p>Renseignez votre email, nous vous enverrons un email afin de le réinitialiser</p>
-                    </div>
-                    <div className="panel panel-default">
-                        <FormErrors errors={this.state.errors} />
                     </div>
                     <form className='recover-form' onSubmit={this.handleSubmit}>
                     <label>

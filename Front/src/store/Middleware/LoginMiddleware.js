@@ -3,8 +3,6 @@
 // Import
 import {
     SUBMIT_LOGINS,
-    UserIsConnected,
-    errorConnexion,
     SUBMIT_NEW_USER,
     messageSubmitNewUser,
     loginResponse,

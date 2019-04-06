@@ -9,8 +9,23 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
                                                              
                                                              */
 
+
+
+
+
+.form-label {
+    font-size: 1em;
+    color: #746359;
+    display: inline-block;
+    position: relative;
+    align-self: start;
+    float: left;
+}
+
 #view-page h3 {
     font-size: 1.3em;
+    display: flex;
+    justify-content: center;
 }
 
 #login-container {
@@ -18,7 +33,7 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
     display: flex;
     flex-direction: column;
     //justify-content: space-between;
-    margin: 2em auto;
+    margin: 0 auto;
     padding: 1.5em;
     max-width: 60%;
     text-align: center;
@@ -27,15 +42,32 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
 #view-page {
     max-width: 100%;
     display: flex;
-    align-self: center;
+    justify-content: center;
 }
 
+.button-view {
+    margin: 0 auto;
+    max-width: 60%;
+    text-align: center;
+}
 
+.input {
+    width: 100%;
+    font-weight: 500;
+    color: #544741;
+}
+
+.input:focus {
+    outline-offset: 0;
+    width: 100%;
+    font-weight: 500;
+    color: #544741;
+}
 
 .log-button {
-    margin: .5em;
-    color: #c8b29a;
-    background-color:#746359;
+    margin: 1.5em .5em 0 0;
+    color: #746359;
+    background-color:#c8b29a;
     font-weight: bold;
     padding: 1.1em 1.5em;
     border: none;
@@ -43,6 +75,16 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
     width: auto;
 }
 
+.log-button-inactive {
+    margin: 1.5em .5em 0 0;
+    color: #746359;
+    background-color:#372f2d;
+    font-weight: bold;
+    padding: 1.1em 1.5em;
+    border: none;
+    border-radius: 0px;
+    width: auto;
+}
 
 .log-button:focus {
     outline: none;
@@ -50,13 +92,20 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
 
 .log-button:hover {
     outline: none;
-    background-color: #746359;
+    background-color: #e7ceb3;
+    color: #746359;
 }
 
-.log-button:visited {
+.log-button-inactive:hover {
     outline: none;
-    background-color: #c8b29a;
+    background-color: #544741;
+    color: #c8b29a;
 }
+
+.lostPass-reminder {
+    margin: 2em;
+}
+
 
 .recover-link {
     font-size: 1.2em;
@@ -64,6 +113,21 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
 
 .recover-link:hover {
     color: #372f2d;
+}
+
+.error-box {
+    height: 2.5em;
+
+}
+
+.error-field {
+    position: relative;
+    width: 100%;
+    font-size: 1em;
+    color: #700202;
+    background-color: #fa9494;
+    padding: .5em;
+    border:solid 1px #f04646;
 }
 
 /*ooooo          .oooooo.     .oooooo.    ooooo ooooo      ooo oooooo     oooo ooooo oooooooooooo oooooo   oooooo     oooo 
@@ -83,23 +147,24 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8        `8'       o88
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 2em auto;
+    margin: 0em auto;
 }
 
 .login-form input {
     background-color: #ddc9b3;
     border-color: #746359;
-    margin: 1.1em;
+    margin: .5em 0 .5em 0;
     padding: 0.5em;
     text-align: center;
 }
 
 .login-text {
-    margin: 2em;
+    margin: 2em 0 3em 0;
 }
 
 .login-text h2 {
     font-size: 1.7em;
+    margin: .7em;
 }
 
 .login-form-button {
@@ -125,11 +190,12 @@ o888o  o888o o888ooooood8  `Y8bood8P'   o888o 8""88888P'      o888o     o888oooo
                                                                                                   */
 
 .register-text {
-    margin: 2em;
+    margin: 2em 0 3em 0;
 }
 
 .register-text h2 {
     font-size: 1.7em;
+    margin: .7em;
 }
 
 .form-error {
@@ -137,28 +203,18 @@ o888o  o888o o888ooooood8  `Y8bood8P'   o888o 8""88888P'      o888o     o888oooo
 
 }
 
-label {
-    font-size: 1.2em;
-    color: #746359;
-    display: inline-block;
-    position: relative;
-    align-self: start;
-    padding-left: 1em;
-    margin-bottom: 0em;
-}
-
 .register-form {
     display: flex;
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 2em auto;
+    margin: 0em auto;
 }
 
 .register-form input {
     background-color: #ddc9b3;
     border-color: #746359;
-    margin: 1.1em;
+    margin: .5em 0 .5em 0;
     padding: 0.5em;
     text-align: center;
 }
@@ -180,18 +236,6 @@ o888ooooood8  `Y8bood8P'  8""88888P'      o888o     o888o        o88o     o8888o
 
 .recover-text h2 {
     font-size: 1.7em;
-}
-
-
-
-label {
-    font-size: 1.2em;
-    color: #746359;
-    display: inline-block;
-    position: relative;
-    align-self: start;
-    padding-left: 1em;
-    margin-bottom: 0em;
 }
 
 .recover-form {

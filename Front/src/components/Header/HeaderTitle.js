@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './nav.scss';
+import './header.scss';
 
 const HeaderTitle = ({ title, subtitle }) => (
   <div id="title">

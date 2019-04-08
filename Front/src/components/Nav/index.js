@@ -3,7 +3,6 @@ import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import NavData from 'src/data/nav';
-import HeaderTitle from './HeaderTitle';
 import HamburgerMenu from './HamburgerMenu';
 import './nav.scss';
 
@@ -24,7 +23,7 @@ const Nav = ({ path, displayName, displaySubtitle, isConnected, setConnected }) 
     setConnected(false);
   };
   return (
-    <nav className={`header${path}`}>
+    <nav>
       <div className="nav">
         <Link key="home-link1111" to="/">
           <img className="logo" alt="pixel-café" src="src/images/logo.png" />
@@ -49,7 +48,6 @@ const Nav = ({ path, displayName, displaySubtitle, isConnected, setConnected }) 
           }
         </ul>
       </div>
-      <HeaderTitle title={displayName} subtitle={displaySubtitle} />
     </nav>
   );
 };

@@ -134,7 +134,7 @@ class EventController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
-    
+	
     /**
      * @Route("/private/event/vote/{id}", name="api_event_vote")
      */
@@ -153,7 +153,6 @@ class EventController extends AbstractController
 //	$user = $this->get('security.token_storage')->getToken()->getUser();
 //$user =Â$storage->getToken()->getUser();	
 //$user = $storage;
-dd($user);
         $eventVote = new UserEventVote();
         $eventVote->setUser($user);
         $eventVote->setEvent($event);

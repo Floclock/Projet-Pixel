@@ -63,13 +63,19 @@ class CommentController extends AbstractController
 
 
     /**
-     * @Route("/comment/new", name="comment_new", methods={"POST"})
+     * @Route("/private/comment/new", name="comment_new", methods={"POST"})
      */
-    public function newCommentAction(Request $request): Response
+    public function newCommentAction(Request $request, EntityManagerInterface $em): Response
     {
         $body = $request->request->all();
         $return = [];
         $comment = new Comment();
+
+        $user = $this->getUser();
+        $comment->setUser($user);
+
+        $em->persist($comment);
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->submit($body);
         $form->handleRequest($request);

@@ -17,7 +17,7 @@ const RowImages = () => (
     <div className="zone row-menus">
       <NavLink key="menu" to="/menu">
         <div className="row-content">
-          <p className="row-title">menu</p>
+          <p className="row-title">Menu</p>
           <p className="row-description">venez découvrir nos boissons et laissez vous séduire par nos cafés</p>
         </div>
       </NavLink>
@@ -26,7 +26,7 @@ const RowImages = () => (
     <div className="zone row-event">
       <NavLink key="evenement" to="/evenement">
         <div className="row-content">
-          <p className="row-title">évenements</p>
+          <p className="row-title">Evenements</p>
           <p className="row-description">venez découvrir nos tournois et évenement et vous frottez aux meilleurs</p>
         </div>
       </NavLink>

@@ -6,7 +6,6 @@ const initialState = {
   dataMenu: [],
   dataEvents: [],
   eventSubmitView: true,
-  memberId: 3,
   usernameIsConnected: '',
   messageSubmit: '',
 };
@@ -31,12 +30,15 @@ export const SET_EVENT_SUBMITED = 'SET_EVENT_SUBMITED';
 
 const USER_IS_CONNECTED = 'USER_IS_CONNECTED';
 const RECEIVED_TOKEN = 'RECEIVED_TOKEN';
+const SET_CONNECTED = 'SET_CONNECTED';
 
 export const SUBMIT_NEW_USER = 'SUBMIT_NEW_USER';
 const MESSAGE_SUBMIT_NEW_USER = 'MESSAGE_SUBMIT_NEW_USER';
 export const SUBMIT_LOGINS = 'SUBMIT_LOGINS';
 const LOGIN_RESPONSE = 'LOGIN_RESPONSE';
 const STOCK_THE_TOKEN = 'STOCK_THE_TOKEN';
+const USER_DISCONNECT = 'USER_DISCONNECT';
+const USER_IS_ADMIN = 'USER_IS_ADMIN';
 /**
  * Reducer
  */
@@ -119,6 +121,26 @@ const reducer = (state = initialState, action = {}) => {
       };
     }
 
+    case USER_DISCONNECT:
+      return {
+        ...state,
+        token: '',
+        usernameIsConnected: '',
+        isAdmin: '',
+      };
+
+    case USER_IS_ADMIN:
+      return {
+        ...state,
+        isAdmin: action.isAdmin,
+      };
+
+    case SET_CONNECTED:
+      return {
+        ...state,
+        isConnected: action.toggle,
+      };
+
     default:
       return state;
   }
@@ -183,9 +205,11 @@ export const setEventSubmited = () => ({
   type: SET_EVENT_SUBMITED,
 });
 
-export const sendVote = vote => ({
+export const sendVote = (vote, eventId, token) => ({
   type: SEND_VOTE,
   vote,
+  eventId,
+  token,
 });
 
 export const submitLogins = logins => ({
@@ -216,6 +240,20 @@ export const userIsConnected = usernameIsConnected => ({
 export const stockTheToken = stockedToken => ({
   type: STOCK_THE_TOKEN,
   stockedToken,
+});
+
+export const userDisconnect = () => ({
+  type: USER_DISCONNECT,
+});
+
+export const userIsAdmin = isAdmin => ({
+  type: USER_IS_ADMIN,
+  isAdmin,
+})
+
+export const setConnected = toggle => ({
+  type: SET_CONNECTED,
+  toggle,
 });
 
 /**

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
 import Moment from 'moment';
@@ -68,31 +68,31 @@ const SubmitEvent = ({ sendData, viewForm, reloadEventView, username }) => {
 
   let showView;
 
-  if (localStorage.getItem('userName') === '') {
+  if (localStorage.getItem('userName') !== null) {
     console.log(localStorage.getItem('userName'));
     showView = viewForm === true
       ? (
         <form className="submit-event-form">
           <h2 className="submit-event-title">Proposer un évènement</h2> 
-          <p className="submit-event-form-label">type d'évènement* :</p>
+          <p className="submit-event-form-label">type d'évènement :</p>
           <select className="submit-event-form-field" onChange={handleType}>
             <option value="0">entrez un type d'évènement</option>
             <option value="1">tournois</option>
             <option value="2">soirée à thème</option>
             <option value="3">concert</option>
           </select>
-          <p className="submit-event-form-label">nom de l'évènement* :</p>
+          <p className="submit-event-form-label">nom de l'évènement :</p>
           <input className="submit-event-form-field" onChange={handleName} value={name} type="text" placeholder="entrez un nom pour l'évènement" />
-          <p className="submit-event-form-label">description* :</p>
+          <p className="submit-event-form-label">description :</p>
           <textarea className="submit-event-form-field-large" onChange={handleDescription} value={description} type="text" placeholder="faites une description de l'évènement" />
-          <p className="submit-event-form-label">nombres de participants* :</p>
+          <p className="submit-event-form-label">nombres de participants :</p>
           <select className="submit-event-form-field" onChange={handleParticipant} name="nombres de participants">
             <option value="0">sélèctionnez le nombres de participants</option>
             {selects.map(select => <option value={select}>{select}</option>)}
           </select>
-          <p className="submit-event-form-label">date de l'évènement* :</p>
+          <p className="submit-event-form-label">date de l'évènement :</p>
           <Calendar className="submit-event-form" onChange={handleDate} value={date} />
-          {errorMsg === true ? <p className="event-error">Veuillez vérifier que vous aillez bien rempli tout les champs !</p> : null}
+          {errorMsg === true ? <p className="event-error">Veuillez vérifier que vous avez bien rempli tout les champs !</p> : null}
           <button className="submit-event-form-button" type="submit" onClick={submitData}>envoyer</button>
         </form>
       ) : <SubmitDone reloadEventView={reloadEventView} />;

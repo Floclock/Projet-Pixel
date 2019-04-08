@@ -7,20 +7,28 @@ import './event.scss';
 const VoteEvent = ({
   sendVote,
   eventId,
-  userId,
   nbVotes,
 }) => {
   const handleVote = () => {
-    console.log(nbVotes);
     sendVote({
       event_id: eventId,
-    });
+      user_id: 1,
+    },
+    eventId);
+    console.log(eventId);
   };
 
   return (
     <div className="vote-event">
-      <p> Click pour votez</p>
-      <TiThumbsUp onClick={handleVote} className="icon-up" />
+      {localStorage.getItem('userName') !== null
+        ? (
+          <>
+            <p> Click pour votez</p>
+            <TiThumbsUp onClick={handleVote} className="icon-up" />
+          </>
+        )
+        : (<p> veuillez vous connectez</p>)
+        }
       <p>{nbVotes} Votes</p>
     </div>
   );
@@ -29,7 +37,6 @@ const VoteEvent = ({
 VoteEvent.propTypes = {
   sendVote: PropTypes.func.isRequired,
   eventId: PropTypes.number.isRequired,
-  userId: PropTypes.number.isRequired,
   nbVotes: PropTypes.number.isRequired,
 };
 

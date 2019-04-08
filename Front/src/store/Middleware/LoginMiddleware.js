@@ -44,12 +44,14 @@ const LoginMiddleware = store => next => (action) => {
           // On récupère l'id du membre connecté
           const token = decode(response.data.token);
           const usernameIsConnected = token.username;
+          const isAdmin = token.roles[0];
           console.log(token);
           //const userConnectedId = token;
           // On récupère les informations du membre connecté
           //console.log('connexion ok');
           store.dispatch(stockTheToken(stockedToken));
           store.dispatch(userIsConnected(usernameIsConnected));
+          store.dispatch(userIsAdmin(isAdmin))
           store.dispatch(loginResponse('OK'));
           
       })

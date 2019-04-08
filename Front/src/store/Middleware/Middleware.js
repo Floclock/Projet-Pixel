@@ -18,32 +18,19 @@ import axios from 'axios';
 const menuUrl = 'http://92.243.8.69/api/types';
 const gamesUrl = 'http://92.243.8.69/api/consoles';
 const eventsUrl = 'http://92.243.8.69/api/events';
-const sendMsgUrl = 'http://92.243.8.69/api/comment/new';
+const sendMsgUrl = 'http://92.243.8.69/api/private/comment/new';
 const sendDataEventUrl = 'http://92.243.8.69/api/event/new';
-const sendVoteUrl = 'http://92.243.8.69/api/private/event/vote/2';
+const sendVoteUrl = 'http://92.243.8.69/api/private/event/vote/';
 
 
 const Middleware = store => next => (action) => {
-  const state = store.getState();
-
-  const instance = axios.create({
-    method: 'post',
-    baseURL: 'http://92.243.8.69/api/private/',
-    timeout: 1000,
-    headers: { 'Authorization' : 'Bearer ' + localStorage.getItem('token'),'Content-Type': 'application/json;charset=utf-8' },
-  });
-
-  //axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-
-  const voteData = {
-    data: action.vote,
-  };
-
   const config = {
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
-    }
+      'Authorization': 'Bearer ' + localStorage.getItem('token'),
+      'Content-Type': 'application/json',
+    },
   };
+
   switch (action.type) {
     case LOAD_GAMES:
       axios
@@ -80,7 +67,7 @@ const Middleware = store => next => (action) => {
 
     case SEND_MSG:
       axios
-        .post(sendMsgUrl, action.msg)
+        .post(sendMsgUrl, action.msg, config)
         .then(() => {
           store.dispatch(getDataEvents());
           console.log('cool ca marche');
@@ -92,13 +79,14 @@ const Middleware = store => next => (action) => {
 
     case SEND_VOTE:
       axios
-        .post(sendVoteUrl, voteData, { headers: {'Authorization' : 'Bearer ' + localStorage.getItem('token')}} ) 
+        .post(sendVoteUrl + action.eventId, action.vote, config)
         .then(() => {
           store.dispatch(getDataEvents());
           console.log('cool ca marche');
         })
         .catch(() => {
           console.error('puree');
+          console.log(config);
         });
       break;
 

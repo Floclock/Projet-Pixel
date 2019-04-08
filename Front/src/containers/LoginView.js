@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-
 import LoginView from 'src/components/LoginPage/LoginView';
 
 import { submitLogins } from 'src/store/reducer';

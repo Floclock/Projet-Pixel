@@ -3,7 +3,7 @@ import Proptypes from 'prop-types';
 
 import LoginView from 'src/containers/LoginView';
 import Register from 'src/containers/Register';
-import LostPass from 'src/components/LoginPage/LostPass';
+
 
 
 import './login.scss';
@@ -42,19 +42,18 @@ const LoginPage = () => {
 
 const Display = () => {
     const { view, login, register, lostPass } = useContext(DisplayContext);
+
     return (
-    <div id="login-container">
-        <div className="button-view">
-            <button className="gold-6 log-button ripple" onClick={login}>Se connecter</button>
-            <button className="log-button ripple" onClick={register}>S'enregistrer</button>
-        </div>
+        <div id="login-global">
+            <div className="button-box">
+                <button className={`log-button${view === 'login' ? '' : '-inactive'} ripple `} onClick={login}>Se connecter</button>
+                <button className={`log-button${view === 'register' ? '' : '-inactive'} ripple `} onClick={register}>S'enregistrer</button>
+                <button className={`log-button${view === 'lostPass' ? '' : '-inactive'} ripple `} onClick={lostPass}>Mot de passe oublié</button>
+            </div>
+        <div id="login-container">
         <div id="view-page">
             { view === 'login' && (
-                <div>
                 <LoginView />
-                <h3>Vous avez oublié votre mot de passe?</h3>
-                <a className="recover-link" onClick={lostPass}><span>Réinitialisez-le!</span></a>
-                </div>
             )
             }
             { view === 'register' && (
@@ -68,9 +67,11 @@ const Display = () => {
             
         </div>
     </div>
+    </div>
     );
 };
 
 
 export default LoginPage;
+
 

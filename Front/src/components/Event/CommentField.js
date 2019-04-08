@@ -16,7 +16,6 @@ const CommentField = ({ eventId, sendMsg }) => {
     if (msg !== '') {
       sendMsg({
         content: msg,
-        user: 2,
         event: eventId,
       });
       setMsg('');
@@ -25,13 +24,23 @@ const CommentField = ({ eventId, sendMsg }) => {
 
   return (
     <form id="msg-form" onSubmit={handleSubmit}>
-      <input
-        value={msg}
-        onChange={handleChange}
-        id="msg-field"
-        placeholder="Entrez votre commentaire"
-        autoComplete="off"
-      />
+      {localStorage.getItem('userName') !== null
+        ? (
+          <input
+            value={msg}
+            onChange={handleChange}
+            id="msg-field"
+            placeholder="Entrez votre commentaire"
+            autoComplete="off"
+          />
+        ) : (
+          <input
+            value="Veuillez vous connectez pour commenter"
+            id="msg-field"
+            placeholder="Veuillez vous connectez pour commenter"
+            autoComplete="off"
+          />
+        )}
     </form>
   );
 };

@@ -12,7 +12,6 @@ const WatchEvent = ({
   sendMsg,
   getDataEvents,
   sendVote,
-  memberId,
 }) => {
   useEffect(() => {
     getDataEvents();
@@ -33,7 +32,6 @@ const WatchEvent = ({
           <VoteEvent
             sendVote={sendVote}
             eventId={event.id}
-            userId={memberId}
             nbVotes={event.vote}
           />
           <div className="event-coments">
@@ -58,7 +56,6 @@ WatchEvent.propTypes = {
   sendMsg: PropTypes.func.isRequired,
   getDataEvents: PropTypes.func.isRequired,
   sendVote: PropTypes.func.isRequired,
-  memberId: PropTypes.func.isRequired,
 };
 
 

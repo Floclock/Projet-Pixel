@@ -6,7 +6,6 @@
 <br>
         <h4>Ci dessous vous retrouverez tous les liens qui permette de moderer les contenus de la Base de Donnees de Pixel-Coffee</h4>
 
-{# {% if is_granted('ROLE_ADMIN') %} #}
     <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
       <a class="navbar-brand" href="{{ path('main') }}">Moderation</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +32,7 @@
             <a class="nav-link" href="{{ path('game_index') }}">Jeux</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('event_index') }}">Evenements</a>
+          <a class="nav-link" href="{{ path('event_index') }}">Evenements</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ path('style_index') }}">Styles</a>
@@ -46,10 +45,8 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ path('ranking_index') }}">Places</a>
-          </li>                                                                                          
+          </li>
         </ul>
       </div>
     </nav>
-
-<br>
 {% endblock %}

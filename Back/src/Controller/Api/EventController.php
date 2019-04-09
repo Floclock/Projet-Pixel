@@ -19,6 +19,7 @@ use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserEventVoteRepository;
 use App\Entity\UserEventVote;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 /**
  * @Route("/api", name="api_")
  */
@@ -133,9 +134,9 @@ class EventController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
-    
+	
     /**
-     * @Route("/event/vote/{id}", name="api_event_vote")
+     * @Route("/private/event/vote/{id}", name="api_event_vote")
      */
     public function vote(Event $event = null, EntityManagerInterface $em, UserEventVoteRepository $uevr)
     {
@@ -148,8 +149,10 @@ class EventController extends AbstractController
                     'data' => null
                 ]);
         }
-        $user = $this->getUser();
-
+      $user = $this->getUser();
+//	$user = $this->get('security.token_storage')->getToken()->getUser();
+//$user =Â$storage->getToken()->getUser();	
+//$user = $storage;
         $eventVote = new UserEventVote();
         $eventVote->setUser($user);
         $eventVote->setEvent($event);

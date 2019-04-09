@@ -63,13 +63,19 @@ class CommentController extends AbstractController
 
 
     /**
-     * @Route("/comment/new", name="comment_new", methods={"POST"})
+     * @Route("/private/comment/new", name="comment_new", methods={"POST"})
      */
-    public function newCommentAction(Request $request): Response
+    public function newCommentAction(Request $request, EntityManagerInterface $em): Response
     {
         $body = $request->request->all();
         $return = [];
         $comment = new Comment();
+
+        $user = $this->getUser();
+        $comment->setUser($user);
+
+        $em->persist($comment);
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->submit($body);
         $form->handleRequest($request);
@@ -113,54 +119,18 @@ class CommentController extends AbstractController
     return $response;
     }
 
-    /**
-     * @Route("/comment/vote/{id}", name="comment_vote")
-     */
-    public function vote(Comment $comment = null, EntityManagerInterface $em, UserCommentVoteRepository $ucvr)
-    {
-        if (null === $comment){
-            throw $this->createnotFoundException('Commentaire innexistant.');
-        }
-        $user = $this->getUser();
-
-        $commentVote = new UserCommentVote();
-        $commentVote->setUser($user);
-        $commentVote->setComment($comment);
-
-        $em->persist($commentVote);
-        try
-        {  
-            $em->flush();
-            $this->addFlash('success', 'Commentaire Voté.');
-            
-            $nbVote = count($ucvr->findBy(['comment' => $comment]));
-            $comment->setVotes($nbVote);
-
-            $em->flush();
-            
-        } catch(UniqueConstraintViolationException $e)
-        {
-            $this->addFlash('danger', 'Vous avez deja voté pour ce commentaire.');
-        }
-
-        $jsonCommentVote = \json_encode($commentVote);
-        $response = new Response($jsonCommentVote);
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
 
     /**
      * @Route("/comment/{id}/edit", name="comment_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Comment $comment): Response
     {
-        if(!$this->isGranted('EDIT', $comment))
-        {
-            $this->addFlash('danger', 'Ceci n\'est pas votre commentaire');
-
-            return $this->redirectToRoute('comment_index');
-        } 
-
+/*        if(!$this->isGranted('EDIT', $comment))
+ *      {
+ *          $this->addFlash('danger', 'Ceci n\'est pas votre commentaire');
+ *          return $this->redirectToRoute('comment_index');
+ *       } 
+ */
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 

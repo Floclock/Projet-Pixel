@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller\Api;
-
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
@@ -17,7 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserCommentVoteRepository;
 use App\Entity\UserCommentVote;
-
 /**
  * @Route("/api", name="api_")
  */
@@ -60,8 +57,6 @@ class CommentController extends AbstractController
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
-
-
     /**
      * @Route("/private/comment/new", name="comment_new", methods={"POST"})
      */
@@ -70,12 +65,9 @@ class CommentController extends AbstractController
         $body = $request->request->all();
         $return = [];
         $comment = new Comment();
-
         $user = $this->getUser();
         $comment->setUser($user);
-
         $em->persist($comment);
-
         $form = $this->createForm(CommentType::class, $comment);
         $form->submit($body);
         $form->handleRequest($request);
@@ -85,7 +77,6 @@ class CommentController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($comment);
                 $entityManager->flush();
-
                 return new JsonResponse([], JsonResponse::HTTP_CREATED);
             } else {
                 $return['error'] = $this->getErrorsFromForm($form);
@@ -95,7 +86,6 @@ class CommentController extends AbstractController
         }
         return new JsonResponse($return, JsonResponse::HTTP_BAD_REQUEST);
     }
-
     
     /**
      * @Route("/comment/{id}", name="comment_by_one", methods={"GET"})
@@ -111,15 +101,12 @@ class CommentController extends AbstractController
             'user' => $currentValue->getUser()->getUsername(),
             'event' => $currentValue->getEvent()->getDescription()
         ];
-
     $jsonOneComment = \json_encode($array);
     $response = new Response($jsonOneComment);
     $response->headers->set('Content-Type', 'application/json');
     // $response->headers->set('Access-Control-Allow-Origin', '');
     return $response;
     }
-
-
     /**
      * @Route("/comment/{id}/edit", name="comment_edit", methods={"GET","POST"})
      */
@@ -133,19 +120,15 @@ class CommentController extends AbstractController
  */
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('comment_index', [
                 'id' => $comment->getId(),
             ]);
         }
-
         $jsonCommentEdit = \json_encode($form);
         $response = new Response($jsonCommentEdit);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
 }
-

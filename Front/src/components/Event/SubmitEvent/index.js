@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
 import Moment from 'moment';
@@ -13,13 +13,21 @@ for (let i = 4; i <= 20; i += 2) {
   selects.push(i);
 }
 
-const SubmitEvent = ({ sendData, viewForm, reloadEventView, username }) => {
+const SubmitEvent = ({
+  sendData,
+  viewForm,
+  reloadEventView,
+  username,
+  isConnected,
+}) => {
   const [style, setType] = useState(0);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [nbParticipants, setParticipants] = useState(0);
   const [date, setEventDate] = useState(new Date());
   const [errorMsg, setErrorMsg] = useState(false);
+
+  useEffect(() => {}, [isConnected]);
 
   const handleType = (event) => {
     const { value } = event.target;
@@ -96,7 +104,8 @@ const SubmitEvent = ({ sendData, viewForm, reloadEventView, username }) => {
           <button className="submit-event-form-button" type="submit" onClick={submitData}>envoyer</button>
         </form>
       ) : <SubmitDone reloadEventView={reloadEventView} />;
-  } else {
+  }
+  else {
     showView = <NotConnected />;
   }
 
@@ -110,6 +119,8 @@ const SubmitEvent = ({ sendData, viewForm, reloadEventView, username }) => {
 SubmitEvent.propTypes = {
   sendData: PropTypes.func.isRequired,
   viewForm: PropTypes.bool.isRequired,
+  reloadEventView: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default SubmitEvent;

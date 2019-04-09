@@ -88,11 +88,13 @@
   justify-content: space-between;
   align-items: center;
   z-index:9999;
+  padding: 1em 1em;
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
+  margin: 0;
+  width: 150px;
+  height: 35px;
 }
 
 .nav-link {
@@ -101,11 +103,70 @@
   color: white;
   font-size: 1.2em;
   text-transform: uppercase;
+  margin-top: .3em;
 }
 
 .nav-link li {
   margin-left: 1em;
   cursor: pointer;
+}
+
+.nav-login {
+  color: #544741;
+  text-align: center;
+  margin: 0!important;
+
+  &menu {
+    color: #ba6c2e;
+    text-align: center;
+    margin: 0!important;
+  }
+
+  &menu:hover {
+    color: #9c4e21;
+    text-align: center;
+    margin: 0!important;
+  }
+}
+
+.nav-login:hover {
+  color: #746359;
+  text-align: center;
+  margin: 0!important;
+}
+
+.login-block {
+  //height: 2em;
+  padding: .5em 1em; 
+  background-color: #c8b29a;
+  margin-top: -10px;
+  display: flex;
+  align-items: center;
+
+  &menu {
+    padding: .5em 1em; 
+    background-color: #fcaf5d;
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  &menu:hover {
+    padding: .5em 1em; 
+    background-color: #eeb77c;
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.login-block:hover {
+  //height: 2em;
+  padding: .5em 1em; 
+  background-color: #e7ceb3;
+  margin-top: -10px;
+  display: flex;
+  align-items: center;
 }
 
 #title {
@@ -143,6 +204,18 @@
 
 }
 
+
+@media screen and (max-width: 900px) {
+  .nav-link {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-top: .3em;
+  }
+
+}
 
 // CSS Mobile Header //
 
@@ -233,11 +306,13 @@
     justify-content: space-between;
     align-items: center;
     z-index:9999;
+    padding: 1em 1em;
   }
   
   .logo {
-    width: 50px;
-    height: 50px;
+    margin: 0;
+    width: 140px;
+    height: 40px;
   }
   
   .nav-link {

@@ -1,4 +1,3 @@
-@media screen and (max-width: 759px) {
   
     .header {
       display: flex;
@@ -9,7 +8,10 @@
       height: 800px;
       background-image: url('../../images/home.jpg');
       background-size: cover;
-      background-position:center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center top;
+
     
       &menu {
         display: flex;
@@ -17,10 +19,12 @@
         align-content: space-around;
         padding: 1.7em 2em;
         width: 100%;
-        height: 300px;
+        height: 450px;
         background-image: url('../../images/pacman-bar.jpg');
         background-size: cover;
-        background-position:center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center top;
       }
     
       &nos-jeux {
@@ -29,10 +33,12 @@
         align-content: space-around;
         padding: 1.7em 2em;
         width: 100%;
-        height: 300px;
+        height: 450px;
         background-image: url('../../images/gaming-zone.jpg');
         background-size: cover;
-        background-position:center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: 50%;
       }
     
       &reservation {
@@ -41,10 +47,12 @@
         align-content: space-around;
         padding: 1.7em 2em;
         width: 100%;
-        height: 300px;
+        height: 450px;
         background-image: url('../../images/reservation.jpg');
         background-size: cover;
-        background-position:center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center top;
       }
     
       &evenement {
@@ -53,10 +61,12 @@
         align-content: space-around;
         padding: 1.7em 2em;
         width: 100%;
-        height: 300px;
+        height: 450px;
         background-image: url('../../images/event-header.jpg');
         background-size: cover;
-        background-position:center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center top;
       }
   
       &login {
@@ -65,10 +75,12 @@
         align-content: space-around;
         padding: 1.7em 2em;
         width: 100%;
-        height: 300px;
+        height: 450px;
         background-image: url('../../images/login-header.jpg');
         background-size: cover;
-        background-position:center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center top;
       }
 }
-}
+

@@ -17,6 +17,7 @@ const CommentField = ({ eventId, sendMsg }) => {
       sendMsg({
         content: msg,
         event: eventId,
+        user: 43,
       });
       setMsg('');
     }
@@ -35,9 +36,9 @@ const CommentField = ({ eventId, sendMsg }) => {
           />
         ) : (
           <input
-            value="Veuillez vous connectez pour commenter"
+            value="Veuillez vous connecter pour commenter"
             id="msg-field"
-            placeholder="Veuillez vous connectez pour commenter"
+            placeholder="Veuillez vous connecter pour commenter"
             autoComplete="off"
           />
         )}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CheeseburgerMenu from 'cheeseburger-menu';
 import HamburgerMenu from 'react-hamburger-menu';
-import MenuContent from './MenuContent';
+import MenuContent from 'src/containers/HamburgerMenu';
 
 
 const Hamburger = () => {

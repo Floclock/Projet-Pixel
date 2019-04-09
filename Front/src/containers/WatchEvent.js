@@ -7,6 +7,7 @@ import { getDataEvents, sendMsg, sendVote } from 'src/store/reducer';
 
 const mapStateToProps = state => ({
   data: state.dataEvents,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({

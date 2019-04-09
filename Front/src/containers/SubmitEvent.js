@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   data: state.dataEvents,
   viewForm: state.eventSubmitView,
   username: state.usernameIsConnected,
+  isConnected: state.isConnected,
 });
 
 const mapDispatchToProps = dispatch => ({

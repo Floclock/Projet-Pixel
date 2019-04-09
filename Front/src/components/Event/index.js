@@ -9,20 +9,20 @@ const Event = () => {
 
   return (
     <div id="event">
-      <div className="button-box">
+      <div className="button_box">
         <button
           className="event-button left"
           type="button"
           onClick={() => setView('watch')}
         >
-        Voir les evenements
+        Voir les événements
         </button>
         <button
           className="event-button right"
           type="button"
           onClick={() => setView('submit')}
         >
-        Soummetre un evenement
+        Soummettre un événement
         </button>
       </div>
       {view === 'watch' ? <WatchEvent /> : <SubmitEvent />}

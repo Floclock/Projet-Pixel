@@ -18,9 +18,9 @@ import axios from 'axios';
 const menuUrl = 'http://92.243.8.69/api/types';
 const gamesUrl = 'http://92.243.8.69/api/consoles';
 const eventsUrl = 'http://92.243.8.69/api/events';
-const sendMsgUrl = 'http://92.243.8.69/api/private/comment/new';
+const sendMsgUrl = 'http://92.243.8.69/api/comment/new';
 const sendDataEventUrl = 'http://92.243.8.69/api/event/new';
-const sendVoteUrl = 'http://92.243.8.69/api/private/event/vote/';
+const sendVoteUrl = 'http://92.243.8.69/api/event/vote/';
 
 
 const Middleware = store => next => (action) => {
@@ -67,7 +67,7 @@ const Middleware = store => next => (action) => {
 
     case SEND_MSG:
       axios
-        .post(sendMsgUrl, action.msg, config)
+        .post(sendMsgUrl, action.msg)
         .then(() => {
           store.dispatch(getDataEvents());
           console.log('cool ca marche');
@@ -79,7 +79,7 @@ const Middleware = store => next => (action) => {
 
     case SEND_VOTE:
       axios
-        .post(sendVoteUrl + action.eventId, action.vote, config)
+        .post(sendVoteUrl + action.eventId, action.vote)
         .then(() => {
           store.dispatch(getDataEvents());
           console.log('cool ca marche');

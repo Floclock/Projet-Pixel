@@ -8,6 +8,8 @@ import { Route, Switch } from 'react-router-dom';
 import './app.scss';
 import NavData from 'src/data/nav';
 
+const uuid = require('uuid-v4');
+
 const App = ({ sendUrl, pathName }) => (
   <div className={`app${pathName}`}>
     <Nav className="nav-menu" />
@@ -15,11 +17,12 @@ const App = ({ sendUrl, pathName }) => (
     <Switch>
       {NavData.map(nav => (
         <Route
+          key={uuid}
           exact
           path={nav.route}
           render={({ match }) => {
-            const { label, subtitle } = nav;
-            sendUrl(match, label, subtitle);
+            const { title, subtitle } = nav;
+            sendUrl(match, title, subtitle);
             const Components = nav.page;
             return <Components />;
           }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { TiThumbsUp } from 'react-icons/ti';
 
@@ -8,14 +8,16 @@ const VoteEvent = ({
   sendVote,
   eventId,
   nbVotes,
+  isConnected,
 }) => {
+  useEffect(() => {}, [isConnected]);
+
   const handleVote = () => {
     sendVote({
       event_id: eventId,
       user_id: 1,
     },
     eventId);
-    console.log(eventId);
   };
 
   return (
@@ -23,11 +25,11 @@ const VoteEvent = ({
       {localStorage.getItem('userName') !== null
         ? (
           <>
-            <p> Click pour votez</p>
+            <p>Click pour voter</p>
             <TiThumbsUp onClick={handleVote} className="icon-up" />
           </>
         )
-        : (<p> veuillez vous connectez</p>)
+        : (<p>Veuillez vous connecter</p>)
         }
       <p>{nbVotes} Votes</p>
     </div>
@@ -38,6 +40,7 @@ VoteEvent.propTypes = {
   sendVote: PropTypes.func.isRequired,
   eventId: PropTypes.number.isRequired,
   nbVotes: PropTypes.number.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 export default VoteEvent;

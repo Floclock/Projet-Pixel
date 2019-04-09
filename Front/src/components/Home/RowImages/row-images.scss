@@ -20,25 +20,41 @@
 }
 
 .zone {
-  height: 13em;
+  height: 15em;
   width: 33.3%;
   background-size: cover;
 }
 
 .row-gaming {
   background-image: url('../../../images/gaming-zone.jpg');
+  transition: all .4s ease-in-out;
+}
+
+.row-gaming:hover {
+  transform: scale(1.01);
 }
  
 .row-menus {
   background-image: url('../../../images/cofee.jpg');
+  transition: all .4s ease-in-out;
+}
+
+.row-menus:hover {
+  transform: scale(1.01);
 }
 
 .row-event {
   background-image: url('../../../images/event.jpg');
+  transition: all .4s ease-in-out;
   }
+
+.row-event:hover {
+  transform: scale(1.01);
+}
 
 
 .row-title {
+  align-items: center;
   font-weight: bold;
   font-size: 1.5em;
   margin-bottom: 1em;
@@ -65,7 +81,7 @@
   }
   
   .zone {
-    height: 13em;
+    height: 18em;
     background-size: cover;
     margin-bottom: 2.5em;
   }
@@ -84,6 +100,7 @@
   
   
   .row-title {
+    align-items: center;
     font-weight: bold;
     font-size: 1.5em;
     margin-bottom: 1em;

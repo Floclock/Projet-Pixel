@@ -5,6 +5,8 @@ import ImgBox from './ImgBox';
 import GamesBox from './GamesBox';
 import './games.scss';
 
+const uuid = require('uuid-v4');
+
 const Games = ({ getDataGames, data }) => {
 
   useEffect(() => {
@@ -14,7 +16,7 @@ const Games = ({ getDataGames, data }) => {
   return (
     <div id="games">
       {data.map(console => (
-        <div>
+        <div key={uuid()}>
           {console.id % 2 === 0
             ? (
               <div className="pair">

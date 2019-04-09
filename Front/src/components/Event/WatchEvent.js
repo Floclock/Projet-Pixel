@@ -7,11 +7,14 @@ import VoteEvent from './VoteEvent';
 import CommentField from './CommentField';
 import './event.scss';
 
+const uuid = require('uuid-v4');
+
 const WatchEvent = ({
   data,
   sendMsg,
   getDataEvents,
   sendVote,
+  isConnected,
 }) => {
   useEffect(() => {
     getDataEvents();
@@ -19,7 +22,7 @@ const WatchEvent = ({
   return (
     <div id="watch-event">
       {data.map(event => (
-        <div className="event-box">
+        <div key={uuid()} className="event-box">
           <div className="event-filter">
             <img className="event-filter-img" src={`src/images/${event.style}.jpg`} alt={event.style} />
           </div>
@@ -27,17 +30,18 @@ const WatchEvent = ({
             <p className="event-description-date">{event.date.substring(0, 11)}</p>
             <p className="event-description-name">{event.name}</p>
             <p className="event-description-desc">{event.description}</p>
-            <p className="event-description-numb">Nombres de Participants: {event.nbParticipants}</p>
+            <p className="event-description-numb">Nombre de Participants: {event.nbParticipants}</p>
           </div>
           <VoteEvent
             sendVote={sendVote}
             eventId={event.id}
             nbVotes={event.vote}
+            isConnected={isConnected}
           />
           <div className="event-coments">
             <ScrollToBottom className="event-coments-list">
               {event.comments.map(comment => (
-                <div className="event-coments-msg">
+                <div key={uuid()} className="event-coments-msg">
                   <p className="event-coments-user"><FaUserAlt /> {comment.username}</p>
                   <p>{comment[0].content}</p>
                 </div>
@@ -56,6 +60,7 @@ WatchEvent.propTypes = {
   sendMsg: PropTypes.func.isRequired,
   getDataEvents: PropTypes.func.isRequired,
   sendVote: PropTypes.func.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 };
 
 

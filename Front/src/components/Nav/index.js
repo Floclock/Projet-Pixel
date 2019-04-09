@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -6,14 +6,15 @@ import NavData from 'src/data/nav';
 import HamburgerMenu from './HamburgerMenu';
 import './nav.scss';
 
-const Nav = ({ path, displayName, displaySubtitle, isConnected, setConnected }) => {
-  console.log(isConnected);
+const uuid = require('uuid-v4');
+
+const Nav = ({ path, isConnected, setConnected }) => {
   const toggle = () => {
     if (localStorage.getItem('userName') !== null) {
       setConnected(true);
-      console.log('test');
     }
   };
+
   useEffect(() => {
     toggle();
   }, [isConnected, path]);
@@ -31,7 +32,7 @@ const Nav = ({ path, displayName, displaySubtitle, isConnected, setConnected }) 
         <HamburgerMenu />
         <ul className="nav-link">
           {NavData.map(nav => (
-            <li>
+            <li key={uuid()}>
               <NavLink
                 key={nav.label}
                 to={nav.route}
@@ -40,12 +41,14 @@ const Nav = ({ path, displayName, displaySubtitle, isConnected, setConnected }) 
               </NavLink>
             </li>
           ))}
-          { isConnected === false
-            ? (
-              <li><NavLink key="login" to="login">login</NavLink></li>)
-            : (
-              <li onClick={disconnect}>deconexion</li>)
-          }
+          <div className={`login-block${path} ripple`}>
+            { isConnected === false
+              ? (
+                <li className={`nav-login${path} ripple`}><NavLink key="login" to="login">login</NavLink></li>)
+              : (
+                <li className="nav-login ripple" onClick={disconnect}>deconnexion</li>)
+            }
+          </div>
         </ul>
       </div>
     </nav>
@@ -54,8 +57,8 @@ const Nav = ({ path, displayName, displaySubtitle, isConnected, setConnected }) 
 
 Nav.propTypes = {
   path: PropTypes.string.isRequired,
-  displayName: PropTypes.string.isRequired,
-  displaySubtitle: PropTypes.string.isRequired,
+  isConnected: PropTypes.bool.isRequired,
+  setConnected: PropTypes.func.isRequired,
 };
 
 

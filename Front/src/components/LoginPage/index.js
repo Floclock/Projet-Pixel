@@ -48,7 +48,7 @@ const Display = () => {
             <div className="button-box">
                 <button className={`log-button${view === 'login' ? '' : '-inactive'} ripple `} onClick={login}>Se connecter</button>
                 <button className={`log-button${view === 'register' ? '' : '-inactive'} ripple `} onClick={register}>S'enregistrer</button>
-                <button className={`log-button${view === 'lostPass' ? '' : '-inactive'} ripple `} onClick={lostPass}>Mot de passe oublié</button>
+                {/* <button className={`log-button${view === 'lostPass' ? '' : '-inactive'} ripple `} onClick={lostPass}>Mot de passe oublié</button> */}
             </div>
         <div id="login-container">
         <div id="view-page">

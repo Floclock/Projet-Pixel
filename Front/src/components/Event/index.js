@@ -11,21 +11,26 @@ const Event = () => {
     <div id="event">
       <div className="button_box">
         <button
-          className="event-button left"
+          className={`event-button${view === 'watch' ? '' : '-inactive'} left ripple`}
           type="button"
           onClick={() => setView('watch')}
         >
         Voir les événements
         </button>
         <button
-          className="event-button right"
+          className={`event-button${view === 'submit' ? '' : '-inactive'} right ripple`}
           type="button"
           onClick={() => setView('submit')}
         >
         Soummettre un événement
         </button>
       </div>
-      {view === 'watch' ? <WatchEvent /> : <SubmitEvent />}
+      {view === 'watch' && (
+      <WatchEvent /> 
+      )} 
+      { view === 'submit' && (
+      <SubmitEvent />
+      )}
     </div>
   );
 };

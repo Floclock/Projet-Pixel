@@ -9,22 +9,34 @@
 }
 
 .event-button {
-  width: 15em;
   margin: 0 .5em;
-  color: white;
+  padding: .5em 1.6em;
+  color: #5c4175;
+  background-color: #a186bd;
   border: none;
-  border-radius: 5px 5px 0 0;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
 }
 
-  .left {
-    background-color: #a186bd;
-  }
 
-  .right {
-    background-color: #652d90;
-  }
+.event-button-inactive {
+  padding: .5em 1.6em;
+  color: #a186bd;
+  background-color: #440e62;
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.event-button-inactive:hover {
+  padding: .5em 1.6em;
+  color: #b99bda;
+  background-color: #5c1383;
+  border: none;
+  font-size: 1em;
+  font-weight: bold;
+}
+
 
   #watch-event {
     background-color: #a186bd;
@@ -125,7 +137,8 @@
     padding-left: .4em;
     height: 2.2em;
     border: none;
-    background-color: rgb(223, 225, 226);
+    background-color: #7c6091;
+    border: solid 1px #652d8e;
   }
 }
 

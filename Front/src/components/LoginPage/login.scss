@@ -29,6 +29,7 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
         font-weight: bold;
         padding: .5em 1.6em 1em 0;
         border: none;
+        font-size: 1em;
         border-radius: 0px;
         width: auto;
     }
@@ -40,6 +41,7 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
         font-weight: bold;
         padding: .5em 1.6em;
         border: none;
+        font-size: 1em;
         border-radius: 0px;
         width: auto;
     }
@@ -118,12 +120,6 @@ o888ooooood8  `Y8bood8P'   `Y8bood8P'   o888o o8o        `8
     
     .log-button:focus {
         outline: none;
-    }
-    
-    .log-button:hover {
-        outline: none;
-        background-color: #e7ceb3;
-        color: #746359;
     }
     
     .log-button-inactive:hover {
@@ -553,6 +549,7 @@ o888o o888o o888o o888o o888o o888o        .8'      `8bd88P'     .oP'
     margin: 1.5em .5em 0 0;
     color: #746359;
     background-color:#c8b29a;
+    font-size: 1em;
     font-weight: bold;
     padding: 1.1em 1.5em;
     border: none;
@@ -564,6 +561,7 @@ o888o o888o o888o o888o o888o o888o        .8'      `8bd88P'     .oP'
     margin: 1.5em .5em 0 0;
     color: #746359;
     background-color:#372f2d;
+    font-size: 1em;
     font-weight: bold;
     padding: 1.1em 1.5em;
     border: none;
@@ -573,12 +571,6 @@ o888o o888o o888o o888o o888o o888o        .8'      `8bd88P'     .oP'
 
 .log-button:focus {
     outline: none;
-}
-
-.log-button:hover {
-    outline: none;
-    background-color: #e7ceb3;
-    color: #746359;
 }
 
 .log-button-inactive:hover {

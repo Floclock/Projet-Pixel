@@ -8,9 +8,9 @@
       height: 800px;
       background-image: url('../../images/home.jpg');
       background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-position: center top;
+      // background-repeat: no-repeat;
+      // background-attachment: fixed;
+      // background-position: center top;
 
     
       &menu {
@@ -22,9 +22,9 @@
         height: 450px;
         background-image: url('../../images/pacman-bar.jpg');
         background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center top;
+        //background-repeat: no-repeat;
+        //background-attachment: fixed;
+        // background-position:  top;
       }
     
       &nos-jeux {
@@ -36,9 +36,9 @@
         height: 450px;
         background-image: url('../../images/gaming-zone.jpg');
         background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: 50%;
+        // background-repeat: no-repeat;
+        // background-attachment: fixed;
+        // background-position: top;
       }
     
       &reservation {
@@ -50,9 +50,9 @@
         height: 450px;
         background-image: url('../../images/reservation.jpg');
         background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center top;
+        // background-repeat: no-repeat;
+        // background-attachment: fixed;
+        // background-position: center top;
       }
     
       &evenement {
@@ -64,9 +64,9 @@
         height: 450px;
         background-image: url('../../images/event-header.jpg');
         background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center top;
+        // background-repeat: no-repeat;
+        // background-attachment: fixed;
+        // background-position: center top;
       }
   
       &login {
@@ -78,9 +78,18 @@
         height: 450px;
         background-image: url('../../images/login-header.jpg');
         background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center top;
+        // background-repeat: no-repeat;
+        // background-attachment: fixed;
+        // background-position: center top;
       }
+
+      
+}
+
+.sub-title2 {
+  font-size: 1.3em;
+  line-height: 1.4;
+  color: white;
+  text-align: center;
 }
 
